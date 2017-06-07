@@ -1,0 +1,51 @@
+<template name="UIDropDown">
+    <h2>Info</h2>
+    This is basically the select element but the UI template
+    <hr>
+    <table>
+        {{> rowHeader title='Basic UI-Drop-Down'}}
+        <tr>
+            <td class='example'>
+                <UI-Drop-Down list="{{list}}"></UI-Drop-Down>
+            </td>
+            <td>
+                {{> UIDropDown_code1}}
+            </td>
+        </tr>
+        {{> midRowHeader title='UI-Drop-Down with ID'}}
+        <tr>
+            <td class='example'>
+                <UI-Drop-Down list="{{list}}" id='sample'></UI-Drop-Down>
+            </td>
+            <td>
+                {{> UIDropDown_code2}}
+            </td>
+        </tr>
+    </table>
+    <hr>
+    <br>
+    <br>
+    <br>
+    {{>UIDropDown_events}}
+</template>
+
+<template name="UIDropDown_code1">
+    <h4>Code</h4>
+    <pre>
+    &lt;UI-Drop-Down &gt;&lt;/UI-Drop-Down&gt;</pre>
+</template>
+
+<template name="UIDropDown_code2">
+    <h4>Code</h4>
+    <pre>
+    &lt;UI-Drop-Down id=&apos;sample&apos;&gt;&lt;/UI-Drop-Down&gt;</pre>
+</template>
+
+<template name="UIDropDown_events">
+    <h2>Events</h2>
+    <H4>{ID}_UI-Drop-Down_changed</H4>
+    This event is triggered when changes in the text box occur.
+    
+    <H4>{ID}_UI-Drop-Down_clicked</H4>
+    This  event is triggered when the text box is clicked on.
+</template>

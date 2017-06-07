@@ -1,0 +1,54 @@
+<template name="UITextBox">
+    <h2>Info</h2>
+    This is basically the text box but the UI template
+    <hr>
+    <table>
+        {{> rowHeader title='Basic UI-TextBox'}}
+        <tr>
+            <td class='example'>
+                <UI-Text-Box></UI-Text-Box>
+            </td>
+            <td>
+                {{> UITextBox_code1}}
+            </td>
+        </tr>
+        {{> midRowHeader title='UI-Text-Box wiht ID'}}
+        <tr>
+            <td class='example'>
+                <UI-Text-Box id='sample'></UI-Text-Box>
+            </td>
+            <td>
+                {{> UITextBox_code2}}
+            </td>
+        </tr>
+    </table>
+    <hr>
+    <br>
+    <br>
+    <br>
+    {{>UITextBox_events}}
+</template>
+
+<template name="UITextBox_code1">
+    <h4>Code</h4>
+    <pre>
+    &lt;UI-Text-Box &gt;&lt;/UI-Text-Box&gt;</pre>
+</template>
+
+<template name="UITextBox_code2">
+    <h4>Code</h4>
+    <pre>
+    &lt;UI-Text-Box id=&apos;sample&apos;&gt;&lt;/UI-Text-Box&gt;</pre>
+</template>
+
+<template name="UITextBox_events">
+    <h2>Events</h2>
+    <H4>{ID}_UI-Text-Box_changed</H4>
+    This event is triggered when changes in the text box occur.
+    
+    <H4>{ID}_UI-Text-Box_clicked</H4>
+    This  event is triggered when the text box is clicked on.
+    
+    <H4>{ID}_UI-Text-Box_keyup</H4>
+    This  event is triggered when the text box has focus and a key is pressed.
+</template>

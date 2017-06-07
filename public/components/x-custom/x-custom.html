@@ -1,0 +1,40 @@
+<dom-module id="x-custom">
+
+  <template>
+
+    <!-- All users will see this -->
+    test
+
+    
+    <template is="dom-if" if="{{user}}">
+      <!-- Only admins will see this. -->
+      test2
+    </template>
+    
+    <template is="dom-if" if="{{test(user)}}">
+      <!-- Only admins will see this. -->
+      test2
+    </template>
+
+  </template>
+
+  <script>
+    class XCustom extends Polymer.Element {
+
+      static get is() { return 'x-custom'; }
+
+      static get properties() {
+        return {
+          user: {type:Boolean, value:false}
+        }
+      }
+      test(a){
+          //
+      }
+
+    }
+
+    customElements.define(XCustom.is, XCustom);
+  </script>
+
+</dom-module>

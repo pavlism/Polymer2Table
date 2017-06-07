@@ -1,0 +1,63 @@
+<template name="UICheckBox">
+    <h2>Info</h2>
+    This is basically the check box but the UI template
+    <hr>
+    <table>
+        {{> rowHeader title='Basic UI-CheckBox'}}
+        <tr>
+            <td class='example'>
+                <ui-check-box>unchecked</ui-check-box>
+                <ui-check-box checked>checked</ui-check-box>
+                <ui-check-box disabled>disabled</ui-check-box>
+                <ui-check-box disabled checked>disabled && checked</ui-check-box>
+            </td>
+            <td>
+                {{> UICheckBox_code1}}
+            </td>
+        </tr>
+        {{> midRowHeader title='UI-Check-Box with ID'}}
+        <tr>
+            <td class='example'>
+                <ui-check-box id='sample'>sample</ui-check-box>
+            </td>
+            <td>
+                {{> UICheckBox_code2}}
+            </td>
+        </tr>
+    </table>
+    <hr>
+    <br>
+    <br>
+    <br>
+    {{>UICheckBox_events}}
+</template>
+
+<template name="UICheckBox_code1">
+    <h4>Code</h4>
+    <pre>
+    &lt;ui-check-box &gt;unchecked&lt;/ui-check-box&gt;
+    &lt;ui-check-box &gt;checked&lt;/ui-check-box&gt;
+    &lt;ui-check-box &gt;disabled&lt;/ui-check-box&gt;
+    &lt;ui-check-box &gt;checked && disabled&lt;/ui-check-box&gt;</pre>
+</template>
+
+<template name="UICheckBox_code2">
+    <h4>Code</h4>
+    <pre>
+    &lt;ui-check-box id=&apos;sample&apos;&gt;&lt;/ui-check-box&gt;</pre>
+</template>
+
+<template name="UICheckBox_events">
+    <h2>Events</h2>
+    <H4>{ID}_ui-check-box_changed</H4>
+    When a check box is check the changed event will fire.  This event will use the ID on the ui-check-box element.<br>
+    The trigger argument will contain the ui-check-box Object, the event object and a boolean called isChecked.<br>
+    Open the console log and check the boxed to see an example of this event.
+    
+    <H4>Sample Listener</H4>
+    <pre>
+    EventBroker.listen("_ui-check-box_changed", function (listenerArgs, triggerArgs) {
+        console.log('a UI-Check-Box box was clicked');
+        console.log(triggerArgs);
+    });</pre>
+</template>

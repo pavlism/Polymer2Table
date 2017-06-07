@@ -1,0 +1,17 @@
+/* CSS declarations go here */
+hr {
+    border-top: 3px double #8c8b8b;
+}
+
+table {
+    width: 100%;
+}
+
+.example{
+    width: 50%;
+    padding-right: 10px;
+}
+
+body { 
+    padding-top: 10px; 
+}

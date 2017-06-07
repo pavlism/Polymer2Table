@@ -1,0 +1,157 @@
+<template name="UITable">
+    <h2>Info</h2>
+    The table element requires an ID, and a 2D array of data passed in.  The first row of the array will become the headers.  Each other row will become the data.<br>
+    No css styling is required because it's all done inside of the element itself.
+    
+    <table>
+        {{> rowHeader title='Basic UI-Table'}}
+        <tr>
+            <td class='example'>
+                <UI-Table data='{{tableData}}' id='Table1' Basic></UI-Table>
+            </td>
+        <td>
+            {{> UI_Table_code1}}
+        </td>
+        </tr>
+        {{> midRowHeader title='UI-Table With Footer'}}
+        <tr>
+            <td class='example'>
+                <UI-Table data='{{tableData}}' id='Table2' footer></UI-Table>
+            </td>
+        <td>
+            {{> UI_Table_code2}}
+        </td>
+        </tr>
+        {{> midRowHeader title='UI-Table With Sortable'}}
+        <tr>
+            <td class='example'>
+                <UI-Table data='{{tableData}}' id='Table3' sortable></UI-Table>
+            </td>
+        <td>
+            {{> UI_Table_code3}}
+        </td>
+        </tr>
+        {{> midRowHeader title='UI-Table With Searchable'}}
+        <tr>
+            <td class='example'>
+                <UI-Table data='{{tableData}}' id='Table4' searchable></UI-Table>
+            </td>
+        <td>
+            {{> UI_Table_code4}}
+        </td>
+        </tr>
+        {{> midRowHeader title='UI-Table With Buttons'}}
+        <tr>
+            <td class='example'>
+                <UI-Table data='{{tableData}}' id='Table5' buttons></UI-Table>
+            </td>
+        <td>
+            {{> UI_Table_code5}}
+        </td>
+        </tr>
+        {{> midRowHeader title='UI-Table With Pages'}}
+        <tr>
+            <td class='example'>
+                <UI-Table data='{{tableData2}}' id='Table6' pages></UI-Table>
+            </td>
+        <td>
+            {{> UI_Table_code6}}
+        </td>
+        </tr>
+        {{> midRowHeader title='UI-Table With objects'}}
+        <tr>
+            <td class='example'>
+                <UI-Table data='{{tableData3}}' id='Table8' Basic></UI-Table>
+            </td>
+        <td>
+            {{> UI_Table_code1}}
+        </td>
+        </tr>
+        {{> midRowHeader title='UI-Table With Buttons'}}
+        <tr>
+            <td class='example'>
+                <UI-Table data='{{tableData4}}' id='Table9' Basic></UI-Table>
+            </td>
+        <td>
+            {{> UI_Table_code8}}
+        </td>
+        </tr>
+        {{> midRowHeader title='UI-Table With Everything'}}
+        <tr>
+            <td class='example'>
+                <UI-Table data='{{tableData3}}' id='Table7'></UI-Table>
+            </td>
+        <td>
+            {{> UI_Table_code7}}
+        </td>
+        </tr>
+        {{> rowHR}}
+    </table>
+    {{>UI_UGTable_events}}
+    <br>
+    <br>
+    <br>
+</template>
+
+<template name="UI_Table_code1">
+    <h4>Code</h4>
+    <pre>
+    &#x3C;UI-Table data=&#x27;{2DArray}&#x27; id=&#x27;Table1&#x27; Basic &#x3E;&#x3C;/UG-Table&#x3E;</pre>
+</template>
+
+<template name="UI_Table_code2">
+    <h4>Code</h4>
+    <pre>
+    &#x3C;UI-Table data=&#x27;{2DArray}&#x27; id=&#x27;Table2&#x27; footer&#x3E;&#x3C;/UG-Table&#x3E;</pre>
+</template>
+
+<template name="UI_Table_code3">
+    <h4>Code</h4>
+    <pre>
+    &#x3C;UI-Table data=&#x27;{2DArray}&#x27; id=&#x27;Table2&#x27; sortable&#x3E;&#x3C;/UG-Table&#x3E;</pre>
+</template>
+
+<template name="UI_Table_code4">
+    <h4>Code</h4>
+    <pre>
+    &#x3C;UI-Table data=&#x27;{2DArray}&#x27; id=&#x27;Table2&#x27; searchable&#x3E;&#x3C;/UG-Table&#x3E;</pre>
+</template>
+
+<template name="UI_Table_code5">
+    <h4>Code</h4>
+    <pre>
+    &#x3C;UI-Table data=&#x27;{2DArray}&#x27; id=&#x27;Table2&#x27; buttons&#x3E;&#x3C;/UG-Table&#x3E;</pre>
+</template>
+
+<template name="UI_Table_code6">
+    <h4>Code</h4>
+    <pre>
+    &#x3C;UI-Table data=&#x27;{2DArray}&#x27; id=&#x27;Table2&#x27; pages&#x3E;&#x3C;/UG-Table&#x3E;</pre>
+</template>
+
+<template name="UI_Table_code7">
+    <h4>Code</h4>
+    <pre>
+    &#x3C;UI-Table data=&#x27;{2DArray}&#x27; id=&#x27;Table2&#x27; &#x3E;&#x3C;/UG-Table&#x3E;</pre>
+</template>
+
+<template name="UI_Table_code8">
+    <h4>Code</h4>
+    <pre>
+    &#x3C;UI-Table data=&#x27;{2DArray}&#x27; id=&#x27;Table1&#x27; Basic &#x3E;&#x3C;/UG-Table&#x3E;</pre>
+</template>
+
+
+
+
+<template name="UI_UGTable_events">
+    <h2>Events</h2>
+    <H4>{ID}_UI-Table_clicked</H4>
+    When cell is clicked is clicked the changed event will fire.  This event will use the ID on the UG-Table element.<br>
+    The trigger argument will contain the text from the cell, a row object, UG-Table Object and the event object.<br>
+    Open the console log and check the boxed to see an example of this event.
+    <H4>{ID}_UI-Table_dblclicked</H4>
+    When a cell is double clicked the changed event will fire.  This event will use the ID on the UG-Table element.<br>
+    The trigger argument will contain the text from the cell, a row object, UG-Table Object and the event object.<br>
+    Open the console log and check the boxed to see an example of this event.
+</template>

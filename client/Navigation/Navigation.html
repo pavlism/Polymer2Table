@@ -1,0 +1,37 @@
+<template name='layout'>
+    <!-- The default layout for every page, it puts the navigation on the top and the rest "yield" on the bottom-->
+    <div class="container">
+        {{>navigation}}
+    </div>
+    <div class="container">
+        {{>yield}}
+    </div>
+</template>
+
+<template name='navigation'>
+    <!-- The template used at the top of the page-->
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <h1>Polymer 2.0 Components</h1>
+            </div>
+        </div>
+        {{>navigation_navbar}}
+    </nav>
+</template>
+
+<template name='navigation_navbar'>
+    <!-- The navigation bar used to move from one page to another-->
+    <div>
+        <ul class="nav navbar-nav">
+            <li id='navHome' class="active"><a href="{{pathFor 'Home'}}">Home</a></li>
+            <li><a href="{{pathFor 'UI_Table'}}">UI-Table</a></li>
+            <li><a href="{{pathFor 'UIButton'}}">UI-Button</a></li>
+            <li><a href="{{pathFor 'UICheckBox'}}">UI-Check-Box</a></li>
+            <li><a href="{{pathFor 'UITextBox'}}">UI-Text-Box</a></li>
+            <li><a href="{{pathFor 'UIDropDown'}}">UI-Drop-Down</a></li>
+            <li><a href="{{pathFor 'UIAlert'}}">UI-Alert</a></li>
+            <li><a href="{{pathFor 'Dev'}}">Dev</a></li>
+        </ul>
+    </div>
+</template>    

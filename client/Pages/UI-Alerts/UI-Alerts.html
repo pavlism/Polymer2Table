@@ -1,0 +1,96 @@
+<template name="UIAlert">
+    <h2>Info</h2>
+    The alert elements is a nicer looking version of the alert message box.  Its used to display a simple message to the user.  It does not have many theme options yet.<br/>
+    To toggle an alert you have 2 different options.  1 you can set the toggle property to variable, then change that variable, 1 is on 0 if off.<br/>
+    The second option is to use the on-event and off-even attributes.  Set either of them to a string that is the EventBroker event you want to trigger the alert.
+    
+    <hr>
+    <table>
+        {{> rowHeader title='Basic UI-Alert'}}
+        <tr>
+            <td class='example'>
+                <ui-button id='toggleBasic'>Toggle Basic</ui-button>
+                <ui-alert title="title" message="message" toggle="{{defaultButton}}"></ui-alert>
+            </td>
+            <td>
+                {{> UIAlert_code1}}
+            </td>
+        </tr>
+        {{> midRowHeader title='UI-Alert with ID'}}
+        <tr>
+            <td class='example'>
+                <ui-button id='toggleID'>Toggle Basic</ui-button>
+                <ui-alert title="title" message="message" id='sample' toggle="{{toggleID}}"></ui-alert>
+            </td>
+            <td>
+                {{> UIAlert_code2}}
+            </td>
+        </tr>
+        {{> midRowHeader title='UI-Alert with Events'}}
+        <tr>
+            <td class='example'>
+                <ui-button id='OnEvent'>Turn On</ui-button>
+                <ui-button id='OffEvent'>Turn off</ui-button>
+                <ui-alert title="title" message="message" on-event="OnEvent_ui-button_clicked" off-event="OffEvent_ui-button_clicked"></ui-alert>
+            </td>
+            <td>
+                {{> UIAlert_code3}}
+            </td>
+        </tr>
+        {{> midRowHeader title='UI-Alert with Timer in seconds'}}
+        <tr>
+            <td class='example'>
+                <ui-button id='TimerOn'>Turn On</ui-button>
+                <ui-alert title="title" message="message" on-event="TimerOn_ui-button_clicked" timer="5"></ui-alert>
+            </td>
+            <td>
+                {{> UIAlert_code4}}
+            </td>
+        </tr>
+    </table>
+    <hr>
+    <br>
+    {{>UIAlert_events}}
+</template>
+
+<template name="UIAlert_code1">
+    <h4>Code</h4>
+    <pre>
+    &lt;ui-button id='toggleBasic'&gt;Toggle Basic&lt;/ui-button&gt; 
+    &lt;ui-alert title=&quot;title&quot; message=&quot;message&quot; toggle=&quot;{{defaultButton}}&quot;&gt;&lt;/ui-alert&gt;</pre>
+</template>
+
+<template name="UIAlert_code2">
+    <h4>Code</h4>
+    <pre>
+    &lt;ui-button id='toggleID'&gt;Toggle Basic&lt;/ui-button&gt; 
+    &lt;ui-alert title=&quot;title&quot; message=&quot;message&quot; id='sample' toggle=&quot;{{toggleID}}&quot;&gt;&lt;/ui-alert&gt;</pre>
+</template>
+
+<template name="UIAlert_code3">
+    <h4>Code</h4>
+    <pre>
+    &lt;ui-button id='OnEvent'&gt;Turn On&lt;/ui-button&gt;
+    &lt;ui-button id='OffEvent'&gt;Turn off&lt;/ui-button&gt; 
+    &lt;ui-alert title=&quot;title&quot; message=&quot;message&quot; on-event=&quot;OnEvent_ui-button_clicked&quot; off-event=&quot;OffEvent_ui-button_clicked&quot;&gt;&lt;/ui-alert&gt;</pre>
+</template>
+
+<template name="UIAlert_code4">
+    <h4>Code</h4>
+    <pre>
+    &lt;ui-button id='TimerOn'&gt;Turn On&lt;/ui-button&gt; 
+    &lt;ui-alert title=&quot;title&quot; message=&quot;message&quot; on-event=&quot;TimerOn_ui-button_clicked&quot; timer=&quot;5&quot;&gt;&lt;/ui-alert&gt;</pre>
+</template>
+
+<template name="UIAlert_events">
+    <h2>Events</h2>
+    <H4>{ID}_ui-alert_closed</H4>
+    This event is triggered when the alert is closed because the user clicked on the close button.
+    
+    <H4>Sample Listener</H4>
+    <pre>
+    EventBroker.listen("_ui-alert_closed", function (listenerArgs, triggerArgs) {
+        console.log('An alert was closed');
+        console.log(triggerArgs);
+    });</pre>
+</template>

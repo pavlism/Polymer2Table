@@ -1,0 +1,37 @@
+<template name="dev">
+    
+  
+    
+    <!--<ui-table data='{{tableData}}' searchable pages buttons></ui-table>-->
+    <!--<x-custom></x-custom>
+    <ui-text-box maxlength="5" regex="ab*" error-msg="must match the regex ab* tom" required placeholder="test"></ui-text-box>
+    <ui-text-box maxlength="5" regex="ab*" error-msg="must match the regex ab* tom"></ui-text-box>
+    -->
+    dataSelector:<ui-pdf-button data-selector="#table2"></ui-pdf-button><br/>
+    data-call:<ui-pdf-button data-call="table_CurrentTableElement"></ui-pdf-button>
+    <br/><br/><br/>
+    <ui-table id='table' data='{{tableData}}' searchable buttons></ui-table>
+    <br/>
+    <table id='table2'>
+        <tr>
+            <th>col 1</th>
+            <th>col 2</th>
+            <th>col 3</th>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+        </tr>
+    </table>
+</template>
