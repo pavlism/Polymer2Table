@@ -30,13 +30,15 @@ Template.dev.onRendered(function () {
     files.push({name:'file name3.pdf'});
     
     var obj = {title:'Mark', prop:{Company:'MRP inc', phone:'519-768-4521'}};
-    var buttons = {buttons:[{class:'primary add', text:'add'},{class:'primary delete', text:'delete'}]};
-    var Link = {link:{href:'www.google.ca',text:'google'}};
+    var buttons = {buttons:[{class:'primary', text:'add'},{class:'primary', text:'delete'}]};
+    var Link = {link:{href:'http//www.google.ca',text:'google'}};
 
     tableData.push(['F-Name','L-Name','Job','Country']);
-    //tableData.push([buttons,obj,Link]);
+    tableData.push([buttons,obj,Link,'']);
     tableData.push(['1 Roger','Yang','Boss','China']);
     tableData.push(['2 Mark','Pavlis','Developer','Canada']);
+    tableData.push([{title:'1 Mark', prop:{Company:'MRP inc', phone:'519-768-4521'}},'Pavlis','Developer','Canada']);
+    tableData.push([{title:'2 Tom', prop:{Company:'Tom inc', phone:'519-768-4521'}},'Grove','Developer','Canada']);
     tableData.push(['3 Thomas','Grove','Developer','Canada']);
     tableData.push(['4 Nhi','Somthing','Web Stuff','Viatnam']);
     tableData.push(['5 Lucy','Chen','Developer','China']);

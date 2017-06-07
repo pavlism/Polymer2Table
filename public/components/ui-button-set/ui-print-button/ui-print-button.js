@@ -12,7 +12,6 @@ class UIPrintButton extends Polymer.Element {
     }
 
     handleClick(event) {
-        debugger;
         var dataCall = this.get('dataCall');
         var dataSelector = this.get('dataSelector');
         var PHE = PrintHtmlElement();

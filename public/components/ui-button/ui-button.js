@@ -21,11 +21,12 @@ class UIButton extends Polymer.Element {
     }
 
     handleClick(event) {
-        var id = this.id;
-        var passedInClass = this.get('passedInClass');
-        if (Lib.JS.isDefined(id)) {
-            EventBroker.trigger(id + "_ui-button_clicked", {button: this, event: event});
-        }       
+        var id = this.get('id');
+        if(Lib.JS.isUndefined(id)){
+            id = '';
+        }
+        EventBroker.trigger(id + "_ui-button_clicked", {button: this, event: event});
+        
             /*
         if (Lib.JS.isDefined(passedInClass)) {
             EventBroker.trigger(passedInClass + "_UI-Button_clicked", {button: this, event: event});
@@ -37,12 +38,7 @@ class UIButton extends Polymer.Element {
     }
 
     attributeChangedCallback(name, old, value) {
-        super.attributeChangedCallback(name, old, value);
-        if (Lib.JS.isDefined($(this)["0"].childNodes[3])) {
-            var text = $(this)["0"].childNodes[3].data;
-            this.set('caption', text);
-            $(this)["0"].childNodes[3].remove();
-        }
+        super.attributeChangedCallback(name, old, value);       
 
         var btnClass = '';
         //setup class

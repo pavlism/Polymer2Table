@@ -2,6 +2,7 @@ var tableData = new ReactiveArray();
 var tableData2 = new ReactiveArray();
 var tableData3 = new ReactiveArray();
 var tableData4 = new ReactiveArray();
+var tableData5 = new ReactiveArray();
 
 
 Template.UITable.onRendered(function () {
@@ -9,6 +10,7 @@ Template.UITable.onRendered(function () {
     tableData2.length = 0;
     tableData3.length = 0;
     tableData4.length = 0;
+    tableData5.length = 0;
     
     tableData.push(['F-Name','L-Name','Job','Birth Place']);
     tableData.push(['Mark','Pavlis','Developer','Canada']);
@@ -28,6 +30,15 @@ Template.UITable.onRendered(function () {
     tableData3.push(['Terry','Chen','Developer','China']);
     tableData3.push(['Roger','Yang','Boss','China']);
     
+    var Link = {link:{href:'http://www.google.ca',text:'google'}};
+    
+    tableData5.push(['F-Name','L-Name','Job','Web Page']);
+    tableData5.push(['Mark','Pavlis','Developer',Link]);
+    tableData5.push(['Thomas','Grove','Developer',Link]);
+    tableData5.push(['Nhi','Somthing','Web Stuff',Link]);
+    tableData5.push(['Lucy','Chen','Developer',Link]);
+    tableData5.push(['Terry','Chen','Developer',Link]);
+    tableData5.push(['Roger','Yang','Boss',Link]);
     
     var buttons = {buttons:[{class:'primary edit', text:'edit'},{class:'danger delete', text:'delete'}]};
     var buttons2 = {buttons:[{class:'primary e-mail', text:'e-mail'}, {class:'primary call', text:'call'}]};
@@ -204,5 +215,8 @@ Template.UITable.helpers({
     },
     tableData4: function () {
         return JSON.stringify(tableData4.toArray());
+    },
+    tableData5: function () {
+        return JSON.stringify(tableData5.toArray());
     }
 });

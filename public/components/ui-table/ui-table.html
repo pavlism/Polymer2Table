@@ -28,7 +28,7 @@
         </template>
         
         
-        <table border="1" id="[[id]]_table" class="table table-striped table-bordered table-hover dataTables-example dataTable dtr-inline UI-Table">
+        <table border="1" id="[[id]]_table" class="table table-striped table-bordered table-hover dataTables-example dataTable dtr-inline UI-Table" on-click='handleClick' on-double-click="handleDblClick">
             <thead>
                 <tr>
                     <template is="dom-repeat" items="[[getHeader(data)]]">
@@ -44,11 +44,11 @@
                                 <td>
                                     <template is="dom-if" if="[[matchCellType(cell, 'buttons')]]">
                                         <template is="dom-repeat" items="[[cell.buttons]]" as="button">
-                                            <UI-Button id='[[button.ID]]' class='[[button.class]]'>[[button.text]]</UI-Button>
+                                            <UI-Button id='[[button.ID]]' class$='[[button.class]]'>[[button.text]]</UI-Button>
                                         </template>
                                     </template>
                                     <template is="dom-if" if="[[matchCellType(cell, 'button')]]">
-                                        <UI-Button id='[[cell.button.ID]]' class='[[cell.button.class]]'>[[cell.button.text]]</UI-Button>
+                                        <UI-Button id='[[cell.button.ID]]' class$='[[cell.button.class]]'>[[cell.button.text]]</UI-Button>
                                     </template>
                                     <template is="dom-if" if="[[matchCellType(cell, 'object')]]">
                                         <span class="object-toggle"></span>[[cell.title]]
@@ -59,7 +59,7 @@
                                         </div>
                                     </template>
                                     <template is="dom-if" if="[[matchCellType(cell, 'link')]]">
-                                        <a href='[[cell.link.href]]'>[[cell.link.text]]</a>
+                                        <a target="_blank" href='[[cell.link.href]]'>[[cell.link.text]]</a>
                                     </template>
                                     <template is="dom-if" if="[[matchCellType(cell, 'cell')]]">
                                         [[cell]]

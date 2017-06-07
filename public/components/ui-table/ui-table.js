@@ -1,4 +1,8 @@
 class UITable extends Polymer.Element {
+    
+    static get log(){
+        return new Logger('UITable.js', CLL.warn);
+    }
     static get is() {
         return  'ui-table';
     }
@@ -26,16 +30,16 @@ class UITable extends Polymer.Element {
             maxLength: {type: Number, value: -1},
             numFilteredValues: {type: Number, value: 0},
             basic: {type: Boolean, value: false},
-            isDblClick: {type: Boolean, value: false}
+            isDblClick: {type: Number, value: 0}    //0 = waiting state, 1 = a click happened within the last 250ms, 2 = a dolbe click happend
         };
     }
 
     ready() {
         super.ready();
-        DataBroker.listen(this.get('id') + '_CurrentData', this,function (listenerArgs, triggerArgs) {
+        DataBroker.listen(this.get('id') + '_CurrentData', this, function (listenerArgs, triggerArgs) {
             return listenerArgs.get('currentData');
         });
-        DataBroker.listen(this.get('id') + '_CurrentTableElement', this,function (listenerArgs, triggerArgs) {
+        DataBroker.listen(this.get('id') + '_CurrentTableElement', this, function (listenerArgs, triggerArgs) {
             return listenerArgs.shadowRoot.querySelector('table');
         });
 
@@ -76,6 +80,9 @@ class UITable extends Polymer.Element {
                 return false;
             } else if (Lib.JS.isDefined(cell.link)) {
                 if (cellType === 'link') {
+                    if(cell.link.href.substr(0,4) !=='http'){
+                        UITable.log.warn('The link href:' + cell.link.href + ' might need to start with http:// or https://');
+                    }
                     return true;
                 }
                 return false;
@@ -106,7 +113,7 @@ class UITable extends Polymer.Element {
         this.set('searchString', searchString);
     }
     searchFilter(searchString, data) {
-        
+
         this.set('currentData.length', 0);
 
 
@@ -146,7 +153,7 @@ class UITable extends Polymer.Element {
                         if (record === lastRow) {
                             thisObj.setMaxLength();
                         }
-                        
+
                         thisObj.push('currentData', record);
                         return true;
                     }
@@ -198,51 +205,67 @@ class UITable extends Polymer.Element {
         return pages;
     }
     handleClick(event) {
-        this.set('isDblClick', false);
-        //if in top row and sortable then sort the table
+        
+        if(this.get('isDblClick') ===1){
+            this.set('isDblClick', 2);
+            this.handleDblClick(event);
+            return true;
+        }
+        
+        this.set('isDblClick', 1);
+
         if ($(event.target).is('th') && this.get('sortable')) {
-            handleSort(event, this);
+            this.handleSort(event, this);
         } else if ($(event.target).is('ui-button') || $(event.target).parent().is('ui-button')) {
             this.handleButtons(event);
+        } else if ($(event.target).is('td')) {
+            this.handleCellClick($(event.target));
+        } else if ($(event.target).parent().is('td')) {
+            this.handleCellClick($(event.target).parent());
         }
-        //Get the ceall and row clicked
-
 
         //if row has an object then expand the row
         var row = $(event.target).parent();
         var rowNum = $(event.target).parent().parent().children('tr').index(row);
         var tableData = this.get('data');
+        var cell = $(event.target).text().trim();
+        var domRow = $(event.target).parent().find('td');
+        var headers = [];
+        //get the headers
+        $(event.target).parent().parent().parent().find('th').each(function () {
+            headers.push($(this).text().trim());
+        });
+
+        var row = {};
+        for (var rowCounter = 0; rowCounter < domRow.length; rowCounter++) {
+            row[headers[rowCounter]] = $(domRow[rowCounter]).text().trim();
+        }
+
         var thisObj = this;
 
         setTimeout(function () {
-            if (!thisObj.get('isDblClick')) {
-                //is single click
-                var row = $(event.target).parent();
-                if ($(row).find('.properties').is(":visible")) {
-                    $(row).find('.properties').hide();
-                    $(row).find('span').addClass('object-toggle');
-                    $(row).find('span').removeClass('object-toggle-show');
-                } else {
-                    $(row).find('.properties').css('display', 'table');
-                    $(row).find('span').removeClass('object-toggle');
-                    $(row).find('span').addClass('object-toggle-show');
-                }
-                //trigger the click event
-                var cell = $(event.target).text();
-                var domRow = $(event.target).parent().find('td');
-                var headers = [];
-                //get the headers
-                $(event.target).parent().parent().parent().find('th').each(function () {
-                    headers.push($(this).text().trim());
-                });
-
-                var row = {};
-                for (var rowCounter = 0; rowCounter < domRow.length; rowCounter++) {
-                    row[headers[rowCounter]] = $(domRow[rowCounter]).text().trim();
-                }
+            if (thisObj.get('isDblClick') ===1) {
                 EventBroker.trigger(thisObj.id + "_UG-Table_clicked", {cell: cell, row: row, table: thisObj, event: event});
+                thisObj.set('isDblClick',0);
             }
         }, 250);
+    }
+
+    handleDblClick(event) {
+        this.set('isDblClick', 0);
+        var cell = $(event.target).text().trim();
+        var domRow = $(event.target).parent().find('td');
+        var headers = [];
+        //get the headers
+        $(event.target).parent().parent().parent().find('th').each(function () {
+            headers.push($(this).text().trim());
+        });
+
+        var row = {};
+        for (var rowCounter = 0; rowCounter < domRow.length; rowCounter++) {
+            row[headers[rowCounter]] = $(domRow[rowCounter]).text().trim();
+        }
+        EventBroker.trigger(this.id + "_UG-Table_dblclicked", {cell: cell, row: row, table: this, event: event});
     }
 
     getSortFunction(sortIndex, isAsync) {
@@ -333,6 +356,18 @@ class UITable extends Polymer.Element {
         this.set('currentPage', currentPage);
         console.log('currentPage:' + currentPage);
     }
+    handleCellClick(cell) {
+        if (cell.children('div').is(':visible')) {
+            //cell.children('div').hide();
+            cell.find('.properties').hide();
+            cell.find('span').addClass('object-toggle');
+            cell.find('span').removeClass('object-toggle-show');
+        } else {
+            cell.find('.properties').css('display', 'table');
+            cell.find('span').removeClass('object-toggle');
+            cell.find('span').addClass('object-toggle-show');
+        }
+    }
     getMaxLength() {
         var maxLength = this.get('maxLength');
         if (maxLength === -1) {
@@ -347,7 +382,7 @@ class UITable extends Polymer.Element {
         }
         var thisObj = this;
         setTimeout(function () {
-            
+
             if ($('#pageButton_1').length > 0) {
                 $('#pageButton_1').find('button').css('background-color', '#e6e6e6');
                 $('#pageButton_1').find('button').css('border-color', '#1ab394');

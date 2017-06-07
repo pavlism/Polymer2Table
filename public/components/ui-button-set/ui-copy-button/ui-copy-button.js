@@ -14,7 +14,6 @@ class UICopyButton extends Polymer.Element {
     }
 
     handleClick(event) {
-        debugger;
         var thisObj = this;
         var dataCall = this.get('dataCall');
         var dataSelector = this.get('dataSelector');
