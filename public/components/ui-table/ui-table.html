@@ -23,8 +23,8 @@
             <ui-csv-button data-call="[[id]]_CurrentData"></ui-csv-button>
             <ui-excel-button data-call="[[id]]_CurrentData"></ui-excel-button>
             <ui-copy-button data-call="[[id]]_CurrentData"></ui-copy-button>
-            <ui-print-button data-call="table_CurrentTableElement"></ui-print-button>
-            <ui-pdf-button data-call="table_CurrentTableElement"></ui-pdf-button>
+            <ui-print-button data-call="[[id]]_CurrentTableElement"></ui-print-button>
+            <ui-pdf-button data-call="[[id]]_CurrentTableElement"></ui-pdf-button>
         </template>
         
         
@@ -32,7 +32,7 @@
             <thead>
                 <tr>
                     <template is="dom-repeat" items="[[getHeader(data)]]">
-                        <th>[[item]]</th>
+                        <th>[[item]]<i></i></th>
                     </template>
                 </tr>
             </thead>

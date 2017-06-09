@@ -19,7 +19,7 @@ class UIExcelButton extends Polymer.Element {
         if (dataCall === '' && dataSelector === '') {
             console.log('UIExcelButton Error: both the data-call and data-selector atrributes are empty, one needs to be used to point the CVS button to the data');
         } else if (dataCall !== '') {
-            var tableData = DataBroker.trigger("table_CurrentData");
+            var tableData = DataBroker.trigger(this.get('dataCall'));
         } else {
             var extraText = [];
             var elmText = [];

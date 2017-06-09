@@ -34,11 +34,11 @@ Template.dev.onRendered(function () {
     var Link = {link:{href:'http//www.google.ca',text:'google'}};
 
     tableData.push(['F-Name','L-Name','Job','Country']);
-    tableData.push([buttons,obj,Link,'']);
+    //tableData.push([buttons,obj,Link,'']);
     tableData.push(['1 Roger','Yang','Boss','China']);
     tableData.push(['2 Mark','Pavlis','Developer','Canada']);
-    tableData.push([{title:'1 Mark', prop:{Company:'MRP inc', phone:'519-768-4521'}},'Pavlis','Developer','Canada']);
-    tableData.push([{title:'2 Tom', prop:{Company:'Tom inc', phone:'519-768-4521'}},'Grove','Developer','Canada']);
+    //tableData.push([{title:'1 Mark', prop:{Company:'MRP inc', phone:'519-768-4521'}},'Pavlis','Developer','Canada']);
+    //tableData.push([{title:'2 Tom', prop:{Company:'Tom inc', phone:'519-768-4521'}},'Grove','Developer','Canada']);
     tableData.push(['3 Thomas','Grove','Developer','Canada']);
     tableData.push(['4 Nhi','Somthing','Web Stuff','Viatnam']);
     tableData.push(['5 Lucy','Chen','Developer','China']);

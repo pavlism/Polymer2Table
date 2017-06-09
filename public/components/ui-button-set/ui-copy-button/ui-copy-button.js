@@ -12,18 +12,20 @@ class UICopyButton extends Polymer.Element {
             alertMessage: {type: String, value: ''}
         };
     }
-
-    handleClick(event) {
+    
+    ready(){
+        super.ready();
         var thisObj = this;
         var dataCall = this.get('dataCall');
         var dataSelector = this.get('dataSelector');
         var textObj = {};
+        var thisObj = this;
 
         if (dataCall === '' && dataSelector === '') {
             console.log('UICopyButton Error: both the data-call and data-selector atrributes are empty, one needs to be used to point the Copy button to the data');
         } else if (dataCall !== '') {
             textObj.text = function () {
-                var tableData = DataBroker.trigger("table_CurrentData");
+                var tableData = DataBroker.trigger(thisObj.get('dataCall'));
                 var text = '';
 
                 for (var rowCounter = 0; rowCounter < tableData.length; rowCounter++) {
@@ -71,13 +73,18 @@ class UICopyButton extends Polymer.Element {
                 return text;
             }
         }
-        var clipboard = new Clipboard(this, textObj);
+        
+        var buttonObj = $(this)[0].shadowRoot.querySelector('ui-button');
+        var clipboard = new Clipboard(buttonObj, textObj);
+        
 
         clipboard.on('success', function (e) {
+            
             //set the alert
             //Must set to false, becasue if button is clicked again the alert value is still true so it won't update the page, which won't trigger the change in the alert.
             thisObj.set('alert', false);
             thisObj.set('alert', true);
+            console.log("clipboard.on('success'");
         });
 
         clipboard.on('error', function (e) {
@@ -87,6 +94,10 @@ class UICopyButton extends Polymer.Element {
             thisObj.set('alert', false);
             thisObj.set('alert', true);
         });
+    }
+
+    handleClick(event) {
+        
     }
 }
 customElements.define(UICopyButton.is, UICopyButton);

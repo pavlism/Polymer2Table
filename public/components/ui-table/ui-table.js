@@ -205,7 +205,6 @@ class UITable extends Polymer.Element {
         return pages;
     }
     handleClick(event) {
-        
         if(this.get('isDblClick') ===1){
             this.set('isDblClick', 2);
             this.handleDblClick(event);
@@ -298,7 +297,7 @@ class UITable extends Polymer.Element {
             isAsc = true;
         }
 
-        var sortFunction = getSortFunction(sortIndex, isAsc);
+        var sortFunction = this.getSortFunction(sortIndex, isAsc);
         data.sort(sortFunction);
         data.splice(0, 0, headers);
         polObject.data = [];
