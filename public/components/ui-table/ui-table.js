@@ -86,6 +86,10 @@ class UITable extends Polymer.Element {
                     return true;
                 }
                 return false;
+            } else if (Lib.JS.isDefined(cell.textArea)) {
+                if (cellType === 'textArea') {
+                    return true;
+                }
             } else if (cellType === 'object') {
                 return true;
             }

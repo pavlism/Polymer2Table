@@ -64,6 +64,9 @@
                                     <template is="dom-if" if="[[matchCellType(cell, 'cell')]]">
                                         [[cell]]
                                     </template>
+                                    <template is="dom-if" if="[[matchCellType(cell, 'textArea')]]">
+                                        <textarea rows="[[cell.textArea.rows]]" cols="[[cell.textArea.cols]]">[[cell.textArea.text]]</textarea>
+                                    </template>
                                 </td>
                             </template>
                         </tr>
