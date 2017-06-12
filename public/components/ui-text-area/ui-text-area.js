@@ -5,6 +5,7 @@ class UITextArea extends Polymer.Element {
     static get properties() {
         return {
             id: {type: String, value: ''},
+            class: {type: String, value: ''},
             rows: {type: String, value: ''},
             cols: {type: String, value: ''},
             text: {type: String, value: ''},
@@ -28,7 +29,7 @@ class UITextArea extends Polymer.Element {
         if (!Lib.JS.isDefined(id)) {
             id = '';
         }
-        EventBroker.trigger(id + "_UI-Text-Area_clicked", {textArea: this, event: event});
+        EventBroker.trigger(id + "_ui-text-area_clicked", {textArea: this, event: event});
     }
     changed(event, a, b, c) {
         if(event===''){
@@ -42,8 +43,24 @@ class UITextArea extends Polymer.Element {
         if (!Lib.JS.isDefined(id)) {
             id = '';
         }
-        EventBroker.trigger(id + "_UI-Text-Area_changed", {textArea: this, validation:validation, event: event});
         
+        var strClass = this.class;
+        if (!Lib.JS.isDefined(strClass)) {
+            strClass = '';
+        }
+        
+        var textArea = $(this)[0].shadowRoot.querySelector('textarea');
+        
+        if(id==='' && strClass ===''){
+            EventBroker.trigger(id + "_ui-text-area_changed", {UITextArea: this, textArea:textArea, validation:validation, event: event});
+        }else{ 
+            if(id!==''){
+                EventBroker.trigger(id + "_ui-text-area_changed", {UITextArea: this,textArea:textArea, validation:validation, event: event});
+            }
+            if(strClass!==''){
+                EventBroker.trigger(strClass + "_ui-text-area_changed", {UITextArea: this, textArea:textArea, validation:validation, event: event});
+            }
+        }
     }
     validationReset(validation){
         if(validation ===2){

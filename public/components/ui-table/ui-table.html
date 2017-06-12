@@ -9,6 +9,7 @@
 <link rel="import" href="../ui-button-set/ui-copy-button/ui-copy-button.html">
 <link rel="import" href="../ui-button-set/ui-print-button/ui-print-button.html">
 <link rel="import" href="../ui-button-set/ui-pdf-button/ui-pdf-button.html">
+<link rel="import" href="../ui-text-area/ui-text-area.html">
 
 <dom-module id="ui-table">
     <template>
@@ -65,7 +66,7 @@
                                         [[cell]]
                                     </template>
                                     <template is="dom-if" if="[[matchCellType(cell, 'textArea')]]">
-                                        <textarea rows="[[cell.textArea.rows]]" cols="[[cell.textArea.cols]]">[[cell.textArea.text]]</textarea>
+                                        <ui-text-area rows="[[cell.textArea.rows]]" cols="[[cell.textArea.cols]]" id='[[cell.textArea.id]]' class$='[[cell.textArea.class]]' text=[[cell.textArea.text]]></ui-text-area>
                                     </template>
                                 </td>
                             </template>

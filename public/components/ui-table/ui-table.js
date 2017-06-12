@@ -248,7 +248,7 @@ class UITable extends Polymer.Element {
 
         setTimeout(function () {
             if (thisObj.get('isDblClick') ===1) {
-                EventBroker.trigger(thisObj.id + "_UG-Table_clicked", {cell: cell, row: row, table: thisObj, event: event});
+                EventBroker.trigger(thisObj.id + "_ui-table_clicked", {cell: cell, row: row, table: thisObj, event: event});
                 thisObj.set('isDblClick',0);
             }
         }, 250);
@@ -268,7 +268,7 @@ class UITable extends Polymer.Element {
         for (var rowCounter = 0; rowCounter < domRow.length; rowCounter++) {
             row[headers[rowCounter]] = $(domRow[rowCounter]).text().trim();
         }
-        EventBroker.trigger(this.id + "_UG-Table_dblclicked", {cell: cell, row: row, table: this, event: event});
+        EventBroker.trigger(this.id + "_ui-table_dblclicked", {cell: cell, row: row, table: this, event: event});
     }
 
     getSortFunction(sortIndex, isAsync) {
