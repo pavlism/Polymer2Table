@@ -8,8 +8,8 @@
 
     <template>
         <style include="ui-check-box-style"></style>
-        <div class$="[[divClass]]">
-            <input id=[[id]] type="checkbox" disabled="[[disabled]]" checked="[[checked]]"/>
+        <div class$="[[class]]">
+            <input id=[[id]] type="checkbox" disabled="[[disabled]]" checked="[[checked]]" style='display: none;'/>
             <span class='checkMark' on-click="handleClick"></span>
             <label on-click="handleClick"></label>
             <span on-click="handleClick"><slot></slot></span>

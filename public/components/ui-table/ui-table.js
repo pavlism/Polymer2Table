@@ -16,10 +16,11 @@ class UITable extends Polymer.Element {
                     return [];
                 }},
             footer: {type: Boolean, value: false},
+            select: {type: Boolean, value: false},
             sortable: {type: Boolean, value: false},
             sortcolumn: {type: Number, value: -1},
             sortisasc: {type: Boolean, value: false},
-            searchable: {type: Boolean, value: false},
+            search: {type: Boolean, value: false},
             searchString: {type: String, value: ''},
             buttons: {type: Boolean, value: false},
             pages: {type: Boolean, value: false},
@@ -30,7 +31,9 @@ class UITable extends Polymer.Element {
             maxLength: {type: Number, value: -1},
             numFilteredValues: {type: Number, value: 0},
             basic: {type: Boolean, value: false},
+            complexData: {type: Boolean, value: false},
             isDblClick: {type: Number, value: 0}    //0 = waiting state, 1 = a click happened within the last 250ms, 2 = a dolbe click happend
+            
         };
     }
 
@@ -42,6 +45,18 @@ class UITable extends Polymer.Element {
         DataBroker.listen(this.get('id') + '_CurrentTableElement', this, function (listenerArgs, triggerArgs) {
             return listenerArgs.shadowRoot.querySelector('table');
         });
+        EventBroker.listen(this.get('id') + '_checkBox__ui-check-box_changed', this, function (listenerArgs, triggerArgs) {
+            //hihlight the row
+            var rowNum = triggerArgs.tableRow;
+            var row = $(listenerArgs)[0].shadowRoot.querySelectorAll('tr')[rowNum];
+            
+            if(triggerArgs.isChecked){
+                $(row).addClass('selected');
+            }else{
+                $(row).removeClass('selected');
+            }
+        });
+        
 
     }
 

@@ -10,7 +10,7 @@ class UIPDFButton extends Polymer.Element {
             fileName: {type: String, value: 'table'},
             pageOrientation: {type: String, value: 'portrait'},
             pageSize: {type: String, value: 'A5'},
-            styles: {type: Object, observer: 'setMaxLength', value: function () {
+            styles: {type: Object, value: function () {
                     return {header: {fontSize: 14, bold: true, fillColor: '#294152', color: '#FFFFFF'}, even: {fontSize: 12, fillColor: '#f7f3f7'}};
                 }}
         };

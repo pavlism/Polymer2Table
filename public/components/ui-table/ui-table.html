@@ -9,6 +9,7 @@
 <link rel="import" href="../ui-button-set/ui-copy-button/ui-copy-button.html">
 <link rel="import" href="../ui-button-set/ui-print-button/ui-print-button.html">
 <link rel="import" href="../ui-button-set/ui-pdf-button/ui-pdf-button.html">
+<link rel="import" href="../ui-check-box/ui-check-box.html">
 <link rel="import" href="../ui-text-area/ui-text-area.html">
 
 <dom-module id="ui-table">
@@ -16,7 +17,7 @@
         <style include="ui-table-style"></style>
                 
         
-        <template is="dom-if" if="[[searchable]]">
+        <template is="dom-if" if="[[search]]">
             <span class="text"><b>Search:</b></span><ui-text-box type="text" name="search" on-keyup="keyup"></ui-text-box>
         </template>
         
@@ -29,45 +30,53 @@
         </template>
         
         
-        <table border="1" id="[[id]]_table" class="table table-striped table-bordered table-hover dataTables-example dataTable dtr-inline UI-Table" on-click='handleClick' on-double-click="handleDblClick">
+        <table id="[[id]]_table" class="table table-striped table-bordered table-hover dataTables-example dataTable dtr-inline UI-Table" on-click='handleClick' on-double-click="handleDblClick">
             <thead>
                 <tr>
+                    <template is="dom-if" if="[[select]]">
+                        <th class='selectBox'></th>
+                    </template>
                     <template is="dom-repeat" items="[[getHeader(data)]]">
                         <th>[[item]]<i></i></th>
                     </template>
                 </tr>
             </thead>
             <tbody>
-                <template is="dom-repeat" items="{{data}}" as="row" filter="{{searchFilter(searchString, data)}}" observe="searchString">
-                    <template is="dom-if" if="{{showRow(index,0,pageListValue, currentPage)}}">
+                <template is="dom-repeat" items="{{data}}" as="row" filter="{{searchFilter(searchString, data)}}" index-as="row_no" observe="searchString">
+                    <template is="dom-if" if="{{showRow(row_no,0,pageListValue, currentPage)}}">
                         <tr>
+                            <template is="dom-if" if="[[select]]">
+                                <td class='selectBox'><ui-check-box class="[[id]]_checkBox_" table-row="[[row_no]]"></ui-check-box></td>
+                            </template>
                             <template is="dom-repeat" items="{{row}}" as="cell">
                                 <td>
-                                    <template is="dom-if" if="[[matchCellType(cell, 'buttons')]]">
-                                        <template is="dom-repeat" items="[[cell.buttons]]" as="button">
-                                            <UI-Button id='[[button.ID]]' class$='[[button.class]]'>[[button.text]]</UI-Button>
-                                        </template>
-                                    </template>
-                                    <template is="dom-if" if="[[matchCellType(cell, 'button')]]">
-                                        <UI-Button id='[[cell.button.ID]]' class$='[[cell.button.class]]'>[[cell.button.text]]</UI-Button>
-                                    </template>
-                                    <template is="dom-if" if="[[matchCellType(cell, 'object')]]">
-                                        <span class="object-toggle"></span>[[cell.title]]
-                                        <div class="properties">
-                                            <template is="dom-repeat" items="[[getProps(cell)]]">
-                                                <div class="properties_row"><div class="properties_cell"><b>[[item.title]]:</b></div><div style="display: table-cell">[[item.val]]</div></div>
-                                            </template>
-                                        </div>
-                                    </template>
-                                    <template is="dom-if" if="[[matchCellType(cell, 'link')]]">
-                                        <a target="_blank" href='[[cell.link.href]]'>[[cell.link.text]]</a>
-                                    </template>
                                     <template is="dom-if" if="[[matchCellType(cell, 'cell')]]">
                                         [[cell]]
                                     </template>
-                                    <template is="dom-if" if="[[matchCellType(cell, 'textArea')]]">
-                                        <ui-text-area rows="[[cell.textArea.rows]]" cols="[[cell.textArea.cols]]" id='[[cell.textArea.id]]' class$='[[cell.textArea.class]]' text=[[cell.textArea.text]]></ui-text-area>
-                                    </template>
+                                    <template is="dom-if" if="![[matchCellType(cell, 'cell')]]">
+                                        <template is="dom-if" if="[[matchCellType(cell, 'buttons')]]">
+                                            <template is="dom-repeat" items="[[cell.buttons]]" as="button">
+                                                <ui-button properties-obj ="[[button]]" table-row="[[row_no]]">[[button.text]]</ui-button>
+                                            </template>
+                                        </template>
+                                        <template is="dom-if" if="[[matchCellType(cell, 'button')]]">
+                                            <ui-button properties-obj ="[[cell.button]]" table-row="[[row_no]]">[[cell.button.text]]</ui-button>
+                                        </template>
+                                        <template is="dom-if" if="[[matchCellType(cell, 'object')]]">
+                                            <span class="object-toggle"></span>[[cell.title]]
+                                            <div class="properties">
+                                                <template is="dom-repeat" items="[[getProps(cell)]]">
+                                                    <div class="properties_row"><div class="properties_cell"><b>[[item.title]]:</b></div><div style="display: table-cell">[[item.val]]</div></div>
+                                                </template>
+                                            </div>
+                                        </template>
+                                        <template is="dom-if" if="[[matchCellType(cell, 'link')]]">
+                                            <a target="_blank" href='[[cell.link.href]]'>[[cell.link.text]]</a>
+                                        </template>
+                                        <template is="dom-if" if="[[matchCellType(cell, 'textArea')]]">
+                                            <ui-text-area properties-obj ="[[cell.textArea]]" table-row="[[row_no]]"></ui-text-area>
+                                        </template>
+                                    </template>                    
                                 </td>
                             </template>
                         </tr>

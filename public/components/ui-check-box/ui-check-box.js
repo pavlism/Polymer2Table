@@ -6,8 +6,9 @@ class UICheckBox extends Polymer.Element {
         return {
             disabled: {type: Boolean, value: false},
             checked: {type: Boolean, value: false},
-            divClass: {type: String, value: 'enabled'},
-            id: {type: String, value: ''}
+            id: {type: String, value: ''},
+            tableRow: {type: String, value: ''}, //used if inside a table
+            class: {type: String, value: 'enabled', reflectToAttribute: true}
         }
     }
 
@@ -21,13 +22,35 @@ class UICheckBox extends Polymer.Element {
     }
     
     handleClick(event) {
-        if(!this.get('disabled')){
-            this.set('checked', !this.get('checked'));
+        if(this.get('disabled')){
+            return false;
         }
-        var id = this.get('id');
-        var isChecked = this.get('checked');
         
-        EventBroker.trigger(this.get('id') + "_ui-check-box_changed", {isChecked: isChecked, checkbox: this, event: event});
+        this.set('checked', !this.get('checked'));
+        
+        var id = this.id;
+        if (!Lib.JS.isDefined(id)) {
+            id = '';
+        }
+
+        var strClass = this.class;
+        if (!Lib.JS.isDefined(strClass)) {
+            strClass = '';
+        }
+
+        var tableRow = this.get('tableRow');
+        var isChecked = this.get('checked');
+
+        if (id === '' && strClass === '') {
+            EventBroker.trigger(id + "_ui-check-box_changed", {isChecked: isChecked, checkbox: this, event: event, tableRow: tableRow});
+        } else {
+            if (id !== '') {
+                EventBroker.trigger(id + "_ui-check-box_changed", {isChecked: isChecked, checkbox: this, event: event, tableRow: tableRow});
+            }
+            if (strClass !== '') {
+                EventBroker.trigger(strClass + "_ui-check-box_changed", {isChecked: isChecked, checkbox: this, event: event, tableRow: tableRow});
+            }
+        }
       }
 }
 customElements.define(UICheckBox.is, UICheckBox);

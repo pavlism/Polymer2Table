@@ -28,21 +28,28 @@ Template.dev.onRendered(function () {
     files.push({name:'file name1.pdf'});
     files.push({name:'file name2.pdf'});
     files.push({name:'file name3.pdf'});
-    
+        
+    var regex = '^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
     var obj = {title:'Mark', prop:{Company:'MRP inc', phone:'519-768-4521'}};
-    var buttons = {buttons:[{class:'primary', text:'add'},{class:'primary', text:'delete'}]};
+    
     var Link = {link:{href:'http//www.google.ca',text:'google'}};
-    var TextArea = {textArea:{rows:'4',cols:'50'}};
-
+    var TextArea = {textArea:{rows:'4',cols:'50', text:'text', value:'value', regex:regex, placeholder:'placeholder', errorMsg:"This is not a valid e-mail address", required:true, id:'str-id', class:'str-class' }};
+    var button = {button:{id:'str-id', class:'str-class', size:UIButton.sizes.small,color:UIButton.colors.danger, text:'Add'}};
+    var buttons = {buttons:[{size:UIButton.sizes.mini,color:UIButton.colors.info, text:'Add'},{size:UIButton.sizes.small,color:UIButton.colors.primary, text:'Add'}]};
+                
     tableData.push(['F-Name','L-Name','Job','Country']);
-    //tableData.push([buttons,obj,Link,'']);
     tableData.push(['1 Roger','Yang','Boss',TextArea]);
+    tableData.push(['1 Roger','Yang','Boss',TextArea]);
+    tableData.push(['1 Roger','Yang','Boss',TextArea]);
+    tableData.push(['1 Roger','Yang','Boss',TextArea]);
+    tableData.push([button,obj,Link, buttons]);
     tableData.push(['2 Mark','Pavlis','Developer','Canada']);
-    //tableData.push([{title:'1 Mark', prop:{Company:'MRP inc', phone:'519-768-4521'}},'Pavlis','Developer','Canada']);
+    tableData.push([{title:'1 Mark', prop:{Company:'MRP inc', phone:'519-768-4521'}},'Pavlis','Developer','Canada']);
+   
     //tableData.push([{title:'2 Tom', prop:{Company:'Tom inc', phone:'519-768-4521'}},'Grove','Developer','Canada']);
-    tableData.push(['3 Thomas','Grove','Developer','Canada']);
-    tableData.push(['4 Nhi','Somthing','Web Stuff','Viatnam']);
-    tableData.push(['5 Lucy','Chen','Developer','China']);
+    //tableData.push(['3 Thomas','Grove','Developer','Canada']);
+    //tableData.push(['4 Nhi','Somthing','Web Stuff','Viatnam']);
+    //tableData.push(['5 Lucy','Chen','Developer','China']);
     //tableData.push(['7 Mark','Pavlis','Developer',buttons]);
     //tableData.push(['7 Mark','Pavlis','Developer',obj]);
     //tableData.push(['7 Mark','Pavlis','Developer',Link]);

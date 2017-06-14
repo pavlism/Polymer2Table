@@ -1,9 +1,14 @@
 <template name="dev"> 
-    <!--<ui-table data='{{tableData}}' searchable pages buttons></ui-table>-->
+    <!--<ui-table data='{{tableData}}' search pages buttons></ui-table>-->
     <!--<x-custom></x-custom>
     <ui-text-box maxlength="5" regex="ab*" error-msg="must match the regex ab* tom" required placeholder="test"></ui-text-box>
     <ui-text-box maxlength="5" regex="ab*" error-msg="must match the regex ab* tom"></ui-text-box>
     <ui-table id='table' data='{{tableData}}' buttons></ui-table>
+    <ui-text-area rows="3" cols="5" placeholder="asdasd" regex='^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$' error-msg="This is not a valid e-mail address"></ui-text-area>
+    <ui-text-box id="email" type="text" placeholder="Please provide us with your email address" size="50" regex='^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$' error-msg="This is not a valid e-mail address"></ui-text-box>
+    <textarea rows="3" cols="5" placeholder="asdasd"></textarea>
+    <ui-table id='table' data='{{tableData}}' buttons></ui-table>
     -->
-    <ui-text-area rows='4' cols='10' text='text'></ui-text-area>
+    
+    <ui-table id='table3' data='{{tableData}}' select></ui-table>
 </template>
