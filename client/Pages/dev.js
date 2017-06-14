@@ -38,13 +38,18 @@ Template.dev.onRendered(function () {
     var buttons = {buttons:[{size:UIButton.sizes.mini,color:UIButton.colors.info, text:'Add'},{size:UIButton.sizes.small,color:UIButton.colors.primary, text:'Add'}]};
                 
     tableData.push(['F-Name','L-Name','Job','Country']);
-    tableData.push(['1 Roger','Yang','Boss',TextArea]);
-    tableData.push(['1 Roger','Yang','Boss',TextArea]);
-    tableData.push(['1 Roger','Yang','Boss',TextArea]);
-    tableData.push(['1 Roger','Yang','Boss',TextArea]);
-    tableData.push([button,obj,Link, buttons]);
+    //tableData.push(['1 Roger','Yang','Boss',TextArea]);
+    //tableData.push(['1 Roger','Yang','Boss',TextArea]);
+    //tableData.push(['1 Roger','Yang','Boss',TextArea]);
+    //tableData.push(['1 Roger','Yang','Boss',TextArea]);
+    //tableData.push([button,obj,Link, buttons]);
     tableData.push(['2 Mark','Pavlis','Developer','Canada']);
-    tableData.push([{title:'1 Mark', prop:{Company:'MRP inc', phone:'519-768-4521'}},'Pavlis','Developer','Canada']);
+    tableData.push(['2 Mark','Pavlis','Developer','Canada']);
+    tableData.push(['2 Mark','Pavlis','Developer','Canada']);
+    tableData.push(['2 Mark','Pavlis','Developer','Canada']);
+    tableData.push(['2 Mark','Pavlis','Developer','Canada']);
+    tableData.push(['2 Mark','Pavlis','Developer','Canada']);
+    //tableData.push([{title:'1 Mark', prop:{Company:'MRP inc', phone:'519-768-4521'}},'Pavlis','Developer','Canada']);
    
     //tableData.push([{title:'2 Tom', prop:{Company:'Tom inc', phone:'519-768-4521'}},'Grove','Developer','Canada']);
     //tableData.push(['3 Thomas','Grove','Developer','Canada']);

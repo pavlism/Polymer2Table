@@ -1,6 +1,6 @@
 <dom-module id="ui-table-style">
     <template>
-        <style>
+        <style>            
             .selectBox{
                 padding: 0px;
                 margin: 0px;
@@ -67,28 +67,16 @@
                 padding-right: 5px;
 
             }
-
+            
             table td, table th{
                 color: rgb(103, 106, 108);
-                border-top: 1px solid #e7eaec;
-                border-bottom: 0px solid #e7eaec;
-                border-left: 0px solid #e7eaec;
-                border-right: 1px solid #e7eaec;
+                padding: 8px;
+                border: 1px solid #dddddd;
                 text-align: left;
             } 
 
-            table td:last-child{
-                border-top: 1px solid #e7eaec;
-                border-bottom: 0px solid #e7eaec;
-                border-left: 0px solid #e7eaec;
-                border-right: 0px solid #e7eaec;
-            }
-
             table{
-                border-top: 1px solid #e7eaec;
-                border-bottom: 1px solid #e7eaec;
-                border-left: 1px solid #e7eaec;
-                border-right: 1px solid #e7eaec;
+                border-spacing: 0px;
                 width:100%;
                 margin-bottom: 10px;
                 margin-top: 10px;
@@ -133,6 +121,8 @@
             table > tbody > tr.selected{
                 background-color: #efefef;
             }
+            
+            
         </style>
     </template>
 </dom-module>
