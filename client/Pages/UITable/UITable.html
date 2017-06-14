@@ -58,6 +58,15 @@
             {{> UI_Table_code6}}
         </td>
         </tr>
+        {{> midRowHeader title='ui-table With CheckBoxes'}}
+        <tr>
+            <td class='example'>
+                <ui-table data='{{tableData}}' id='Table6' select></ui-table>
+            </td>
+        <td>
+            {{> UI_Table_code11}}
+        </td>
+        </tr>
         {{> midRowHeader title='ui-table With Objects'}}
         <tr>
             <td class='example'>
@@ -150,9 +159,10 @@
     &#x3C;ui-table data=&#x27;{2DArray}&#x27; id=&#x27;Table1&#x27; Basic &#x3E;&#x3C;/UG-Table&#x3E;
     Simply add a button object, or array of buttons to the 2D array.
     Button Array Example:
-    {buttons:[{class:'primary', text:'edit'},{class:'danger', text:'delete'}]}
+    {buttons:[{color:UIButton.colors.info, text:'edit'},{color:UIButton.colors.danger, text:'delete'}]};
     Each button will become a <a href='UI_Button'>&lt;ui-button&gt;</a>.
-    Each button object can have and id, class, and text. </pre>
+    You can use UIButton.propertiesObj() to get an example button object.
+    Each button object can have and id, class, text, size and color. </pre>
 </template>
 
 <template name="UI_Table_code9">
@@ -172,7 +182,13 @@
     Simply add a link object to the 2D array.
     Link Object Example:
     {link:{href:'http//www.google.ca',text:'google'}}
-    Each lin kobject requires an href and text properties</pre>
+    Each link object requires an href and text properties</pre>
+</template>
+
+<template name="UI_Table_code11">
+    <h4>Code</h4>
+    <pre>
+    &#x3C;ui-table data=&#x27;{2DArray}&#x27; id=&#x27;Table2&#x27; select&#x3E;&#x3C;/UG-Table&#x3E;</pre>
 </template>
 
 <template name="UI_UGTable_events">

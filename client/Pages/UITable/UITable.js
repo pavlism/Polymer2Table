@@ -40,8 +40,9 @@ Template.UITable.onRendered(function () {
     tableData5.push(['Terry','Chen','Developer',Link]);
     tableData5.push(['Roger','Yang','Boss',Link]);
     
-    var buttons = {buttons:[{class:'primary edit', text:'edit'},{class:'danger delete', text:'delete'}]};
-    var buttons2 = {buttons:[{class:'primary e-mail', text:'e-mail'}, {class:'primary call', text:'call'}]};
+    var buttons = {buttons:[{color:UIButton.colors.info, text:'edit'},{color:UIButton.colors.danger, text:'delete'}]};
+    var buttons2 = {buttons:[{text:'e-mail'},{color:UIButton.colors.warning, text:'call'}]};   
+
     tableData4.push(['F-Name','L-Name','Job','Actions']);
     tableData4.push(['Lucy','Chen','Developer',buttons]);
     tableData4.push(['Terry','Chen','Developer',buttons]);
@@ -50,7 +51,7 @@ Template.UITable.onRendered(function () {
     tableData4.push(['Roger','Yang','Boss',buttons2]);
     tableData4.push(['Roger','Yang','Boss',buttons2]);
     tableData4.push(['Roger','Yang','Boss',buttons2]);
-    tableData4.push([{button:{ID:'23',class:'primary', text:'add New'}},'',' ','']);
+    tableData4.push([{button:{ID:'23',color:UIButton.colors.primary, text:'add New'}},'',' ','']);
     
     tableData2.push(['F-Name','L-Name','Job','Birth Place']);
     tableData2.push(['1 Thomas','Grove','Developer','Canada']);
