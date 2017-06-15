@@ -15,30 +15,10 @@ class UIDropDown extends Polymer.Element {
         var currentValue = $(event.target).val();
         var partValue = this.get('value');
 
-        var id = this.id;
-        if (!Lib.JS.isDefined(id)) {
-            id = '';
-        }
-
-        var strClass = this.class;
-        if (!Lib.JS.isDefined(strClass)) {
-            strClass = '';
-        }
-        var triggerObj = {textBox: this, event: event, value: currentValue};
-
         if (Lib.JS.isDefined(partValue) && currentValue !== partValue) {
-            this.set('value', currentValue);
-            
-            if (id === '' && strClass === '') {
-                EventBroker.trigger("ui-drop-down_changed", triggerObj);
-            } else {
-                if (id !== '') {
-                    EventBroker.trigger(id + "_ui-drop-down_changed", triggerObj);
-                }
-                if (strClass !== '') {
-                    EventBroker.trigger(strClass + "_ui-drop-down_changed", triggerObj);
-                }
-            }
+            this.set('value', currentValue);                        
+            var triggerObj = {textBox: this, event: event, text:this.get('value')};
+            Lib.Polymer.triggerEventsWithoutTable(this,triggerObj, 'ui-drop-down_changed');
         } else if (Lib.JS.isUndefined(partValue)) {
             this.set('value', currentValue);
         }

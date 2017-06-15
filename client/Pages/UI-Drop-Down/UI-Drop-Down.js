@@ -1,23 +1,23 @@
 var list = new ReactiveArray();
 
 Template.UIDropDown.onRendered(function () {
-    EventBroker.listen("_UI-Drop-Down_clicked", function (listenerArgs, triggerArgs) {
-        console.log('a UI-Drop-Down box was clicked');
+    EventBroker.listen("ui-drop-down_clicked", function (listenerArgs, triggerArgs) {
+        console.log('a ui-drop-down box was clicked');
         console.log(triggerArgs);
     });
     
-    EventBroker.listen("sample_UI-Drop-Down_clicked", function (listenerArgs, triggerArgs) {
-        console.log('a UI-Drop-Down box was clicked with the id = sample');
+    EventBroker.listen("sample_ui-drop-down_clicked", function (listenerArgs, triggerArgs) {
+        console.log('a ui-drop-down box was clicked with the id = sample');
         console.log(triggerArgs);
     });
     
-    EventBroker.listen("_UI-Drop-Down_changed", function (listenerArgs, triggerArgs) {
-        console.log('a UI-Drop-Down box was changed');
+    EventBroker.listen("ui-drop-down_changed", function (listenerArgs, triggerArgs) {
+        console.log('a ui-drop-down box was changed');
         console.log(triggerArgs);
     });
     
-    EventBroker.listen("sample_UI-Drop-Down_changed", function (listenerArgs, triggerArgs) {
-        console.log('a UI-Drop-Down box was changed with the id = sample');
+    EventBroker.listen("sample_ui-drop-down_changed", function (listenerArgs, triggerArgs) {
+        console.log('a ui-drop-down box was changed with the id = sample');
         console.log(triggerArgs);
     });
    
@@ -30,6 +30,7 @@ Template.UIDropDown.onRendered(function () {
 
 Template.UIDropDown.helpers({
     list: function () {
+        debugger;
         return JSON.stringify(list.toArray());
     }
 });

@@ -1,21 +1,21 @@
 <template name="UIDropDown">
     <h2>Info</h2>
-    This is basically the select element but the UI template
+    This is basically the select element that has a list attribute, which accepts a 1D array
     <hr>
     <table>
-        {{> rowHeader title='Basic UI-Drop-Down'}}
+        {{> rowHeader title='Basic ui-drop-down'}}
         <tr>
             <td class='example'>
-                <UI-Drop-Down list="{{list}}"></UI-Drop-Down>
+                <ui-drop-down list="{{list}}"></ui-drop-down>
             </td>
             <td>
                 {{> UIDropDown_code1}}
             </td>
         </tr>
-        {{> midRowHeader title='UI-Drop-Down with ID'}}
+        {{> midRowHeader title='ui-drop-down with ID'}}
         <tr>
             <td class='example'>
-                <UI-Drop-Down list="{{list}}" id='sample'></UI-Drop-Down>
+                <ui-drop-down list='["one","2","3"]' id='sample'></ui-drop-down>
             </td>
             <td>
                 {{> UIDropDown_code2}}
@@ -32,20 +32,17 @@
 <template name="UIDropDown_code1">
     <h4>Code</h4>
     <pre>
-    &lt;UI-Drop-Down &gt;&lt;/UI-Drop-Down&gt;</pre>
+    &lt;ui-drop-down list=&apos;{list}&apos; &gt;&lt;/ui-drop-down&gt;</pre>
 </template>
 
 <template name="UIDropDown_code2">
     <h4>Code</h4>
     <pre>
-    &lt;UI-Drop-Down id=&apos;sample&apos;&gt;&lt;/UI-Drop-Down&gt;</pre>
+    &lt;ui-drop-down list=&apos;["one","2","3"]&apos; id=&apos;sample&apos;&gt;&lt;/ui-drop-down&gt;</pre>
 </template>
 
 <template name="UIDropDown_events">
     <h2>Events</h2>
-    <H4>{ID}_UI-Drop-Down_changed</H4>
+    <H4>{ID}_ui-drop-down_changed</H4>
     This event is triggered when changes in the text box occur.
-    
-    <H4>{ID}_UI-Drop-Down_clicked</H4>
-    This  event is triggered when the text box is clicked on.
 </template>
