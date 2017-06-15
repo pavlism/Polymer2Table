@@ -79,7 +79,9 @@ class UIButton extends Polymer.Element {
     }
 
     handleClick(event) {
-        var id = this.id;
+        var triggerObj = {button: this, event: event};
+        Lib.Polymer.triggerEventsWithTable(this,triggerObj, 'ui-button_clicked');
+        /*var id = this.id;
         if (!Lib.JS.isDefined(id)) {
             id = '';
         }
@@ -98,7 +100,7 @@ class UIButton extends Polymer.Element {
         }
 
         if (id === '' && strClass === '') {
-            EventBroker.trigger(id + "_ui-button_clicked", triggerObj);
+            EventBroker.trigger("ui-button_clicked", triggerObj);
         } else {
             if (id !== '') {
                 EventBroker.trigger(id + "_ui-button_clicked", triggerObj);
@@ -106,7 +108,7 @@ class UIButton extends Polymer.Element {
             if (strClass !== '') {
                 EventBroker.trigger(strClass + "_ui-button_clicked", triggerObj);
             }
-        }
+        }*/
     }
 }
 customElements.define(UIButton.is, UIButton);

@@ -43,12 +43,32 @@ class UISubmitButton extends Polymer.Element {
         }
         
         var id = this.id;
-        if (Lib.JS.isDefined(id)) {
-            EventBroker.trigger(id + "_UI-Submit-Button_passed", {button: this, event: event});
+        if (!Lib.JS.isDefined(id)) {
+            id = '';
         }
 
-        if (Lib.JS.isUndefined(id) && Lib.JS.isUndefined(passedInClass)) {
-            EventBroker.trigger("_UI-Submit-Button_passed", {button: this, event: event});
+        var strClass = this.class;
+        if (!Lib.JS.isDefined(strClass)) {
+            strClass = '';
+        }
+
+        var tableRow = this.get('tableRow');
+        
+        var triggerObj = {button: this, event: event};
+        
+        if(tableRow !==''){
+            triggerObj.tableRow = tableRow;
+        }
+
+        if (id === '' && strClass === '') {
+            EventBroker.trigger("ui-submit-button_passed", triggerObj);
+        } else {
+            if (id !== '') {
+                EventBroker.trigger(id + "_ui-submit-button_passed", triggerObj);
+            }
+            if (strClass !== '') {
+                EventBroker.trigger(strClass + "_ui-submit-button_passed", triggerObj);
+            }
         }
         
         

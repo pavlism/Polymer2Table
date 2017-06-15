@@ -60,10 +60,19 @@ class UIAlert extends Polymer.Element {
         }
     }
     handleClick(event) {
-        this.set('toggle', 0);
-        var id = this.get('id');
+        this.set('toggle', 0);        
+        var id = this.id;
+        if (!Lib.JS.isDefined(id)) {
+            id = '';
+        }
+        
+        var triggerObj = {alert: this, event: event};
 
-        EventBroker.trigger(id + "_ui-alert_closed", {alert: this, event: event});
+        if (id === '') {
+            EventBroker.trigger("ui-alert_closed", triggerObj);
+        } else {
+            EventBroker.trigger(id + "_ui-alert_closed", triggerObj);
+        }
     }
 }
 customElements.define(UIAlert.is, UIAlert);

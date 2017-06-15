@@ -47,17 +47,8 @@ class UICheckBox extends Polymer.Element {
         if(tableRow !==''){
             triggerObj.tableRow = tableRow;
         }
-
-        if (id === '' && strClass === '') {
-            EventBroker.trigger(id + "_ui-check-box_changed", triggerObj);
-        } else {
-            if (id !== '') {
-                EventBroker.trigger(id + "_ui-check-box_changed", triggerObj);
-            }
-            if (strClass !== '') {
-                EventBroker.trigger(strClass + "_ui-check-box_changed", triggerObj);
-            }
-        }
+        
+        Lib.Polymer.triggerEvents(id, strClass, triggerObj, "ui-check-box_changed");
       }
 }
 customElements.define(UICheckBox.is, UICheckBox);

@@ -1,24 +1,33 @@
 <template name="UITextBox">
     <h2>Info</h2>
-    This is basically the text box but the UI template
+    This is basically the text with a regex based validation.
     <hr>
     <table>
-        {{> rowHeader title='Basic UI-TextBox'}}
+        {{> rowHeader title='Basic ui-text-box'}}
         <tr>
             <td class='example'>
-                <UI-Text-Box></UI-Text-Box>
+                <ui-text-box></ui-text-box>
             </td>
             <td>
                 {{> UITextBox_code1}}
             </td>
         </tr>
-        {{> midRowHeader title='UI-Text-Box wiht ID'}}
+        {{> midRowHeader title='ui-text-box with ID'}}
         <tr>
             <td class='example'>
-                <UI-Text-Box id='sample'></UI-Text-Box>
+                <ui-text-box id='sample'></ui-text-box>
             </td>
             <td>
                 {{> UITextBox_code2}}
+            </td>
+        </tr>
+        {{> midRowHeader title='ui-text-box with Regex'}}
+        <tr>
+            <td class='example'>
+                <ui-text-box regex="\b\d{3}[-.]?\d{3}[-.]?\d{4}\b" error-msg="Not a phone number."></ui-text-box>
+            </td>
+            <td>
+                {{> UITextBox_code3}}
             </td>
         </tr>
     </table>
@@ -32,23 +41,30 @@
 <template name="UITextBox_code1">
     <h4>Code</h4>
     <pre>
-    &lt;UI-Text-Box &gt;&lt;/UI-Text-Box&gt;</pre>
+    &lt;ui-text-box &gt;&lt;/ui-text-box&gt;</pre>
 </template>
 
 <template name="UITextBox_code2">
     <h4>Code</h4>
     <pre>
-    &lt;UI-Text-Box id=&apos;sample&apos;&gt;&lt;/UI-Text-Box&gt;</pre>
+    &lt;ui-text-box id=&apos;sample&apos;&gt;&lt;/ui-text-box&gt;</pre>
+</template>
+
+<template name="UITextBox_code3">
+    <h4>Code</h4>
+    <pre>
+    &lt;ui-text-box regex="\b\d{3}[-.]?\d{3}[-.]?\d{4}\b" error-msg="Not a phone number."&lt;/ui-text-box&gt;</pre>
 </template>
 
 <template name="UITextBox_events">
     <h2>Events</h2>
-    <H4>{ID}_UI-Text-Box_changed</H4>
+    <H4>{ID}_ui-text-box_changed</H4>
     This event is triggered when changes in the text box occur.
     
-    <H4>{ID}_UI-Text-Box_clicked</H4>
-    This  event is triggered when the text box is clicked on.
-    
-    <H4>{ID}_UI-Text-Box_keyup</H4>
-    This  event is triggered when the text box has focus and a key is pressed.
+    <H4>Sample Listener</H4>
+    <pre>
+    EventBroker.listen("ui-text-box_clicked", function (listenerArgs, triggerArgs) {
+        console.log('a ui-text-box box was clicked');
+        console.log(triggerArgs);
+    });</pre>
 </template>

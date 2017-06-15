@@ -21,24 +21,11 @@ class UITextBox extends Polymer.Element {
             return false;
         }
     }
-    handleClick(event) {
-        var id = this.id;
-        var passedInClass = this.get('passedInClass');
-        if (Lib.JS.isDefined(id)) {
-            EventBroker.trigger(id + "_UI-Button_clicked", {button: this, event: event});
-        }
-
-        if (Lib.JS.isDefined(passedInClass)) {
-            EventBroker.trigger(passedInClass + "_UI-Button_clicked", {button: this, event: event});
-        }
-
-        if (Lib.JS.isUndefined(id) && Lib.JS.isUndefined(passedInClass)) {
-            EventBroker.trigger(passedInClass + "_UI-Button_clicked", {button: this, event: event});
-        }
-    }
     changed(event, a, b, c) {
         if (event.type === "blur") {
             this.checkValidation(this.get('validation'), true);
+            var triggerObj = {textBox: this, event: event, text:this.get('value')};
+            Lib.Polymer.triggerEventsWithoutTable(this,triggerObj, 'ui-text-box_changed');
         }
     }
     validationReset(validation){
