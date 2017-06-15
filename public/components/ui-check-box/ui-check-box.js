@@ -15,9 +15,8 @@ class UICheckBox extends Polymer.Element {
     attributeChangedCallback(name, old, value) {
         //Called when any of the element's attributes are changed, appended, removed, or replaced,
         super.attributeChangedCallback(name, old, value);
-        console.log('my-element attributeChangedCallback');
         if(name === "disabled"){
-            this.set('divClass', 'disabled');
+            this.set('class', 'disabled');
         }
     }
     
@@ -36,19 +35,27 @@ class UICheckBox extends Polymer.Element {
         var strClass = this.class;
         if (!Lib.JS.isDefined(strClass)) {
             strClass = '';
+        }else{
+            strClass = Lib.JS.replace(strClass, 'disabled', '');
+            strClass = Lib.JS.replace(strClass, 'enabled', '');
         }
 
         var tableRow = this.get('tableRow');
         var isChecked = this.get('checked');
+        
+        var triggerObj = {isChecked: isChecked, checkbox: this, event: event};
+        if(tableRow !==''){
+            triggerObj.tableRow = tableRow;
+        }
 
         if (id === '' && strClass === '') {
-            EventBroker.trigger(id + "_ui-check-box_changed", {isChecked: isChecked, checkbox: this, event: event, tableRow: tableRow});
+            EventBroker.trigger(id + "_ui-check-box_changed", triggerObj);
         } else {
             if (id !== '') {
-                EventBroker.trigger(id + "_ui-check-box_changed", {isChecked: isChecked, checkbox: this, event: event, tableRow: tableRow});
+                EventBroker.trigger(id + "_ui-check-box_changed", triggerObj);
             }
             if (strClass !== '') {
-                EventBroker.trigger(strClass + "_ui-check-box_changed", {isChecked: isChecked, checkbox: this, event: event, tableRow: tableRow});
+                EventBroker.trigger(strClass + "_ui-check-box_changed", triggerObj);
             }
         }
       }

@@ -1,6 +1,6 @@
 <template name="UICheckBox">
     <h2>Info</h2>
-    This is basically the check box but the UI template
+    A nicer looking check box.
     <hr>
     <table>
         {{> rowHeader title='Basic UI-CheckBox'}}
@@ -30,15 +30,17 @@
     <br>
     <br>
     {{>UICheckBox_events}}
+    <hr>
+    {{>UICheckBox_TODO}}
 </template>
 
 <template name="UICheckBox_code1">
     <h4>Code</h4>
     <pre>
     &lt;ui-check-box &gt;unchecked&lt;/ui-check-box&gt;
-    &lt;ui-check-box &gt;checked&lt;/ui-check-box&gt;
-    &lt;ui-check-box &gt;disabled&lt;/ui-check-box&gt;
-    &lt;ui-check-box &gt;checked && disabled&lt;/ui-check-box&gt;</pre>
+    &lt;ui-check-box checked &gt;checked&lt;/ui-check-box&gt;
+    &lt;ui-check-box disabled &gt;disabled&lt;/ui-check-box&gt;
+    &lt;ui-check-box disabled checked &gt;checked && disabled&lt;/ui-check-box&gt;</pre>
 </template>
 
 <template name="UICheckBox_code2">
@@ -60,4 +62,11 @@
         console.log('a UI-Check-Box box was clicked');
         console.log(triggerArgs);
     });</pre>
+</template>
+
+<template name="UICheckBox_TODO">
+    <h3>TODO</h3>
+    <ul>
+        <li>Add in more theme options</li>
+    </ul>
 </template>
