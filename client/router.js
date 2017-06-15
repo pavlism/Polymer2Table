@@ -13,7 +13,7 @@ Router.onAfterAction(function () {
     log.trace("onAfterAction: " + this.url);
     
     //After a page is routed trigger the PageRouted event
-    EventBroker.trigger('router.routeCompleted');
+    //EventBroker.trigger('router.routeCompleted');
     
     var routeCounter = 0;
     var routerName = Router.current().route.getName();

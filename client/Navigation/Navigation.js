@@ -29,11 +29,11 @@ Navigation.updateCurrentPage = function (routedPath) {
     if(getFrontLoadPos + 1 === routedPath.length){
         return false;
     }
-    var page = routedPath.right(getFrontLoadPos)
+    var page = routedPath.right(getFrontLoadPos);
     
     //If not the default page change the highliting to highlight the current page    
     log.trace("updateCurrentPage_document.ready");
-    $("li").each(function () {
+    $('ul.nav.navbar-nav').children().each(function () {
         var DELPOS = Lib.JS.getPosition($(this).find("a").prop("href"), "/", 3);
         var currentLI = $(this).find("a").prop("href").right(DELPOS)
         
