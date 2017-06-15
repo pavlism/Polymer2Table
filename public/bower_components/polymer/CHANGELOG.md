@@ -3462,7 +3462,7 @@ The following notable changes have been made since the 2.0 Preview announcement.
 
 - Generating an observe block in created or ready doesn't bind [\#448](https://github.com/Polymer/polymer/issues/448)
 
-- \<polymer-ui-accordion\> doesn't always work with Shadow DOM polyfill [\#444](https://github.com/Polymer/polymer/issues/444)
+- \<polymer-mrp-accordion\> doesn't always work with Shadow DOM polyfill [\#444](https://github.com/Polymer/polymer/issues/444)
 
 - Polymer breaks `instanceof` for native elements. [\#424](https://github.com/Polymer/polymer/issues/424)
 
@@ -3666,7 +3666,7 @@ The following notable changes have been made since the 2.0 Preview announcement.
 
 - Polymer 0.2.2 polymer-animation-group.js logs error to console [\#463](https://github.com/Polymer/polymer/issues/463)
 
-- polymer-ui-scaffold and polymer-ui-nav-arrow [\#343](https://github.com/Polymer/polymer/issues/343)
+- polymer-mrp-scaffold and polymer-mrp-nav-arrow [\#343](https://github.com/Polymer/polymer/issues/343)
 
 - Better error when creating an element without a hyphenated name [\#303](https://github.com/Polymer/polymer/issues/303)
 
@@ -3770,7 +3770,7 @@ The following notable changes have been made since the 2.0 Preview announcement.
 
 - document.querySelector containing ::shadow fails in Firefox 30 [\#551](https://github.com/Polymer/polymer/issues/551)
 
-- docs-menu polymer-ui-menu { position: fixed; } - Mozilla Firefox 30.0 [\#549](https://github.com/Polymer/polymer/issues/549)
+- docs-menu polymer-mrp-menu { position: fixed; } - Mozilla Firefox 30.0 [\#549](https://github.com/Polymer/polymer/issues/549)
 
 - Invalid Zip File [\#547](https://github.com/Polymer/polymer/issues/547)
 
@@ -3790,7 +3790,7 @@ The following notable changes have been made since the 2.0 Preview announcement.
 
 - rendering problems with new website in FF on osx [\#539](https://github.com/Polymer/polymer/issues/539)
 
-- \[Docs\] polymer-ui-menu on docs page doesn't seem to be displaying correctly, Chromium and Firefox [\#538](https://github.com/Polymer/polymer/issues/538)
+- \[Docs\] polymer-mrp-menu on docs page doesn't seem to be displaying correctly, Chromium and Firefox [\#538](https://github.com/Polymer/polymer/issues/538)
 
 - I think I found a mistake in the tutorial, not sure where to put it... [\#536](https://github.com/Polymer/polymer/issues/536)
 
@@ -4042,7 +4042,7 @@ The following notable changes have been made since the 2.0 Preview announcement.
 
 - "Getting the code" instructions are out of date/broken [\#369](https://github.com/Polymer/polymer/issues/369)
 
-- polymer-ui-menu-item does not show the icon [\#365](https://github.com/Polymer/polymer/issues/365)
+- polymer-mrp-menu-item does not show the icon [\#365](https://github.com/Polymer/polymer/issues/365)
 
 - polymer-selected class is not applied to Polymer UI elements [\#364](https://github.com/Polymer/polymer/issues/364)
 
@@ -4248,7 +4248,7 @@ The following notable changes have been made since the 2.0 Preview announcement.
 
 - Need a way to get the activeElement inside a Polymer element [\#253](https://github.com/Polymer/polymer/issues/253)
 
-- When using minified version on polymer, images of the button don't show in the ui-toolbar example [\#251](https://github.com/Polymer/polymer/issues/251)
+- When using minified version on polymer, images of the button don't show in the mrp-toolbar example [\#251](https://github.com/Polymer/polymer/issues/251)
 
 - Make sure boolean properties are reflected as boolean attributes [\#240](https://github.com/Polymer/polymer/issues/240)
 

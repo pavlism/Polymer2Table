@@ -1,0 +1,70 @@
+<template name="MRPTextBox">
+    <h2>Info</h2>
+    This is basically the text with a regex based validation.
+    <hr>
+    <table>
+        {{> rowHeader title='Basic mrp-text-box'}}
+        <tr>
+            <td class='example'>
+                <mrp-text-box></mrp-text-box>
+            </td>
+            <td>
+                {{> MRPTextBox_code1}}
+            </td>
+        </tr>
+        {{> midRowHeader title='mrp-text-box with ID'}}
+        <tr>
+            <td class='example'>
+                <mrp-text-box id='sample'></mrp-text-box>
+            </td>
+            <td>
+                {{> MRPTextBox_code2}}
+            </td>
+        </tr>
+        {{> midRowHeader title='mrp-text-box with Regex'}}
+        <tr>
+            <td class='example'>
+                <mrp-text-box regex="\b\d{3}[-.]?\d{3}[-.]?\d{4}\b" error-msg="Not a phone number."></mrp-text-box>
+            </td>
+            <td>
+                {{> MRPTextBox_code3}}
+            </td>
+        </tr>
+    </table>
+    <hr>
+    <br>
+    <br>
+    <br>
+    {{>MRPTextBox_events}}
+</template>
+
+<template name="MRPTextBox_code1">
+    <h4>Code</h4>
+    <pre>
+    &lt;mrp-text-box &gt;&lt;/mrp-text-box&gt;</pre>
+</template>
+
+<template name="MRPTextBox_code2">
+    <h4>Code</h4>
+    <pre>
+    &lt;mrp-text-box id=&apos;sample&apos;&gt;&lt;/mrp-text-box&gt;</pre>
+</template>
+
+<template name="MRPTextBox_code3">
+    <h4>Code</h4>
+    <pre>
+    &lt;mrp-text-box regex="\b\d{3}[-.]?\d{3}[-.]?\d{4}\b" error-msg="Not a phone number."&lt;/mrp-text-box&gt;</pre>
+</template>
+
+<template name="MRPTextBox_events">
+    <h2>Events</h2>
+    <H4>{ID}_mrp-text-box_changed</H4>
+    This event is triggered when changes in the text box occur.
+    
+    <H4>Sample Listener</H4>
+    <pre>
+    EventBroker.listen("mrp-text-box_clicked", function (listenerArgs, triggerArgs) {
+        console.log('a mrp-text-box box was clicked');
+        console.log(triggerArgs);
+    });</pre>
+</template>

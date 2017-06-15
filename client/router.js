@@ -34,12 +34,12 @@ Router.route('/', function () {
 
 //Setup the other route paths for each page
 Router.route('/Home');
-Router.route('/UI_Table');
-Router.route('/UIButton');
-Router.route('/UICheckBox');
-Router.route('/UITextBox');
-Router.route('/UIDropDown');
-Router.route('/UIAlert');
+Router.route('/MRP_Table');
+Router.route('/MRPButton');
+Router.route('/MRPCheckBox');
+Router.route('/MRPTextBox');
+Router.route('/MRPDropDown');
+Router.route('/MRPAlert');
 Router.route('/Brokers');
 Router.route('/Dev');
 

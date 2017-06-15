@@ -1,0 +1,88 @@
+<template name="MRPCheckBox">
+    <h2>Info</h2>
+    A nicer looking check box.
+    <hr>
+    <table>
+        {{> rowHeader title='Basic mrp-CheckBox'}}
+        <tr>
+            <td class='example'>
+                <mrp-check-box>unchecked</mrp-check-box>
+                <mrp-check-box checked>checked</mrp-check-box>
+                <mrp-check-box disabled>disabled</mrp-check-box>
+                <mrp-check-box disabled checked>disabled && checked</mrp-check-box>
+            </td>
+            <td>
+                {{> MRPCheckBox_code1}}
+            </td>
+        </tr>
+        {{> midRowHeader title='mrp-check-box with ID'}}
+        <tr>
+            <td class='example'>
+                <mrp-check-box id='sample'>sample</mrp-check-box>
+            </td>
+            <td>
+                {{> MRPCheckBox_code2}}
+            </td>
+        </tr>
+        {{> midRowHeader title='mrp-check-boxes with Class'}}
+        <tr>
+            <td class='example'>
+                <mrp-check-box class='sampleClass'>sampleClass 1</mrp-check-box>
+                <mrp-check-box class='sampleClass'>sampleClass 2</mrp-check-box>
+                <mrp-check-box class='sampleClass'>sampleClass 3</mrp-check-box>
+            </td>
+            <td>
+                {{> MRPCheckBox_code3}}
+            </td>
+        </tr>
+    </table>
+    <hr>
+    <br>
+    <br>
+    <br>
+    {{>MRPCheckBox_events}}
+    <hr>
+    {{>MRPCheckBox_TODO}}
+</template>
+
+<template name="MRPCheckBox_code1">
+    <h4>Code</h4>
+    <pre>&lt;mrp-check-box &gt;unchecked&lt;/mrp-check-box&gt;
+&lt;mrp-check-box checked &gt;checked&lt;/mrp-check-box&gt;
+&lt;mrp-check-box disabled &gt;disabled&lt;/mrp-check-box&gt;
+&lt;mrp-check-box disabled checked &gt;checked && disabled&lt;/mrp-check-box&gt;</pre>
+</template>
+
+<template name="MRPCheckBox_code2">
+    <h4>Code</h4>
+    <pre>&lt;mrp-check-box id=&apos;sample&apos;&gt;sample&lt;/mrp-check-box&gt;</pre>
+</template>
+
+<template name="MRPCheckBox_code3">
+    <h4>Code</h4>
+    <pre>&lt;mrp-check-box class=&apos;sampleClass&apos;&gt;sampleClass 1&lt;/mrp-check-box&gt;
+&lt;mrp-check-box class=&apos;sampleClass&apos;&gt;sampleClass 2&lt;/mrp-check-box&gt;
+&lt;mrp-check-box class=&apos;sampleClass&apos;&gt;sampleClass 3&lt;/mrp-check-box&gt;</pre>
+</template>
+
+<template name="MRPCheckBox_events">
+    <h2>Events</h2>
+    <H4>{ID}_mrp-check-box_changed</H4>
+    When a check box is check the changed event will fire.  This event will use the ID on the mrp-check-box element.<br>
+    The trigger argument will contain the mrp-check-box Object, the event object and a boolean called isChecked.<br>
+    Open the console log and check the boxed to see an example of this event.
+    
+    <H4>Sample Listener</H4>
+    <pre>
+    EventBroker.listen("_mrp-check-box_changed", function (listenerArgs, triggerArgs) {
+        console.log('a mrp-check-box box was clicked');
+        console.log(triggerArgs);
+    });</pre>
+</template>
+
+<template name="MRPCheckBox_TODO">
+    <h3>TODO</h3>
+    <ul>
+        <li>Add in more theme options</li>
+    </ul>
+</template>

@@ -1,0 +1,48 @@
+<template name="MRPDropDown">
+    <h2>Info</h2>
+    This is basically the select element that has a list attribute, which accepts a 1D array
+    <hr>
+    <table>
+        {{> rowHeader title='Basic mrp-drop-down'}}
+        <tr>
+            <td class='example'>
+                <mrp-drop-down list="{{list}}"></mrp-drop-down>
+            </td>
+            <td>
+                {{> MRPDropDown_code1}}
+            </td>
+        </tr>
+        {{> midRowHeader title='mrp-drop-down with ID'}}
+        <tr>
+            <td class='example'>
+                <mrp-drop-down list='["one","2","3"]' id='sample'></mrp-drop-down>
+            </td>
+            <td>
+                {{> MRPDropDown_code2}}
+            </td>
+        </tr>
+    </table>
+    <hr>
+    <br>
+    <br>
+    <br>
+    {{>MRPDropDown_events}}
+</template>
+
+<template name="MRPDropDown_code1">
+    <h4>Code</h4>
+    <pre>
+    &lt;mrp-drop-down list=&apos;{list}&apos; &gt;&lt;/mrp-drop-down&gt;</pre>
+</template>
+
+<template name="MRPDropDown_code2">
+    <h4>Code</h4>
+    <pre>
+    &lt;mrp-drop-down list=&apos;["one","2","3"]&apos; id=&apos;sample&apos;&gt;&lt;/mrp-drop-down&gt;</pre>
+</template>
+
+<template name="MRPDropDown_events">
+    <h2>Events</h2>
+    <H4>{ID}_mrp-drop-down_changed</H4>
+    This event is triggered when changes in the text box occur.
+</template>

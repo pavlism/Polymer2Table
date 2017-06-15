@@ -5,7 +5,7 @@ var toggle = new ReactiveObject({val:0});
 
 Template.dev.onRendered(function () {
        
-    EventBroker.listen('_UI-Submit-Button_passed', {}, function (listenerArgs, triggerArgs) {
+    EventBroker.listen('_mrp-Submit-Button_passed', {}, function (listenerArgs, triggerArgs) {
         if(toggle.val ===0){
             toggle.val=1;
         }else{
@@ -13,7 +13,7 @@ Template.dev.onRendered(function () {
         }
     });
     
-    EventBroker.listen('UI-Alert_closed', {}, function (listenerArgs, triggerArgs) {
+    EventBroker.listen('mrp-Alert_closed', {}, function (listenerArgs, triggerArgs) {
         toggle.val=0;
     });
     
@@ -146,12 +146,12 @@ Template.dev.onRendered(function () {
     tableData.push(['77 Terry','Chen','Developer','China']);
     tableData.push(['78 Roger','Yang','Boss','China']);*/
     
-    EventBroker.listen("primary add_UI-Button_clicked", function (listenerArgs, triggerArgs) {
+    EventBroker.listen("primary add_mrp-button_clicked", function (listenerArgs, triggerArgs) {
         console.log('primary add button was clicked');
         console.log(triggerArgs);
     });
     
-    EventBroker.listen("primary delete_UI-Button_clicked", function (listenerArgs, triggerArgs) {
+    EventBroker.listen("primary delete_mrp-button_clicked", function (listenerArgs, triggerArgs) {
         console.log('primary add button was clicked');
         console.log(triggerArgs);
     });
