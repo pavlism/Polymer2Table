@@ -94,13 +94,13 @@ class UIButton extends Polymer.Element {
         var textArea = $(this)[0].shadowRoot.querySelector('textarea');
 
         if (id === '' && strClass === '') {
-            EventBroker.trigger(id + "_ui-button_changed", {UITextArea: this, textArea: textArea, event: event, tableRow: tableRow});
+            EventBroker.trigger(id + "_ui-button_clicked", {UITextArea: this, textArea: textArea, event: event, tableRow: tableRow});
         } else {
             if (id !== '') {
-                EventBroker.trigger(id + "_ui-button_changed", {UITextArea: this, textArea: textArea, event: event, tableRow: tableRow});
+                EventBroker.trigger(id + "_ui-button_clicked", {UITextArea: this, textArea: textArea, event: event, tableRow: tableRow});
             }
             if (strClass !== '') {
-                EventBroker.trigger(strClass + "_ui-button_changed", {UITextArea: this, textArea: textArea, event: event, tableRow: tableRow});
+                EventBroker.trigger(strClass + "_ui-button_clicked", {UITextArea: this, textArea: textArea, event: event, tableRow: tableRow});
             }
         }
     }

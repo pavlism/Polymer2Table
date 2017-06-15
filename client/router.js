@@ -40,6 +40,7 @@ Router.route('/UICheckBox');
 Router.route('/UITextBox');
 Router.route('/UIDropDown');
 Router.route('/UIAlert');
+Router.route('/Brokers');
 Router.route('/Dev');
 
 

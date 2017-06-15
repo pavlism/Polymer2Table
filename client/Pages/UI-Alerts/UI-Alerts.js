@@ -9,7 +9,7 @@ Template.UIAlert.onRendered(function () {
         if(defaultButton.val ===0){
             defaultButton.val =1;
         }else{
-            defaultButton = 0;
+            defaultButton.val = 0;
         }
     });
     
@@ -17,7 +17,7 @@ Template.UIAlert.onRendered(function () {
         if(toggleID.val ===0){
             toggleID.val =1;
         }else{
-            toggleID = 0;
+            toggleID.val = 0;
         }
     });
     

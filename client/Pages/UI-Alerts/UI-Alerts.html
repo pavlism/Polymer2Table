@@ -1,8 +1,8 @@
 <template name="UIAlert">
     <h2>Info</h2>
     The alert elements is a nicer looking version of the alert message box.  Its used to display a simple message to the user.  It does not have many theme options yet.<br/>
-    To toggle an alert you have 2 different options.  1 you can set the toggle property to variable, then change that variable, 1 is on 0 if off.<br/>
-    The second option is to use the on-event and off-even attributes.  Set either of them to a string that is the EventBroker event you want to trigger the alert.
+    To toggle an alert you have 2 different options.  1 you can set the toggle property to a variable, then change that variable, 1 is on 0 if off.<br/>
+    The second option is to use the on-event and off-even attributes.  Set either of them to a string that is the EventBroker event you want to trigger the alert.  (see <a href="brokers">Brokers</a>)
     
     <hr>
     <table>
@@ -51,6 +51,8 @@
     <hr>
     <br>
     {{>UIAlert_events}}
+    <hr>
+    {{>UIAlert_TODO}}
 </template>
 
 <template name="UIAlert_code1">
@@ -93,4 +95,17 @@
         console.log('An alert was closed');
         console.log(triggerArgs);
     });</pre>
+    
+    <H4>Sample Trigger</H4>
+    <pre>
+    EventBroker.trigger("turnOnAlert_12"});</pre>
+</template>
+
+<template name="UIAlert_TODO">
+    <h3>TODO</h3>
+    <ul>
+        <li>Add sample trigger in the event panel</li>
+        <li>Add in more options for button combinations</li>
+        <li>Add in more theme options</li>
+    </ul>
 </template>
