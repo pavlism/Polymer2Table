@@ -1,9 +1,6 @@
 var defaultButton = new ReactiveObject({val:0});
 var toggleID = new ReactiveObject({val:0});
 
-
-
-
 Template.MRPAlert.onRendered(function () {
     EventBroker.listen("toggleBasic_mrp-button_clicked", function (listenerArgs, triggerArgs) {
         if(defaultButton.val ===0){
@@ -26,7 +23,7 @@ Template.MRPAlert.onRendered(function () {
         console.log(triggerArgs);
     });
     
-    EventBroker.listen("event_mrp-alert_closed", function (listenerArgs, triggerArgs) {
+    EventBroker.listen("mrp-alert_closed", function (listenerArgs, triggerArgs) {
         console.log('An alert was clsed');
         console.log(triggerArgs);
     });

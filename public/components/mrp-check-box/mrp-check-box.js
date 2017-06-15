@@ -8,15 +8,19 @@ class UICheckBox extends Polymer.Element {
             checked: {type: Boolean, value: false},
             id: {type: String, value: ''},
             tableRow: {type: String, value: ''}, //used if inside a table
-            class: {type: String, value: 'enabled', reflectToAttribute: true}
+            class: {type: String, value: '', reflectToAttribute: true},
+            boxClass: {type: String, value: 'enabled', reflectToAttribute: true}
         }
     }
 
     attributeChangedCallback(name, old, value) {
         //Called when any of the element's attributes are changed, appended, removed, or replaced,
         super.attributeChangedCallback(name, old, value);
+        
         if(name === "disabled"){
-            this.set('class', 'disabled');
+            this.set('boxClass', 'disabled');
+        }else if(name==='enabled'){
+            this.set('boxClass', 'enabled');
         }
     }
     
@@ -26,19 +30,6 @@ class UICheckBox extends Polymer.Element {
         }
         
         this.set('checked', !this.get('checked'));
-        
-        var id = this.id;
-        if (!Lib.JS.isDefined(id)) {
-            id = '';
-        }
-
-        var strClass = this.class;
-        if (!Lib.JS.isDefined(strClass)) {
-            strClass = '';
-        }else{
-            strClass = Lib.JS.replace(strClass, 'disabled', '');
-            strClass = Lib.JS.replace(strClass, 'enabled', '');
-        }
 
         var tableRow = this.get('tableRow');
         var isChecked = this.get('checked');
@@ -48,7 +39,7 @@ class UICheckBox extends Polymer.Element {
             triggerObj.tableRow = tableRow;
         }
         
-        Lib.Polymer.triggerEvents(id, strClass, triggerObj, "mrp-check-box_changed");
+        Lib.Polymer.triggerEventsWithoutTable(this, triggerObj, "mrp-check-box_changed");
       }
 }
 customElements.define(UICheckBox.is, UICheckBox);

@@ -73,8 +73,6 @@ class UIButton extends Polymer.Element {
         } else if (this.get('mini')) {
             btnClass = btnClass + ' mini';
         }
-        var passedInClass = this.get('class');
-        var btnClass = passedInClass + ' ' + btnClass;
         this.set('btnClass', btnClass);
     }
 

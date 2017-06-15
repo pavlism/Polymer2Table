@@ -3,7 +3,7 @@
     A simple button with a specific look and feel.
     
     <table>
-        {{> rowHeader title='Basic mrp-button'}}
+        {{> rowHeader title='Default <mrp-button>'}}
         <tr>
             <td class='example'>
                 <mrp-button>default</mrp-button>
@@ -12,7 +12,7 @@
             {{> MRP_Button_code1}}
         </td>
         </tr>
-        {{> midRowHeader title='mrp-button Colors'}}
+        {{> midRowHeader title='<mrp-button> Colors'}}
         <tr>
             <td class='example'>
                 <mrp-button primary>primary</mrp-button>
@@ -25,7 +25,7 @@
             {{> MRP_Button_code2}}
         </td>
         </tr>
-        {{> midRowHeader title='mrp-button Sizes'}}
+        {{> midRowHeader title='<mrp-button> Sizes'}}
         <tr>
             <td class='example'>
                 <mrp-button large>large</mrp-button>
@@ -37,7 +37,7 @@
             {{> MRP_Button_code3}}
         </td>
         </tr>
-        {{> midRowHeader title='mrp-button With ID'}}
+        {{> midRowHeader title='<mrp-button> with ID'}}
         <tr>
             <td class='example'>
                 <mrp-button id='sample'>sample</mrp-button>
@@ -46,7 +46,7 @@
             {{> MRP_Button_code4}}
         </td>
         </tr>
-        {{> midRowHeader title='mrp-buttons With class'}}
+        {{> midRowHeader title='<mrp-button>s with Class'}}
         <tr>
             <td class='example'>
                 <mrp-button class='sampleClass'>sampleClass 1</mrp-button>
@@ -103,14 +103,16 @@
 
 <template name="MRP_Button_events">
     <h2>Events</h2>
+    Open the console window and click an &#x3C;mrp-button&#x3E; to see an examples of it's events.
+    
     <H4>{ID}_mrp-button_clicked</H4>
-    When a button is clicked the clicked event will fire.  This event will use the ID on the mrp-button element.
+    When an &#x3C;mrp-button&#x3E; is clicked the clicked event will fire.  This event will use the ID on the &#x3C;mrp-button&#x3E; element.
     
     <H4>{class}_mrp-button_clicked</H4>
-    When a button is clicked the clicked event will fire.  This event will use the Class on the mrp-button element.
+    When an &#x3C;mrp-button&#x3E; is clicked the clicked event will fire.  This event will use the Class on the &#x3C;mrp-button&#x3E; element.
     
     <H4>mrp-button_clicked</H4>
-    When a button is clicked the clicked event will fire.  If the elements does not have an ID or class then this event will fire.
+    When an &#x3C;mrp-button&#x3E; is clicked the clicked event will fire.  If the elements does not have an ID or class then this event will fire.
     
     <H4>Sample Listener</H4>
     <pre>

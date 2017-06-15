@@ -6,7 +6,7 @@
     
     <hr>
     <table>
-        {{> rowHeader title='Basic mrp-Alert'}}
+        {{> rowHeader title='Basic <mrp-alert>'}}
         <tr>
             <td class='example'>
                 <mrp-button id='toggleBasic'>Toggle Basic</mrp-button>
@@ -16,17 +16,7 @@
                 {{> MRPAlert_code1}}
             </td>
         </tr>
-        {{> midRowHeader title='mrp-Alert with ID'}}
-        <tr>
-            <td class='example'>
-                <mrp-button id='toggleID'>Toggle Basic</mrp-button>
-                <mrp-alert title="title" message="message" id='sample' toggle="{{toggleID}}"></mrp-alert>
-            </td>
-            <td>
-                {{> MRPAlert_code2}}
-            </td>
-        </tr>
-        {{> midRowHeader title='mrp-Alert with Events'}}
+        {{> midRowHeader title='<mrp-alert> with Events'}}
         <tr>
             <td class='example'>
                 <mrp-button id='OnEvent'>Turn On</mrp-button>
@@ -37,7 +27,7 @@
                 {{> MRPAlert_code3}}
             </td>
         </tr>
-        {{> midRowHeader title='mrp-Alert with Timer in seconds'}}
+        {{> midRowHeader title='<mrp-alert> with Timer in seconds'}}
         <tr>
             <td class='example'>
                 <mrp-button id='TimerOn'>Turn On</mrp-button>
@@ -47,51 +37,62 @@
                 {{> MRPAlert_code4}}
             </td>
         </tr>
+        {{> midRowHeader title='<mrp-alert> with ID'}}
+        <tr>
+            <td class='example'>
+                <mrp-button id='toggleID'>Toggle Basic</mrp-button>
+                <mrp-alert title="title" message="message" id='sample' toggle="{{toggleID}}"></mrp-alert>
+            </td>
+            <td>
+                {{> MRPAlert_code2}}
+            </td>
+        </tr>
     </table>
     <hr>
-    <br>
     {{>MRPAlert_events}}
     <hr>
     {{>MRPAlert_TODO}}
+    <br>
+    <br>
+    <br>
 </template>
 
 <template name="MRPAlert_code1">
     <h4>Code</h4>
-    <pre>
-    &lt;mrp-button id='toggleBasic'&gt;Toggle Basic&lt;/mrp-button&gt; 
-    &lt;mrp-alert title=&quot;title&quot; message=&quot;message&quot; toggle=&quot;{{defaultButton}}&quot;&gt;&lt;/mrp-alert&gt;</pre>
+    <pre>&lt;mrp-button id='toggleBasic'&gt;Toggle Basic&lt;/mrp-button&gt; 
+&lt;mrp-alert title=&quot;title&quot; message=&quot;message&quot; toggle=&quot;{defaultButton}&quot;&gt;&lt;/mrp-alert&gt;</pre>
 </template>
 
 <template name="MRPAlert_code2">
     <h4>Code</h4>
-    <pre>
-    &lt;mrp-button id='toggleID'&gt;Toggle Basic&lt;/mrp-button&gt; 
-    &lt;mrp-alert title=&quot;title&quot; message=&quot;message&quot; id='sample' toggle=&quot;{{toggleID}}&quot;&gt;&lt;/mrp-alert&gt;</pre>
+    <pre>&lt;mrp-button id='toggleID'&gt;Toggle Basic&lt;/mrp-button&gt; 
+&lt;mrp-alert title=&quot;title&quot; message=&quot;message&quot; id='sample' toggle=&quot;{toggleID}&quot;&gt;&lt;/mrp-alert&gt;</pre>
 </template>
 
 <template name="MRPAlert_code3">
     <h4>Code</h4>
-    <pre>
-    &lt;mrp-button id='OnEvent'&gt;Turn On&lt;/mrp-button&gt;
-    &lt;mrp-button id='OffEvent'&gt;Turn off&lt;/mrp-button&gt; 
-    &lt;mrp-alert title=&quot;title&quot; message=&quot;message&quot; on-event=&quot;OnEvent_mrp-button_clicked&quot; off-event=&quot;OffEvent_mrp-button_clicked&quot;&gt;&lt;/mrp-alert&gt;</pre>
+    <pre>&lt;mrp-button id='OnEvent'&gt;Turn On&lt;/mrp-button&gt;
+&lt;mrp-button id='OffEvent'&gt;Turn off&lt;/mrp-button&gt; 
+&lt;mrp-alert title=&quot;title&quot; message=&quot;message&quot; on-event=&quot;OnEvent_mrp-button_clicked&quot; off-event=&quot;OffEvent_mrp-button_clicked&quot;&gt;&lt;/mrp-alert&gt;</pre>
 </template>
 
 <template name="MRPAlert_code4">
     <h4>Code</h4>
-    <pre>
-    &lt;mrp-button id='TimerOn'&gt;Turn On&lt;/mrp-button&gt; 
-    &lt;mrp-alert title=&quot;title&quot; message=&quot;message&quot; on-event=&quot;TimerOn_mrp-button_clicked&quot; timer=&quot;5&quot;&gt;&lt;/mrp-alert&gt;</pre>
+    <pre>&lt;mrp-button id='TimerOn'&gt;Turn On&lt;/mrp-button&gt; 
+&lt;mrp-alert title=&quot;title&quot; message=&quot;message&quot; on-event=&quot;TimerOn_mrp-button_clicked&quot; timer=&quot;5&quot;&gt;&lt;/mrp-alert&gt;</pre>
 </template>
 
 <template name="MRPAlert_events">
     <h2>Events</h2>
     <H4>{ID}_mrp-alert_closed</H4>
-    This event is triggered when the alert is closed because the user clicked on the close button.
+    When an &#x3C;mrp-alert&#x3E; is closed the closed event will fire.  This event will use the ID on the &#x3C;mrp-alert&#x3E; element.
+    
+    <H4>mrp-alert_closed</H4>
+    When an &#x3C;mrp-alert&#x3E; is clicked the closed event will fire.  If the elements does not have an ID or class then this event will fire.
     
     <H4>Sample Listener</H4>
     <pre>
-    EventBroker.listen("_mrp-alert_closed", function (listenerArgs, triggerArgs) {
+    EventBroker.listen("mrp-alert_closed", function (listenerArgs, triggerArgs) {
         console.log('An alert was closed');
         console.log(triggerArgs);
     });</pre>

@@ -1,27 +1,21 @@
 var list = new ReactiveArray();
 
 Template.MRPDropDown.onRendered(function () {
-    EventBroker.listen("mrp-drop-down_clicked", function (listenerArgs, triggerArgs) {
-        console.log('a mrp-drop-down box was clicked');
-        console.log(triggerArgs);
-    });
-    
-    EventBroker.listen("sample_mrp-drop-down_clicked", function (listenerArgs, triggerArgs) {
-        console.log('a mrp-drop-down box was clicked with the id = sample');
-        console.log(triggerArgs);
-    });
-    
     EventBroker.listen("mrp-drop-down_changed", function (listenerArgs, triggerArgs) {
-        console.log('a mrp-drop-down box was changed');
+        console.log('A <mrp-drop-down> was changed, this listener will fire for any <mrp-drop-down> that does not have a class or id');
         console.log(triggerArgs);
     });
     
     EventBroker.listen("sample_mrp-drop-down_changed", function (listenerArgs, triggerArgs) {
-        console.log('a mrp-drop-down box was changed with the id = sample');
+        console.log('A <mrp-drop-down> was changed with the id = sample');
+        console.log(triggerArgs);
+    });
+    
+    EventBroker.listen("sampleClass_mrp-drop-down_changed", function (listenerArgs, triggerArgs) {
+        console.log('A <mrp-drop-down> was changed with the class = sampleClass, this listener will fire for any <mrp-drop-down> elements with this class.');
         console.log(triggerArgs);
     });
    
-    
     list.length = 0;
     list.push('one');
     list.push('2');

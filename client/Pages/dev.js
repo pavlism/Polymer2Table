@@ -13,7 +13,7 @@ Template.dev.onRendered(function () {
         }
     });
     
-    EventBroker.listen('mrp-Alert_closed', {}, function (listenerArgs, triggerArgs) {
+    EventBroker.listen('mrp-alert_closed', {}, function (listenerArgs, triggerArgs) {
         toggle.val=0;
     });
     
