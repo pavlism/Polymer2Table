@@ -1,4 +1,4 @@
-//Version 1.3
+//Version 1.4
 
 //adds some needed straing function to the string prototype
 
@@ -82,6 +82,25 @@ if (Lib.JS.isUndefined(stringExt)) {
             }
 
             return this.substring(position + 1, this.length);
+        };
+        /**
+         * This will remove extra white space an dempty lines of a string
+         * Example: Lib.JS.Left("0123456   \n\n\n   sdf ") = "0123456\nsdf"
+         * 
+         * @param text {String} the string you want cleaned.
+         * @return {String} Returns the cleaned string
+         */
+        String.prototype.cleanText = function () {
+            log.trace("cleanText");
+            var cleanText = '';
+            var lines = this.split('\n');
+            for (var lineConter = 0; lineConter < lines.length; lineConter++) {
+                if (lines[lineConter].trim() !== '') {
+                    cleanText = cleanText + lines[lineConter].trim() + '\n';
+                }
+            }
+
+            return cleanText;
         };
 
     };

@@ -21,9 +21,9 @@
         </template>
         
         <template is="dom-if" if="[[buttons]]">
-            <mrp-csv-button data-call="[[id]]_CurrentData"></mrp-csv-button>
-            <mrp-excel-button data-call="[[id]]_CurrentData"></mrp-excel-button>
-            <mrp-copy-button data-call="[[id]]_CurrentData"></mrp-copy-button>
+            <mrp-csv-button data-call="[[id]]_CurrentTableElement"></mrp-csv-button>
+            <mrp-excel-button data-call="[[id]]_CurrentTableElement"></mrp-excel-button>
+            <mrp-copy-button data-call="[[id]]_CurrentTableElement"></mrp-copy-button>
             <mrp-print-button data-call="[[id]]_CurrentTableElement"></mrp-print-button>
             <mrp-pdf-button data-call="[[id]]_CurrentTableElement"></mrp-pdf-button>
         </template>

@@ -5,7 +5,7 @@ class UIButton extends Polymer.Element {
     static get properties() {
         return {
             id: {type: String, value: ''},
-            //caption: {type: String, value: ''},
+            title: {type: String, value: ''},
             class: {type: String, value: '', reflectToAttribute: true},
             btnClass: {type: String, value: ''},
             //passedClass: {type: String, value: ''},
@@ -20,14 +20,19 @@ class UIButton extends Polymer.Element {
             size: {type: Number, value: 2},
             color: {type: Number, value: 5},
             tableRow: {type: String, value: ''}, //used if inside a table
-            propertiesObj: {type: Object, value: function () { return {}; }
+            propertiesObj: {type: Object, value: function () {
+                    return {};
+                }
             }
         };
     }
-    
-    static get propertiesObj(){
-        return {id:'', class:'', text:'', size:2, color:5,tableRow:''};
-    }  
+
+    static get propertiesObj() {
+        return {id: '', class: '', text: '', size: 2, color: 5, tableRow: ''};
+    }
+    val() {
+        return "";
+    }
 
     ready() {
         super.ready();
@@ -78,10 +83,10 @@ class UIButton extends Polymer.Element {
 
     handleClick(event) {
         var triggerObj = {button: this, event: event};
-        Lib.Polymer.triggerEventsWithTable(this,triggerObj, 'mrp-button_clicked');
+        Lib.Polymer.triggerEventsWithTable(this, triggerObj, 'mrp-button_clicked');
     }
 }
 customElements.define(UIButton.is, UIButton);
 
-UIButton.sizes = {large:'large', small:'small', mini:'mini', default:''};
-UIButton.colors = {primary:'primary', success:'success',info:'info',warning:'warning',danger:'danger', default:'', green:'primary', darkBlue:'success', lightBlue:'info', yellow:'warning', red:'danger', grey:''};
+UIButton.sizes = {large: 'large', small: 'small', mini: 'mini', default: ''};
+UIButton.colors = {primary: 'primary', success: 'success', info: 'info', warning: 'warning', danger: 'danger', default: '', green: 'primary', darkBlue: 'success', lightBlue: 'info', yellow: 'warning', red: 'danger', grey: ''};

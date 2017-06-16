@@ -19,49 +19,23 @@ class UICSVButton extends Polymer.Element {
         if (dataCall === '' && dataSelector === '') {
             console.log('UICSVButton Error: both the data-call and data-selector atrributes are empty, one needs to be used to point the CVS button to the data');
         } else if (dataCall !== '') {
-            var tableData = DataBroker.trigger(dataCall);
-            
-            for (var rowCounter = 0; rowCounter < tableData.length; rowCounter++) {   
-                var row = tableData[rowCounter];
-                for (var colCounter = 0; colCounter < row.length; colCounter++) {
-                    if(colCounter === row.length - 1){
-                        csvContent = csvContent + row[colCounter].toString();
-                    }else{
-                        csvContent = csvContent + row[colCounter].toString() + ',';
-                    }
-                }
-                csvContent = csvContent + '\r\n';
-            }
-
-        } else {
-            var extraText = '';
-            var elmText = [];
-
-            $(dataSelector).find('tr').each(function (index, element) {
-                $(element).find('th').each(function (index, element) {
-                    csvContent = csvContent + $(element).text() + ',';
-                });
-                $(element).find('td').each(function (index, element) {
-                    if ($(element).children().length === 0) {
-                        csvContent = csvContent + $(element).text() + ',';
-                    } else {
-                        elmText = $(element).text().replace(/ /g, '').split('\n');
-                        csvContent = csvContent + elmText[0] + ',';
-                        extraText = '';
-                        for (var elmCounter = 1; elmCounter < elmText.length; elmCounter++) {
-                            if (elmText[elmCounter] !== '') {
-                                extraText = extraText + elmText[elmCounter] + ',';
-                            }
-                        }
-                    }
-                });
-                //get rid of last comma
-                csvContent = csvContent.substring(0, csvContent.length - 1);
-                csvContent = csvContent + ',' + extraText;
-                extraText = '';
-                csvContent = csvContent + '\r\n';
-            });
+            dataSelector = DataBroker.trigger(dataCall);
         }
+
+        $(dataSelector).find('tr').each(function (index, element) {
+            $(element).find('th').each(function (index, element) {
+                csvContent = csvContent + $(element).text() + ',';
+            });
+            $(element).find('td').each(function (index, element) {
+                debugger;
+                var strCell = Lib.Polymer.elementToString(element, true);
+                csvContent = csvContent + strCell + ',';
+            });
+            //get rid of last comma and add LFCR
+            csvContent = csvContent.substring(0, csvContent.length - 1);
+            csvContent = csvContent + '\r\n';
+        });
+
 
         var encodedUri = encodeURI(csvContent);
         var link = document.createElement("a");

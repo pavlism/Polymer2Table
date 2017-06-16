@@ -12,8 +12,8 @@ class UICopyButton extends Polymer.Element {
             alertMessage: {type: String, value: ''}
         };
     }
-    
-    ready(){
+
+    ready() {
         super.ready();
         var thisObj = this;
         var dataCall = this.get('dataCall');
@@ -24,62 +24,60 @@ class UICopyButton extends Polymer.Element {
         if (dataCall === '' && dataSelector === '') {
             console.log('UICopyButton Error: both the data-call and data-selector atrributes are empty, one needs to be used to point the Copy button to the data');
         } else if (dataCall !== '') {
-            textObj.text = function () {
-                var tableData = DataBroker.trigger(thisObj.get('dataCall'));
-                var text = '';
-
-                for (var rowCounter = 0; rowCounter < tableData.length; rowCounter++) {
-                    var row = tableData[rowCounter];
-                    for (var colCounter = 0; colCounter < row.length; colCounter++) {
-                        if (colCounter === row.length - 1) {
-                            text = text + row[colCounter].toString();
-                        } else {
-                            text = text + row[colCounter].toString() + '\t';
-                        }
-                    }
-                    text = text + '\r\n';
-                }
-                return text;
-            };
-        } else {
-            textObj.text = function () {
-                var text = '';
-                var extraText = '';
-                var elmText = [];
-                $(dataSelector).find('tr').each(function (index, element) {
-                    $(element).find('th').each(function (index, element) {
-                        text = text + $(element).text() + '\t';
-                    });
-                    $(element).find('td').each(function (index, element) {
-                        if ($(element).children().length === 0) {
-                            text = text + $(element).text() + '\t';
-                        } else {
-                            elmText = $(element).text().replace(/ /g, '').split('\n');
-                            text = text + elmText[0] + '\t';
-
-                            for (var elmCounter = 1; elmCounter < elmText.length; elmCounter++) {
-                                if (elmText[elmCounter] !== '') {
-                                    extraText = extraText + elmText[elmCounter] + '\t';
-                                }
-                            }
-                        }
-                    });
-                    //get rid of last tab
-                    text = text.substring(0, text.length - 1);
-                    text = text + '\t' + extraText;
-                    extraText = '';
-                    text = text + '\r\n';
-                });
-                return text;
-            }
+            dataSelector = DataBroker.trigger(dataCall);
+            debugger;
         }
-        
+        /*textObj.text = function () {
+         var tableData = DataBroker.trigger(thisObj.get('dataCall'));
+         var text = '';
+         
+         for (var rowCounter = 0; rowCounter < tableData.length; rowCounter++) {
+         var row = tableData[rowCounter];
+         for (var colCounter = 0; colCounter < row.length; colCounter++) {
+         if (colCounter === row.length - 1) {
+         text = text + row[colCounter].toString();
+         } else {
+         text = text + row[colCounter].toString() + '\t';
+         }
+         }
+         text = text + '\r\n';
+         }
+         return text;
+         };*/
+        //} else {
+        textObj.text = function () {
+            var text = '';
+            var extraText = '';
+            var elmText = [];
+            $(dataSelector).find('tr').each(function (index, element) {
+                $(element).find('th').each(function (index, element) {
+                    text = text + $(element).text() + '\t';
+                });
+                $(element).find('td').each(function (index, element) {
+                    if ($(element).children(":not('dom-if')").length === 0) {
+                        //must be simple text
+                        text = text + $(element).text().trim() + '\t';
+                    } else {
+                        var strCell = Lib.Polymer.elementToString(element, true);
+                        text = text + strCell + '\t';
+                    }
+                });
+                //get rid of last tab
+                text = text.substring(0, text.length - 1);
+                text = text + '\t' + extraText;
+                extraText = '';
+                text = text + '\r\n';
+            });
+            return text;
+        }
+        // }
+
         var buttonObj = $(this)[0].shadowRoot.querySelector('mrp-button');
         var clipboard = new Clipboard(buttonObj, textObj);
-        
+
 
         clipboard.on('success', function (e) {
-            
+
             //set the alert
             //Must set to false, becasue if button is clicked again the alert value is still true so it won't update the page, which won't trigger the change in the alert.
             thisObj.set('alert', false);
@@ -97,7 +95,7 @@ class UICopyButton extends Polymer.Element {
     }
 
     handleClick(event) {
-        
+
     }
 }
 customElements.define(UICopyButton.is, UICopyButton);

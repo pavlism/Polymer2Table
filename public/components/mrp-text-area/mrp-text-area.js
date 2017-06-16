@@ -33,6 +33,9 @@ class UITextArea extends Polymer.Element {
             return false;
         }
     }
+    val(){
+        return $(this.shadowRoot.querySelector('textarea')).val();
+    }
     ready() {
         super.ready();
         var propertiesObj = this.get('propertiesObj');

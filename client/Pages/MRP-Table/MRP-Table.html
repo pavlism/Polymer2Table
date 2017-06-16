@@ -106,6 +106,8 @@
         {{> rowHR}}
     </table>
     {{>MRP_UGTable_events}}
+    <hr>
+    {{>MRP_Table_TODO}}
     <br>
     <br>
     <br>
@@ -201,4 +203,11 @@
     When a cell is double clicked the changed event will fire.  This event will use the ID on the UG-Table element.<br>
     The trigger argument will contain the text from the cell, a row object, UG-Table Object and the event object.<br>
     Open the console log and check the boxed to see an example of this event.
+</template>
+
+<template name="MRP_Table_TODO">
+    <h3>TODO</h3>
+    <ul>
+        <li>Add in the databorker stuff</li>
+    </ul>
 </template>

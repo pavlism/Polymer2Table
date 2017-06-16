@@ -1,4 +1,4 @@
-//V1.1
+//V1.2
 
 //A library used to make Polyer coding easier
 
@@ -14,7 +14,7 @@ if (typeof PolymerLib === 'undefined') {
 
 
         Lib.Polymer = {};
-        
+
         Lib.Polymer.triggerEventsWithTable = function (element, triggerObj, eventName) {
             log.trace("triggerEvent");
             var id = element.id;
@@ -63,6 +63,40 @@ if (typeof PolymerLib === 'undefined') {
                 }
             }
         };
+        Lib.Polymer.elementToString = function (element, useJSON) {
+            log.trace("triggerEvent");
+            var strCell = '';
+            if ($(element).children(":not('dom-if')").length === 0) {
+                //must be simple text
+                strCell = $(element).text().trim();
+            } else if ($(element).children("span.object-toggle").length) {
+                var strCell = $(element).text().trim().cleanText();
+                if (useJSON) {
+                    var obj = {};
+                    var lines = strCell.split('\n');
+                    obj[lines[0]] = {};
+                    for (var lineConter = 0; lineConter < lines.length; lineConter++) {
+                        var parts = lines[lineConter].split(':');
+                        obj[lines[0]][parts[0]] = parts[1];
+                    }
+                    strCell = JSON.stringify(obj);
+                    strCell = Lib.JS.replace(strCell, ",", " ");
+                }
+            } else {
+                $(element).children(":not('dom-if')").each(function (index, element) {
+                    if (Lib.JS.isDefined(element.val)) {
+                        strCell = strCell + element.val().trim();
+                    } else if ($(element).is('a')) {
+                        strCell = strCell + $(element).attr('href');
+                    } else {
+                        strCell = strCell + $(element).val().trim();
+                    }
+
+                });
+            }
+            return strCell;
+        };
     };
+
     creation.call(PolymerLib, Lib);
 }
