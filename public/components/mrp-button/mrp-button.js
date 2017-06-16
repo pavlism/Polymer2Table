@@ -1,4 +1,4 @@
-class UIButton extends Polymer.Element {
+class MRPButton extends Polymer.Element {
     static get is() {
         return  'mrp-button';
     }
@@ -86,7 +86,7 @@ class UIButton extends Polymer.Element {
         Lib.Polymer.triggerEventsWithTable(this, triggerObj, 'mrp-button_clicked');
     }
 }
-customElements.define(UIButton.is, UIButton);
+customElements.define(MRPButton.is, MRPButton);
 
-UIButton.sizes = {large: 'large', small: 'small', mini: 'mini', default: ''};
-UIButton.colors = {primary: 'primary', success: 'success', info: 'info', warning: 'warning', danger: 'danger', default: '', green: 'primary', darkBlue: 'success', lightBlue: 'info', yellow: 'warning', red: 'danger', grey: ''};
+MRPButton.sizes = {large: 'large', small: 'small', mini: 'mini', default: ''};
+MRPButton.colors = {primary: 'primary', success: 'success', info: 'info', warning: 'warning', danger: 'danger', default: '', green: 'primary', darkBlue: 'success', lightBlue: 'info', yellow: 'warning', red: 'danger', grey: ''};

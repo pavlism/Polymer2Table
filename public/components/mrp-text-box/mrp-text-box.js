@@ -1,4 +1,4 @@
-class UITextBox extends Polymer.Element {
+class MRPTextBox extends Polymer.Element {
     static get is() {
         return  'mrp-text-box';
     }
@@ -54,4 +54,4 @@ class UITextBox extends Polymer.Element {
         }
     }
 }
-customElements.define(UITextBox.is, UITextBox);
+customElements.define(MRPTextBox.is, MRPTextBox);

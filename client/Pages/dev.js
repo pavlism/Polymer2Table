@@ -28,14 +28,69 @@ Template.dev.onRendered(function () {
     files.push({name:'file name1.pdf'});
     files.push({name:'file name2.pdf'});
     files.push({name:'file name3.pdf'});
-        
+    
+    
+    tableData.push(['#','OrderDate','Region','Rep','Total']);
+    tableData.push(['1','1/6/2016','East','Jones','189.05']);
+    tableData.push(['2','1/23/2016','Central','Kivell','999.50']);
+    tableData.push(['3','2/9/2016','Central','Jardine','179.64']);
+    tableData.push(['4','2/26/2016','Central','Gill','539.73']);
+    tableData.push(['5','3/15/2016','West','Sorvino','167.44']);
+    tableData.push(['6','4/1/2016','East','Jones','299.40']);
+    tableData.push(['7','4/18/2016','Central','Andrews','149.2']);
+    tableData.push(['8','1/6/2016','East','Jones','189.05']);
+    tableData.push(['9','1/23/2016','Central','Kivell','999.50']);
+    tableData.push(['10','2/9/2016','Central','Jardine','179.64']);
+    tableData.push(['11','1/6/2016','East','Jones','189.05']);
+    tableData.push(['12','1/23/2016','Central','Kivell','999.50']);
+    tableData.push(['13','2/9/2016','Central','Jardine','179.64']);
+    tableData.push(['14','2/26/2016','Central','Gill','539.73']);
+    tableData.push(['15','3/15/2016','West','Sorvino','167.44']);
+    tableData.push(['16','4/1/2016','East','Jones','299.40']);
+    tableData.push(['17','4/18/2016','Central','Andrews','149.2']);
+    tableData.push(['18','1/6/2016','East','Jones','189.05']);
+    tableData.push(['19','1/23/2016','Central','Kivell','999.50']);
+    tableData.push(['20','2/9/2016','Central','Jardine','179.64']);
+    tableData.push(['21','1/6/2016','East','Jones','189.05']);
+    tableData.push(['22','1/23/2016','Central','Kivell','999.50']);
+    tableData.push(['23','2/9/2016','Central','Jardine','179.64']);
+    tableData.push(['24','2/26/2016','Central','Gill','539.73']);
+    tableData.push(['25','3/15/2016','West','Sorvino','167.44']);
+    tableData.push(['26','4/1/2016','East','Jones','299.40']);
+    tableData.push(['27','4/18/2016','Central','Andrews','149.2']);
+    tableData.push(['28','1/6/2016','East','Jones','189.05']);
+    tableData.push(['29','1/23/2016','Central','Kivell','999.50']);
+    tableData.push(['30','2/9/2016','Central','Jardine','179.64']);
+    tableData.push(['31','1/6/2016','East','Jones','189.05']);
+    tableData.push(['32','1/23/2016','Central','Kivell','999.50']);
+    tableData.push(['33','2/9/2016','Central','Jardine','179.64']);
+    tableData.push(['34','2/26/2016','Central','Gill','539.73']);
+    tableData.push(['35','3/15/2016','West','Sorvino','167.44']);
+    tableData.push(['36','4/1/2016','East','Jones','299.40']);
+    tableData.push(['37','4/18/2016','Central','Andrews','149.2']);
+    tableData.push(['38','1/6/2016','East','Jones','189.05']);
+    tableData.push(['39','1/23/2016','Central','Kivell','999.50']);
+    tableData.push(['40','2/9/2016','Central','Jardine','179.64']);
+    tableData.push(['41','1/6/2016','East','Jones','189.05']);
+    tableData.push(['42','1/23/2016','Central','Kivell','999.50']);
+    tableData.push(['43','2/9/2016','Central','Jardine','179.64']);
+    tableData.push(['44','2/26/2016','Central','Gill','539.73']);
+    tableData.push(['45','3/15/2016','West','Sorvino','167.44']);
+    tableData.push(['46','4/1/2016','East','Jones','299.40']);
+    tableData.push(['47','4/18/2016','Central','Andrews','149.2']);
+    tableData.push(['48','1/6/2016','East','Jones','189.05']);
+    tableData.push(['49','1/23/2016','Central','Kivell','999.50']);
+    tableData.push(['50','2/9/2016','Central','Jardine','179.64']);
+    
+    
+    /*    
     var regex = '^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
     var obj = {title:'Mark', prop:{Company:'MRP inc', phone:'519-768-4521'}};
     
     var Link = {link:{href:'http//www.google.ca',text:'google'}};
     var TextArea = {textArea:{rows:'4',cols:'50', text:'text', value:'value', regex:regex, placeholder:'placeholder', errorMsg:"This is not a valid e-mail address", required:true, id:'str-id', class:'str-class' }};
-    var button = {button:{id:'str-id', class:'str-class', size:UIButton.sizes.small,color:UIButton.colors.danger, text:'Add'}};
-    var buttons = {buttons:[{size:UIButton.sizes.mini,color:UIButton.colors.info, text:'Add'},{size:UIButton.sizes.small,color:UIButton.colors.primary, text:'Add'}]};
+    var button = {button:{id:'str-id', class:'str-class', size:MRPButton.sizes.small,color:MRPButton.colors.danger, text:'Add'}};
+    var buttons = {buttons:[{size:MRPButton.sizes.mini,color:MRPButton.colors.info, text:'Add'},{size:MRPButton.sizes.small,color:MRPButton.colors.primary, text:'Add'}]};
                 
     tableData.push(['F-Name','L-Name','Job','Country']);
     //tableData.push(['1 Roger','Yang','Boss',TextArea]);
@@ -59,7 +114,7 @@ Template.dev.onRendered(function () {
     //tableData.push(['7 Mark','Pavlis','Developer',obj]);
     //tableData.push(['7 Mark','Pavlis','Developer',Link]);
     
-    
+    */
     
     /*tableData.push([{button:{ID:'23',class:'primary', text:'add New'}},'',' ','']);
     tableData.push([Link,'Pavlis','Developer',buttons]);

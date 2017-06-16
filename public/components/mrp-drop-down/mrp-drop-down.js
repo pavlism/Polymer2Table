@@ -1,4 +1,4 @@
-class UIDropDown extends Polymer.Element {
+class MRPDropDown extends Polymer.Element {
     static get is() {
         return  'mrp-drop-down';
     }
@@ -32,4 +32,4 @@ class UIDropDown extends Polymer.Element {
         }
     }
 }
-customElements.define(UIDropDown.is, UIDropDown);
+customElements.define(MRPDropDown.is, MRPDropDown);

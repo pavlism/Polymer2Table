@@ -1,4 +1,4 @@
-class UIExcelButton extends Polymer.Element {
+class MRPExcelButton extends Polymer.Element {
     static get is() {
         return  'mrp-excel-button';
     }
@@ -17,7 +17,7 @@ class UIExcelButton extends Polymer.Element {
         var tableData = [];
 
         if (dataCall === '' && dataSelector === '') {
-            console.log('UIExcelButton Error: both the data-call and data-selector atrributes are empty, one needs to be used to point the CVS button to the data');
+            console.log('MRPExcelButton Error: both the data-call and data-selector atrributes are empty, one needs to be used to point the CVS button to the data');
         } else if (dataCall !== '') {
             dataSelector = DataBroker.trigger(dataCall);
         }
@@ -38,4 +38,4 @@ class UIExcelButton extends Polymer.Element {
         ep.createFile("Book1").write({"content": tableData}).saveAs(this.get('fileName') + ".xlsx");
     }
 }
-customElements.define(UIExcelButton.is, UIExcelButton);
+customElements.define(MRPExcelButton.is, MRPExcelButton);

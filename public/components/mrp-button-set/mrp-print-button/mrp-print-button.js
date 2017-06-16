@@ -1,4 +1,4 @@
-class UIPrintButton extends Polymer.Element {
+class MRPPrintButton extends Polymer.Element {
     static get is() {
         return  'mrp-print-button';
     }
@@ -17,7 +17,7 @@ class UIPrintButton extends Polymer.Element {
         var PHE = PrintHtmlElement();
 
         if (dataCall === '' && dataSelector === '') {
-            console.log('UIPrintButton Error: both the data-call and data-selector atrributes are empty, one needs to be used to point the Print button to the data');
+            console.log('MRPPrintButton Error: both the data-call and data-selector atrributes are empty, one needs to be used to point the Print button to the data');
         } else if (dataCall !== '') {
             var tableElement = DataBroker.trigger(dataCall);
             PHE.printElement($(tableElement)[0]);
@@ -26,4 +26,4 @@ class UIPrintButton extends Polymer.Element {
         }
     }
 }
-customElements.define(UIPrintButton.is, UIPrintButton);
+customElements.define(MRPPrintButton.is, MRPPrintButton);

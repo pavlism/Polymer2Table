@@ -1,4 +1,4 @@
-class UICheckBox extends Polymer.Element {
+class MRPCheckBox extends Polymer.Element {
     static get is() {
         return  'mrp-check-box';
     }
@@ -42,4 +42,4 @@ class UICheckBox extends Polymer.Element {
         Lib.Polymer.triggerEventsWithoutTable(this, triggerObj, "mrp-check-box_changed");
       }
 }
-customElements.define(UICheckBox.is, UICheckBox);
+customElements.define(MRPCheckBox.is, MRPCheckBox);

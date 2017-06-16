@@ -1,4 +1,4 @@
-class UIPDFButton extends Polymer.Element {
+class MRPPDFButton extends Polymer.Element {
     static get is() {
         return  'mrp-pdf-button';
     }
@@ -27,7 +27,7 @@ class UIPDFButton extends Polymer.Element {
         var elmText = [];
 
         if (dataCall === '' && dataSelector === '') {
-            console.log('UIPDFButton Error: both the data-call and data-selector atrributes are empty, one needs to be used to point the PDF button to the data');
+            console.log('MRPPDFButton Error: both the data-call and data-selector atrributes are empty, one needs to be used to point the PDF button to the data');
         } else if (dataCall !== '') {
             var dataSelector = DataBroker.trigger(dataCall);
         }
@@ -59,4 +59,4 @@ class UIPDFButton extends Polymer.Element {
 
     }
 }
-customElements.define(UIPDFButton.is, UIPDFButton);
+customElements.define(MRPPDFButton.is, MRPPDFButton);

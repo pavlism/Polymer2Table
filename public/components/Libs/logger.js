@@ -20,7 +20,7 @@ CLL = Const.LogLevel;
 
 //Logger used on the client side
 Logger = function (fileName, level) {
-    console.log('setup log for: ' + fileName);
+    //console.log('setup log for: ' + fileName);
     var logLevel = level;
 
     this.trace = function (message) {

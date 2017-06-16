@@ -1,4 +1,4 @@
-class UICopyButton extends Polymer.Element {
+class MRPCopyButton extends Polymer.Element {
     static get is() {
         return  'mrp-copy-button';
     }
@@ -22,29 +22,11 @@ class UICopyButton extends Polymer.Element {
         var thisObj = this;
 
         if (dataCall === '' && dataSelector === '') {
-            console.log('UICopyButton Error: both the data-call and data-selector atrributes are empty, one needs to be used to point the Copy button to the data');
+            console.log('MRPCopyButton Error: both the data-call and data-selector atrributes are empty, one needs to be used to point the Copy button to the data');
         } else if (dataCall !== '') {
             dataSelector = DataBroker.trigger(dataCall);
-            debugger;
         }
-        /*textObj.text = function () {
-         var tableData = DataBroker.trigger(thisObj.get('dataCall'));
-         var text = '';
-         
-         for (var rowCounter = 0; rowCounter < tableData.length; rowCounter++) {
-         var row = tableData[rowCounter];
-         for (var colCounter = 0; colCounter < row.length; colCounter++) {
-         if (colCounter === row.length - 1) {
-         text = text + row[colCounter].toString();
-         } else {
-         text = text + row[colCounter].toString() + '\t';
-         }
-         }
-         text = text + '\r\n';
-         }
-         return text;
-         };*/
-        //} else {
+        
         textObj.text = function () {
             var text = '';
             var extraText = '';
@@ -98,4 +80,4 @@ class UICopyButton extends Polymer.Element {
 
     }
 }
-customElements.define(UICopyButton.is, UICopyButton);
+customElements.define(MRPCopyButton.is, MRPCopyButton);

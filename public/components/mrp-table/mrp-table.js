@@ -1,7 +1,7 @@
-class UITable extends Polymer.Element {
+class MRPTable extends Polymer.Element {
     
     static get log(){
-        return new Logger('UITable.js', CLL.warn);
+        return new Logger('MRPTable.js', CLL.warn);
     }
     static get is() {
         return  'mrp-table';
@@ -9,6 +9,7 @@ class UITable extends Polymer.Element {
     static get properties() {
         return {
             id: {type: String, value: ''},
+            class: {type: String, value: ''},
             data: {type: Array, observer: 'setMaxLength', value: function () {
                     return [];
                 }},
@@ -33,7 +34,6 @@ class UITable extends Polymer.Element {
             basic: {type: Boolean, value: false},
             complexData: {type: Boolean, value: false},
             isDblClick: {type: Number, value: 0}    //0 = waiting state, 1 = a click happened within the last 250ms, 2 = a dolbe click happend
-            
         };
     }
 
@@ -96,7 +96,7 @@ class UITable extends Polymer.Element {
             } else if (Lib.JS.isDefined(cell.link)) {
                 if (cellType === 'link') {
                     if(cell.link.href.substr(0,4) !=='http'){
-                        UITable.log.warn('The link href:' + cell.link.href + ' might need to start with http:// or https://');
+                        MRPTable.log.warn('The link href:' + cell.link.href + ' might need to start with http:// or https://');
                     }
                     return true;
                 }
@@ -212,7 +212,7 @@ class UITable extends Polymer.Element {
             return pages;
         }
 
-        for (var pageCounter = 1; pageCounter <= Math.ceil(maxLength / pageSize); pageCounter++) {
+        for (var pageCounter = 1; pageCounter <= Math.ceil((maxLength-1) / pageSize); pageCounter++) {
             pages.push(pageCounter);
         }
 
@@ -263,7 +263,8 @@ class UITable extends Polymer.Element {
 
         setTimeout(function () {
             if (thisObj.get('isDblClick') ===1) {
-                EventBroker.trigger(thisObj.id + "_mrp-table_clicked", {cell: cell, row: row, table: thisObj, event: event});
+                var triggerObj = {cell: cell, row: row, table: thisObj, event: event};
+                Lib.Polymer.triggerEventsWithTable(this, triggerObj, 'mrp-table_clicked');
                 thisObj.set('isDblClick',0);
             }
         }, 250);
@@ -359,7 +360,7 @@ class UITable extends Polymer.Element {
         if (buttonText === "Next") {
             currentPage = currentPage + 1;
             if (currentPage * pageSize > maxLength) {
-                currentPage = Math.ceil(maxLength / pageSize);
+                currentPage = Math.ceil((maxLength-1) / pageSize);
             }
         } else if (buttonText === "Previous") {
             currentPage = currentPage - 1;
@@ -410,8 +411,8 @@ class UITable extends Polymer.Element {
         }, 1000);
     }
     isCurrentPage(index) {
-        console.log('isCurrentPage currentPage:' + this.get('currentPage'));
-        console.log('isCurrentPage index+1:' + (index + 1).toString());
+        MRPTable.log.trace('isCurrentPage currentPage:' + this.get('currentPage'));
+        MRPTable.log.trace('isCurrentPage index+1:' + (index + 1).toString());
         if (index + 1 === this.get('currentPage')) {
             console.log('return true');
             return true;
@@ -420,4 +421,4 @@ class UITable extends Polymer.Element {
         }
     }
 }
-customElements.define(UITable.is, UITable);
+customElements.define(MRPTable.is, MRPTable);

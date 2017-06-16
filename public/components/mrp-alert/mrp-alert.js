@@ -1,4 +1,4 @@
-class UIAlert extends Polymer.Element {
+class MRPAlert extends Polymer.Element {
     static get is() {
         return  'mrp-alert';
     }
@@ -75,4 +75,4 @@ class UIAlert extends Polymer.Element {
         }
     }
 }
-customElements.define(UIAlert.is, UIAlert);
+customElements.define(MRPAlert.is, MRPAlert);

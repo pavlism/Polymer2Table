@@ -1,4 +1,4 @@
-class UITextArea extends Polymer.Element {
+class MRPTextArea extends Polymer.Element {
     static get is() {
         return  'mrp-text-area';
     }
@@ -143,4 +143,4 @@ class UITextArea extends Polymer.Element {
         return this.get('validation');
     }
 }
-customElements.define(UITextArea.is, UITextArea);
+customElements.define(MRPTextArea.is, MRPTextArea);

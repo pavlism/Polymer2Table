@@ -28,7 +28,7 @@
             <mrp-pdf-button data-call="[[id]]_CurrentTableElement"></mrp-pdf-button>
         </template>
         
-        <table id="[[id]]_table" class="table table-striped table-bordered table-hover dataTables-example dataTable dtr-inline mrp-Table" on-click='handleClick' on-double-click="handleDblClick">
+        <table id="[[id]]_table" class$="[[class]]" on-click='handleClick' on-double-click="handleDblClick">
             <thead>
                 <tr>
                     <template is="dom-if" if="[[select]]">
@@ -79,6 +79,17 @@
                             </template>
                         </tr>
                     </template>
+                </template>
+            
+                <template is="dom-if" if="[[footer]]">
+                    <tr>
+                        <template is="dom-if" if="[[select]]">
+                            <th class='selectBox'></th>
+                        </template>
+                        <template is="dom-repeat" items="[[getHeader(data)]]">
+                            <th>[[item]]<i></i></th>
+                        </template>
+                    </tr>
                 </template>
             </tbody>
         </table>

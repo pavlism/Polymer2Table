@@ -1,4 +1,4 @@
-class UISubmitButton extends Polymer.Element {
+class MRPSubmitButton extends Polymer.Element {
     static get is() {
         return  'mrp-submit-button';
     }
@@ -75,4 +75,4 @@ class UISubmitButton extends Polymer.Element {
     }
 
 }
-customElements.define(UISubmitButton.is, UISubmitButton);
+customElements.define(MRPSubmitButton.is, MRPSubmitButton);

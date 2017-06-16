@@ -1,4 +1,4 @@
-class UICSVButton extends Polymer.Element {
+class MRPCSVButton extends Polymer.Element {
     static get is() {
         return  'mrp-csv-button';
     }
@@ -17,7 +17,7 @@ class UICSVButton extends Polymer.Element {
         var csvContent = "data:text/csv;charset=utf-8,";
 
         if (dataCall === '' && dataSelector === '') {
-            console.log('UICSVButton Error: both the data-call and data-selector atrributes are empty, one needs to be used to point the CVS button to the data');
+            console.log('MRPCSVButton Error: both the data-call and data-selector atrributes are empty, one needs to be used to point the CVS button to the data');
         } else if (dataCall !== '') {
             dataSelector = DataBroker.trigger(dataCall);
         }
@@ -27,7 +27,6 @@ class UICSVButton extends Polymer.Element {
                 csvContent = csvContent + $(element).text() + ',';
             });
             $(element).find('td').each(function (index, element) {
-                debugger;
                 var strCell = Lib.Polymer.elementToString(element, true);
                 csvContent = csvContent + strCell + ',';
             });
@@ -46,4 +45,4 @@ class UICSVButton extends Polymer.Element {
         $(link).remove();
     }
 }
-customElements.define(UICSVButton.is, UICSVButton);
+customElements.define(MRPCSVButton.is, MRPCSVButton);

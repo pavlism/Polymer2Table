@@ -3,6 +3,7 @@ var tableData2 = new ReactiveArray();
 var tableData3 = new ReactiveArray();
 var tableData4 = new ReactiveArray();
 var tableData5 = new ReactiveArray();
+var tableData6 = new ReactiveArray();
 
 
 Template.MRPTable.onRendered(function () {
@@ -11,194 +12,227 @@ Template.MRPTable.onRendered(function () {
     tableData3.length = 0;
     tableData4.length = 0;
     tableData5.length = 0;
+    tableData6.length = 0;
     
-    tableData.push(['F-Name','L-Name','Job','Birth Place']);
-    tableData.push(['Mark','Pavlis','Developer','Canada']);
-    tableData.push(['Thomas','Grove','Developer','Canada']);
-    tableData.push(['Nhi','Somthing','Web Stuff','Viatnam']);
-    tableData.push(['Lucy','Chen','Developer','China']);
-    tableData.push(['Terry','Chen','Developer','China']);
-    tableData.push(['Roger','Yang','Boss','China']);
+    tableData.push(['OrderDate','Region','Rep','Total']);
+    tableData.push(['1/6/2016','East','Jones','189.05']);
+    tableData.push(['1/23/2016','Central','Kivell','999.50']);
+    tableData.push(['2/9/2016','Central','Jardine','179.64']);
+    tableData.push(['2/26/2016','Central','Gill','539.73']);
+    tableData.push(['3/15/2016','West','Sorvino','167.44']);
+    tableData.push(['4/1/2016','East','Jones','299.40']);
+    tableData.push(['4/18/2016','Central','Andrews','149.2']);
     
     
-    tableData3.push(['F-Name','L-Name','Job','Birth Place']);
-    tableData3.push([{title:'Mark', prop:{Company:'MRP inc', phone:'519-768-4521'}},'Pavlis','Developer','Canada']);
-    tableData3.push([{title:'Tom', prop:{Company:'Tom inc', phone:'519-768-4521'}},'Grove','Developer','Canada']);
-    tableData3.push(['2 Thomas','Grove','Developer','Canada']);
-    tableData3.push([{title:'Nhi', prop:{Company:'Tom inc', phone:'519-768-4521'}},'Somthing','Web Stuff',{title:'Nhi 2', prop:{Company:'Nhi inc', phone:'519-768-4521', phone2:'519-768-4521', phone3:'519-768-4521'}}]);
-    tableData3.push(['Lucy','Chen','Developer','China']);
-    tableData3.push(['Terry','Chen','Developer','China']);
-    tableData3.push(['Roger','Yang','Boss','China']);
     
+    tableData3.push(['OrderDate','Region','Rep','Total']);
+    tableData3.push(['1/6/2016','East',{title:'Jones', prop:{Company:'Jones inc', phone:'519-768-4521'}},'189.05']);
+    tableData3.push(['1/23/2016','Central',{title:'Kivell', prop:{Company:'Kivell inc', phone:'519-123-4521'}},'999.50']);
+    tableData3.push(['2/9/2016','Central','Jardine',{title:'175.90', prop:{Pencils:'104.54', Pens:'71.36'}}]);
+    tableData3.push(['2/26/2016','Central','Gill','539.73']);
+    tableData3.push(['3/15/2016','West','Sorvino','167.44']);
+    tableData3.push(['4/1/2016','East','Jones','299.40']);
+    tableData3.push(['4/18/2016','Central','Andrews','149.2']);
+   
     var Link = {link:{href:'http://www.google.ca',text:'google'}};
     
-    tableData5.push(['F-Name','L-Name','Job','Web Page']);
-    tableData5.push(['Mark','Pavlis','Developer',Link]);
-    tableData5.push(['Thomas','Grove','Developer',Link]);
-    tableData5.push(['Nhi','Somthing','Web Stuff',Link]);
-    tableData5.push(['Lucy','Chen','Developer',Link]);
-    tableData5.push(['Terry','Chen','Developer',Link]);
-    tableData5.push(['Roger','Yang','Boss',Link]);
-    
+    tableData5.push(['OrderDate','Region','Rep','Web Page']);
+    tableData5.push(['1/6/2016','East','Jones',Link]);
+    tableData5.push(['1/23/2016','Central','Kivell',Link]);
+    tableData5.push(['2/9/2016','Central','Jardine',Link]);
+    tableData5.push(['2/26/2016','Central','Gill',Link]);
+    tableData5.push(['3/15/2016','West','Sorvino',Link]);
+    tableData5.push(['4/1/2016','East','Jones',Link]);
+    tableData5.push(['4/18/2016','Central','Andrews',Link]);
+        
     var buttons = {buttons:[{color:MRPButton.colors.info, text:'edit'},{color:MRPButton.colors.danger, text:'delete'}]};
     var buttons2 = {buttons:[{text:'e-mail'},{color:MRPButton.colors.warning, text:'call'}]};   
 
-    tableData4.push(['F-Name','L-Name','Job','Actions']);
-    tableData4.push(['Lucy','Chen','Developer',buttons]);
-    tableData4.push(['Terry','Chen','Developer',buttons]);
-    tableData4.push(['Roger','Yang','Boss',buttons]);
-    tableData4.push(['Roger','Yang','Boss',buttons2]);
-    tableData4.push(['Roger','Yang','Boss',buttons2]);
-    tableData4.push(['Roger','Yang','Boss',buttons2]);
-    tableData4.push(['Roger','Yang','Boss',buttons2]);
+
+    tableData4.push(['OrderDate','Region','Rep','Actions']);
+    tableData4.push(['1/6/2016','East','Jones',buttons]);
+    tableData4.push(['1/23/2016','Central','Kivell',buttons]);
+    tableData4.push(['2/9/2016','Central','Jardine',buttons]);
+    tableData4.push(['2/26/2016','Central','Gill',buttons2]);
+    tableData4.push(['3/15/2016','West','Sorvino',buttons2]);
+    tableData4.push(['4/1/2016','East','Jones',buttons2]);
+    tableData4.push(['4/18/2016','Central','Andrews',buttons2]);
     tableData4.push([{button:{ID:'23',color:MRPButton.colors.primary, text:'add New'}},'',' ','']);
     
-    tableData2.push(['F-Name','L-Name','Job','Birth Place']);
-    tableData2.push(['1 Thomas','Grove','Developer','Canada']);
-    tableData2.push(['2 Thomas','Grove','Developer','Canada']);
-    tableData2.push(['3 Nhi','Somthing','Web Stuff','Viatnam']);
-    tableData2.push(['4 Lucy','Chen','Developer','China']);
-    tableData2.push(['5 Terry','Chen','Developer','China']);
-    tableData2.push(['6 Roger','Yang','Boss','China']);
-    tableData2.push(['7 Mark','Pavlis','Developer','Canada']);
-    tableData2.push(['8 Thomas','Grove','Developer','Canada']);
-    tableData2.push(['9 Nhi','Somthing','Web Stuff','Viatnam']);
-    tableData2.push(['10 Lucy','Chen','Developer','China']);
-    tableData2.push(['11 Terry','Chen','Developer','China']);
-    tableData2.push(['12 Roger','Yang','Boss','China']);
-    tableData2.push(['13 Mark','Pavlis','Developer','Canada']);
-    tableData2.push(['14 Thomas','Grove','Developer','Canada']);
-    tableData2.push(['15 Nhi','Somthing','Web Stuff','Viatnam']);
-    tableData2.push(['16 Lucy','Chen','Developer','China']);
-    tableData2.push(['17 Terry','Chen','Developer','China']);
-    tableData2.push(['18 Roger','Yang','Boss','China']);
-    tableData2.push(['19 Mark','Pavlis','Developer','Canada']);
-    tableData2.push(['20 Thomas','Grove','Developer','Canada']);
-    tableData2.push(['21 Nhi','Somthing','Web Stuff','Viatnam']);
-    tableData2.push(['22 Lucy','Chen','Developer','China']);
-    tableData2.push(['23 Terry','Chen','Developer','China']);
-    tableData2.push(['24 Roger','Yang','Boss','China']);
-    tableData2.push(['25 Mark','Pavlis','Developer','Canada']);
-    tableData2.push(['26 Thomas','Grove','Developer','Canada']);
-    tableData2.push(['27 Nhi','Somthing','Web Stuff','Viatnam']);
-    tableData2.push(['28 Lucy','Chen','Developer','China']);
-    tableData2.push(['29 Terry','Chen','Developer','China']);
-    tableData2.push(['30 Roger','Yang','Boss','China']);
-    tableData2.push(['31 Mark','Pavlis','Developer','Canada']);
-    tableData2.push(['32 Thomas','Grove','Developer','Canada']);
-    tableData2.push(['33 Nhi','Somthing','Web Stuff','Viatnam']);
-    tableData2.push(['34 Lucy','Chen','Developer','China']);
-    tableData2.push(['35 Terry','Chen','Developer','China']);
-    tableData2.push(['36 Roger','Yang','Boss','China']);
-    tableData2.push(['37 Mark','Pavlis','Developer','Canada']);
-    tableData2.push(['38 Thomas','Grove','Developer','Canada']);
-    tableData2.push(['39 Nhi','Somthing','Web Stuff','Viatnam']);
-    tableData2.push(['40 Lucy','Chen','Developer','China']);
-    tableData2.push(['41 Terry','Chen','Developer','China']);
-    tableData2.push(['42 Roger','Yang','Boss','China']);
-    tableData2.push(['43 Mark','Pavlis','Developer','Canada']);
-    tableData2.push(['44 Thomas','Grove','Developer','Canada']);
-    tableData2.push(['45 Nhi','Somthing','Web Stuff','Viatnam']);
-    tableData2.push(['46 Lucy','Chen','Developer','China']);
-    tableData2.push(['47 Terry','Chen','Developer','China']);
-    tableData2.push(['48 Roger','Yang','Boss','China']);
-    tableData2.push(['49 Mark','Pavlis','Developer','Canada']);
-    tableData2.push(['50 Thomas','Grove','Developer','Canada']);
-    tableData2.push(['51 Nhi','Somthing','Web Stuff','Viatnam']);
-    tableData2.push(['52 Lucy','Chen','Developer','China']);
-    tableData2.push(['53 Terry','Chen','Developer','China']);
-    tableData2.push(['54 Roger','Yang','Boss','China']);
-    tableData2.push(['55 Mark','Pavlis','Developer','Canada']);
-    tableData2.push(['56 Thomas','Grove','Developer','Canada']);
-    tableData2.push(['57 Nhi','Somthing','Web Stuff','Viatnam']);
-    tableData2.push(['58 Lucy','Chen','Developer','China']);
-    tableData2.push(['59 Terry','Chen','Developer','China']);
-    tableData2.push(['60 Roger','Yang','Boss','China']);
-    tableData2.push(['61 Mark','Pavlis','Developer','Canada']);
-    tableData2.push(['62 Thomas','Grove','Developer','Canada']);
-    tableData2.push(['63 Nhi','Somthing','Web Stuff','Viatnam']);
-    tableData2.push(['64 Lucy','Chen','Developer','China']);
-    tableData2.push(['65 Terry','Chen','Developer','China']);
-    tableData2.push(['66 Roger','Yang','Boss','China']);
-    tableData2.push(['67 Mark','Pavlis','Developer','Canada']);
-    tableData2.push(['68 Thomas','Grove','Developer','Canada']);
-    tableData2.push(['69 Nhi','Somthing','Web Stuff','Viatnam']);
-    tableData2.push(['70 Lucy','Chen','Developer','China']);
-    tableData2.push(['71 Terry','Chen','Developer','China']);
-    tableData2.push(['72 Roger','Yang','Boss','China']);
-    tableData2.push(['73 Mark','Pavlis','Developer','Canada']);
-    tableData2.push(['74 Thomas','Grove','Developer','Canada']);
-    tableData2.push(['75 Nhi','Somthing','Web Stuff','Viatnam']);
-    tableData2.push(['76 Lucy','Chen','Developer','China']);
-    tableData2.push(['77 Terry','Chen','Developer','China']);
-    tableData2.push(['78 Roger','Yang','Boss','China']);
+    tableData2.push(['#','OrderDate','Region','Rep','Total']);
+    tableData2.push(['1','1/6/2016','East','Jones','189.05']);
+    tableData2.push(['2','1/23/2016','Central','Kivell','999.50']);
+    tableData2.push(['3','2/9/2016','Central','Jardine','179.64']);
+    tableData2.push(['4','2/26/2016','Central','Gill','539.73']);
+    tableData2.push(['5','3/15/2016','West','Sorvino','167.44']);
+    tableData2.push(['6','4/1/2016','East','Jones','299.40']);
+    tableData2.push(['7','4/18/2016','Central','Andrews','149.2']);
+    tableData2.push(['8','1/6/2016','East','Jones','189.05']);
+    tableData2.push(['9','1/23/2016','Central','Kivell','999.50']);
+    tableData2.push(['10','2/9/2016','Central','Jardine','179.64']);
+    tableData2.push(['11','1/6/2016','East','Jones','189.05']);
+    tableData2.push(['12','1/23/2016','Central','Kivell','999.50']);
+    tableData2.push(['13','2/9/2016','Central','Jardine','179.64']);
+    tableData2.push(['14','2/26/2016','Central','Gill','539.73']);
+    tableData2.push(['15','3/15/2016','West','Sorvino','167.44']);
+    tableData2.push(['16','4/1/2016','East','Jones','299.40']);
+    tableData2.push(['17','4/18/2016','Central','Andrews','149.2']);
+    tableData2.push(['18','1/6/2016','East','Jones','189.05']);
+    tableData2.push(['19','1/23/2016','Central','Kivell','999.50']);
+    tableData2.push(['20','2/9/2016','Central','Jardine','179.64']);
+    tableData2.push(['21','1/6/2016','East','Jones','189.05']);
+    tableData2.push(['22','1/23/2016','Central','Kivell','999.50']);
+    tableData2.push(['23','2/9/2016','Central','Jardine','179.64']);
+    tableData2.push(['24','2/26/2016','Central','Gill','539.73']);
+    tableData2.push(['25','3/15/2016','West','Sorvino','167.44']);
+    tableData2.push(['26','4/1/2016','East','Jones','299.40']);
+    tableData2.push(['27','4/18/2016','Central','Andrews','149.2']);
+    tableData2.push(['28','1/6/2016','East','Jones','189.05']);
+    tableData2.push(['29','1/23/2016','Central','Kivell','999.50']);
+    tableData2.push(['30','2/9/2016','Central','Jardine','179.64']);
+    tableData2.push(['31','1/6/2016','East','Jones','189.05']);
+    tableData2.push(['32','1/23/2016','Central','Kivell','999.50']);
+    tableData2.push(['33','2/9/2016','Central','Jardine','179.64']);
+    tableData2.push(['34','2/26/2016','Central','Gill','539.73']);
+    tableData2.push(['35','3/15/2016','West','Sorvino','167.44']);
+    tableData2.push(['36','4/1/2016','East','Jones','299.40']);
+    tableData2.push(['37','4/18/2016','Central','Andrews','149.2']);
+    tableData2.push(['38','1/6/2016','East','Jones','189.05']);
+    tableData2.push(['39','1/23/2016','Central','Kivell','999.50']);
+    tableData2.push(['40','2/9/2016','Central','Jardine','179.64']);
+    tableData2.push(['41','1/6/2016','East','Jones','189.05']);
+    tableData2.push(['42','1/23/2016','Central','Kivell','999.50']);
+    tableData2.push(['43','2/9/2016','Central','Jardine','179.64']);
+    tableData2.push(['44','2/26/2016','Central','Gill','539.73']);
+    tableData2.push(['45','3/15/2016','West','Sorvino','167.44']);
+    tableData2.push(['46','4/1/2016','East','Jones','299.40']);
+    tableData2.push(['47','4/18/2016','Central','Andrews','149.2']);
+    tableData2.push(['48','1/6/2016','East','Jones','189.05']);
+    tableData2.push(['49','1/23/2016','Central','Kivell','999.50']);
+    tableData2.push(['50','2/9/2016','Central','Jardine','179.64']);  
     
-    EventBroker.listen("Table1_mrp-Table_clicked", function (listenerArgs, triggerArgs) {
+    var total = {title:'175.90', prop:{Pencils:'104.54', Pens:'71.36'}}
+    var Link = {link:{href:'http://www.google.ca',text:'Gill'}};
+    var button = {button:{color:MRPButton.colors.info, text:'Missing Info'}}
+    
+    tableData6.push(['#','OrderDate','Region','Rep','Total']);
+    tableData6.push(['1','1/6/2016','East','Jones','189.05']);
+    tableData6.push(['2','1/23/2016','Central','Kivell','999.50']);
+    tableData6.push(['3','2/9/2016','Central','Jardine',total]);
+    tableData6.push(['4','2/26/2016','Central',Link,'539.73']);
+    tableData6.push(['5','3/15/2016','West','Sorvino','167.44']);
+    tableData6.push(['6','4/1/2016','East','Jones',total]);
+    tableData6.push(['7','4/18/2016','Central','Andrews','149.2']);
+    tableData6.push(['8','1/6/2016',buttons,'Jones','189.05']);
+    tableData6.push(['9','1/23/2016',button,'Kivell','999.50']);
+    tableData6.push(['10','2/9/2016','Central','Jardine','179.64']);
+    tableData6.push(['11','1/6/2016','East','Jones','189.05']);
+    tableData6.push(['12','1/23/2016','Central','Kivell','999.50']);
+    tableData6.push(['13','2/9/2016','Central','Jardine','179.64']);
+    tableData6.push(['14','2/26/2016','Central',Link,total]);
+    tableData6.push(['15','3/15/2016','West','Sorvino','167.44']);
+    tableData6.push(['16','4/1/2016','East','Jones','299.40']);
+    tableData6.push(['17','4/18/2016','Central','Andrews','149.2']);
+    tableData6.push(['18','1/6/2016','East','Jones','189.05']);
+    tableData6.push(['19','1/23/2016','Central','Kivell',total]);
+    tableData6.push(['20','2/9/2016','Central','Jardine','179.64']);
+    tableData6.push(['21','1/6/2016','East','Jones','189.05']);
+    tableData6.push(['22','1/23/2016','Central','Kivell','999.50']);
+    tableData6.push(['23','2/9/2016','Central','Jardine','179.64']);
+    tableData6.push(['24','2/26/2016','Central',Link,'539.73']);
+    tableData6.push(['25','3/15/2016','West','Sorvino','167.44']);
+    tableData6.push(['26','4/1/2016','East','Jones','299.40']);
+    tableData6.push(['27','4/18/2016','Central','Andrews','149.2']);
+    tableData6.push(['28','1/6/2016','East','Jones','189.05']);
+    tableData6.push(['29','1/23/2016','Central','Kivell','999.50']);
+    tableData6.push(['30','2/9/2016','Central','Jardine','179.64']);
+    tableData6.push(['31','1/6/2016','East','Jones','189.05']);
+    tableData6.push(['32','1/23/2016','Central','Kivell','999.50']);
+    tableData6.push(['33','2/9/2016','Central','Jardine','179.64']);
+    tableData6.push(['34','2/26/2016','Central','Gill','539.73']);
+    tableData6.push(['35','3/15/2016','West','Sorvino','167.44']);
+    tableData6.push(['36','4/1/2016','East','Jones','299.40']);
+    tableData6.push(['37','4/18/2016','Central','Andrews','149.2']);
+    tableData6.push(['38','1/6/2016','East','Jones','189.05']);
+    tableData6.push(['39','1/23/2016','Central','Kivell','999.50']);
+    tableData6.push(['40','2/9/2016','Central','Jardine','179.64']);
+    tableData6.push(['41','1/6/2016','East','Jones','189.05']);
+    tableData6.push(['42','1/23/2016','Central','Kivell','999.50']);
+    tableData6.push(['43','2/9/2016','Central','Jardine','179.64']);
+    tableData6.push(['44','2/26/2016','Central','Gill','539.73']);
+    tableData6.push(['45','3/15/2016','West','Sorvino','167.44']);
+    tableData6.push(['46','4/1/2016','East','Jones','299.40']);
+    tableData6.push(['47','4/18/2016','Central','Andrews','149.2']);
+    tableData6.push(['48','1/6/2016','East','Jones','189.05']);
+    tableData6.push(['49','1/23/2016','Central','Kivell','999.50']);
+    tableData6.push(['50','2/9/2016','Central','Jardine','179.64']);  
+    
+    EventBroker.listen("Table1_mrp-table_clicked", function (listenerArgs, triggerArgs) {
         console.log('Table1 was clicked');
         console.log(triggerArgs);
     });
     
-    EventBroker.listen("Table1_mrp-Table_dblclicked", function (listenerArgs, triggerArgs) {
+    EventBroker.listen("Table1_mrp-table_dblclicked", function (listenerArgs, triggerArgs) {
         console.log('Table1 was double clicked');
         console.log(triggerArgs);
     });
     
-    EventBroker.listen("Table2_mrp-Table_clicked", function (listenerArgs, triggerArgs) {
+    EventBroker.listen("Table2_mrp-table_clicked", function (listenerArgs, triggerArgs) {
         console.log('Table2 was clicked');
         console.log(triggerArgs);
     });
     
-    EventBroker.listen("Table2_mrp-Table_dblclicked", function (listenerArgs, triggerArgs) {
+    EventBroker.listen("Table2_mrp-table_dblclicked", function (listenerArgs, triggerArgs) {
         console.log('Table2 was double clicked');
         console.log(triggerArgs);
     });
     
-    EventBroker.listen("Table3_mrp-Table_clicked", function (listenerArgs, triggerArgs) {
+    EventBroker.listen("Table3_mrp-table_clicked", function (listenerArgs, triggerArgs) {
         console.log('Table3 was clicked');
         console.log(triggerArgs);
     });
     
-    EventBroker.listen("Table3_mrp-Table_dblclicked", function (listenerArgs, triggerArgs) {
+    EventBroker.listen("Table3_mrp-table_dblclicked", function (listenerArgs, triggerArgs) {
         console.log('Table3 was double clicked');
         console.log(triggerArgs);
     });
     
-    EventBroker.listen("Table4_mrp-Table_clicked", function (listenerArgs, triggerArgs) {
+    EventBroker.listen("Table4_mrp-table_clicked", function (listenerArgs, triggerArgs) {
         console.log('Table4 was clicked');
         console.log(triggerArgs);
     });
     
-    EventBroker.listen("Table4_mrp-Table_dblclicked", function (listenerArgs, triggerArgs) {
+    EventBroker.listen("Table4_mrp-table_dblclicked", function (listenerArgs, triggerArgs) {
         console.log('Table4 was double clicked');
         console.log(triggerArgs);
     });
     
-    EventBroker.listen("Table5_mrp-Table_clicked", function (listenerArgs, triggerArgs) {
+    EventBroker.listen("Table5_mrp-table_clicked", function (listenerArgs, triggerArgs) {
         console.log('Table5 was clicked');
         console.log(triggerArgs);
     });
     
-    EventBroker.listen("Table5_mrp-Table_dblclicked", function (listenerArgs, triggerArgs) {
+    EventBroker.listen("Table5_mrp-table_dblclicked", function (listenerArgs, triggerArgs) {
         console.log('Table5 was double clicked');
         console.log(triggerArgs);
     });
     
-    EventBroker.listen("Table6_mrp-Table_clicked", function (listenerArgs, triggerArgs) {
+    EventBroker.listen("Table6_mrp-table_clicked", function (listenerArgs, triggerArgs) {
         console.log('Table6 was clicked');
         console.log(triggerArgs);
     });
     
-    EventBroker.listen("Table6_mrp-Table_dblclicked", function (listenerArgs, triggerArgs) {
+    EventBroker.listen("Table6_mrp-table_dblclicked", function (listenerArgs, triggerArgs) {
         console.log('Table6 was double clicked');
         console.log(triggerArgs);
     });
     
-    EventBroker.listen("Table7_mrp-Table_clicked", function (listenerArgs, triggerArgs) {
+    EventBroker.listen("Table7_mrp-table_clicked", function (listenerArgs, triggerArgs) {
         console.log('Table7 was clicked');
         console.log(triggerArgs);
     });
     
-    EventBroker.listen("Table7_mrp-Table_dblclicked", function (listenerArgs, triggerArgs) {
+    EventBroker.listen("Table7_mrp-table_dblclicked", function (listenerArgs, triggerArgs) {
         console.log('Table7 was double clicked');
         console.log(triggerArgs);
     });
@@ -219,5 +253,9 @@ Template.MRPTable.helpers({
     },
     tableData5: function () {
         return JSON.stringify(tableData5.toArray());
+    },
+    tableData6: function () {
+        return JSON.stringify(tableData6.toArray());
     }
+    
 });
