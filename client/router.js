@@ -40,6 +40,7 @@ Router.route('/MRPCheckBox');
 Router.route('/MRPTextBox');
 Router.route('/MRPDropDown');
 Router.route('/MRPAlert');
+Router.route('/MRPButtonSet');
 Router.route('/Brokers');
 Router.route('/Dev');
 
