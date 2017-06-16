@@ -17,3 +17,8 @@ body {
     float: right;
     padding-right: 200px;
 }
+
+.navbar .nav > li {
+    list-style-type: none;
+    background-color: #e8f0ff;
+}
