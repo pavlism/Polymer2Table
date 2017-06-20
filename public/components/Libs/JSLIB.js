@@ -1,4 +1,4 @@
-//V1.1
+//V0.11
 
 //A library used to make JS coding easier and add some simple function to JS
 

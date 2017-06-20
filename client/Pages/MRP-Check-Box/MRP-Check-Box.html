@@ -40,6 +40,8 @@
     <hr>
     {{>MRPCheckBox_events}}
     <hr>
+    {{>MRPCheckBox_PropTable}}
+    <hr>
     {{>MRPCheckBox_TODO}}
     <br>
     <br>
@@ -93,4 +95,17 @@
     <ul>
         <li>Add in more theme options</li>
     </ul>
+</template>
+
+<template name="MRPCheckBox_PropTable">
+    <h3>Properties</h3>
+    <table class="dataTable">
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        {{> property name='id' type='String' description='The ID of the element'}}
+        {{> property name='class' type='String' description='The class of the element'}}
+        {{> property name='disabled' type='Boolean' description='If true then the check box will be disabled'}}
+        {{> property name='checked' type='Boolean' description='If true then the check box will be checked'}}
+    </table>
 </template>

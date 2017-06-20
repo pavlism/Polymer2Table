@@ -17,9 +17,15 @@ Template.MRPDropDown.onRendered(function () {
     });
    
     list.length = 0;
-    list.push('one');
-    list.push('2');
-    list.push('3');
+    list.push('SQL');
+    list.push('Java');
+    list.push('Java Script');
+    list.push('C#');
+    list.push('Python');
+    list.push('C++');
+    list.push('PHP');
+    list.push('IOS');
+    list.push('Ruby');
 });
 
 Template.MRPDropDown.helpers({

@@ -51,6 +51,8 @@
     <hr>
     {{>MRPAlert_events}}
     <hr>
+    {{>MRPAlert_PropTable}}
+    <hr>
     {{>MRPAlert_TODO}}
     <br>
     <br>
@@ -107,5 +109,22 @@
     <ul>
         <li>Add in more options for button combinations</li>
         <li>Add in more theme options</li>
+        <li>Add in class??</li>
     </ul>
+</template>
+
+<template name="MRPAlert_PropTable">
+    <h3>Properties</h3>
+    <table class="dataTable">
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        {{> property name='id' type='String' description='The ID of the element'}}
+        {{> property name='title' type='String' description='The title of the alert box'}}
+        {{> property name='message' type='String' description='The message inside the alert box'}}
+        {{> property name='toggle' type='Boolean' description='Can be data-bound to turn the alert on/off, false=off, true=on'}}
+        {{> property name='on-event' type='String' description='An eventName, when triggered it will display the alert'}}
+        {{> property name='off-event' type='String' description='An eventName, when triggered it will hide the alert'}}
+        {{> property name='timer' type='Number' description='If set when the alert is displayed a timer will be created to hide the alert after the timer value in seconds'}}
+    </table>
 </template>

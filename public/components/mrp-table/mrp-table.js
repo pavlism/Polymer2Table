@@ -1,3 +1,8 @@
+/* V0.1
+ * 
+ * 
+ */
+
 class MRPTable extends Polymer.Element {
     
     static get log(){
@@ -8,37 +13,38 @@ class MRPTable extends Polymer.Element {
     }
     static get properties() {
         return {
-            id: {type: String, value: ''},
-            class: {type: String, value: ''},
+            id: {type: String, value: ''},                                      //The ID of the element
+            class: {type: String, value: ''},                                   //The class of the element
             data: {type: Array, observer: 'setMaxLength', value: function () {
                     return [];
-                }},
-            currentData: {type: Array, reflectToAttribute: true, value: function () {
+                }},                                                             //A 2D array that will hold all the data passed into the element to create the table. The first row of the element will become the headers
+            currentData: {type: Array, value: function () {
                     return [];
-                }},
-            footer: {type: Boolean, value: false},
-            select: {type: Boolean, value: false},
-            sortable: {type: Boolean, value: false},
-            sortcolumn: {type: Number, value: -1},
-            sortisasc: {type: Boolean, value: false},
-            search: {type: Boolean, value: false},
-            searchString: {type: String, value: ''},
-            buttons: {type: Boolean, value: false},
-            pages: {type: Boolean, value: false},
-            pageList: {type: Array, value: [10, 25, 50, 100]},
-            pageListValue: {type: Number, value: 10},
-            pagingMessage: {type: String, value: ''},
-            currentPage: {type: Number, value: 1},
-            maxLength: {type: Number, value: -1},
-            numFilteredValues: {type: Number, value: 0},
-            basic: {type: Boolean, value: false},
-            complexData: {type: Boolean, value: false},
-            isDblClick: {type: Number, value: 0}    //0 = waiting state, 1 = a click happened within the last 250ms, 2 = a dolbe click happend
+                }},                                                             //A 2D array that will hold the filtered data when using the search option
+            footer: {type: Boolean, value: false},                              //If true this will create a second header row at the bottom of the page
+            select: {type: Boolean, value: false},                              //If true this will add a column the left of the table, with check boxes. If ticked the row's background color will change
+            sortable: {type: Boolean, value: false},                            //If true this will allow the user to double click on the table headers to sort the table by that column
+            sortcolumn: {type: Number, value: -1},                              //Keeps track of the currently sorted column
+            sortisasc: {type: Boolean, value: false},                           //Keeps track of the whether the currently sorted column is sorted ascending or descending 
+            search: {type: Boolean, value: false},                              //If true a search bar will be added to above the table. The test entered will search through ever cell in the table. Any row with a matching value will stay visible while the other rows will disappear
+            searchString: {type: String, value: ''},                            //Keeps track of the text in the search text box
+            buttons: {type: Boolean, value: false},                             //If true a set of buttons will appear above the table. Each button reacts with the filtered data if also using the search bar.
+            pages: {type: Boolean, value: false},                               //If true this will setup paging for the table.
+            //pageList: {type: Array, value: [10, 25, 50, 100]},                //Not currently used, was used as a drop down so the user could change the paging size
+            pageListValue: {type: Number, value: 10},                           //If pages is true this number will how how many row each page contains
+            //pagingMessage: {type: String, value: ''},                         //This was the text displayed in the drop down
+            currentPage: {type: Number, value: 1},                              //This keep track of which page the user is one, when the pages property is true
+            maxLength: {type: Number, value: -1},                               //This keeps track of the maximum number or rows, after a the search has been filtered
+            numFilteredValues: {type: Number, value: 0},                        //This is used to calculated the number of filtered results, it's used to set the maxLength, changing the maxlength
+                                                                                //Causes the paging to reset, which should happen once the final maxLength is calculated.
+            isDblClick: {type: Number, value: 0}                                //0 = waiting state, 1 = a click happened within the last 250ms, 2 = a dolbe click happend
         };
     }
 
     ready() {
         super.ready();
+        //Setup the listeners to give global access to the <table> inside the component, access to the currently filtered data
+        //and listen for <mrp-check-box> changes the come from inside the component so it change the row background color
         DataBroker.listen(this.get('id') + '_CurrentData', this, function (listenerArgs, triggerArgs) {
             return listenerArgs.get('currentData');
         });
@@ -56,32 +62,34 @@ class MRPTable extends Polymer.Element {
                 $(row).removeClass('selected');
             }
         });
-        
-
     }
 
     attributeChangedCallback(name, old, value) {
         super.attributeChangedCallback(name, old, value);
+        //If the data is set or changed update the currentData array
         if (name === 'data') {
             this.set('currentData', JSON.parse(value));
         }
     }
 
     getHeader(data) {
+        //Returns the first row of data form the data array
         var headers = data[0];
         return headers;
     }
 
-    setMaxLength(a, b, c) {
+    setMaxLength(data) {
+        //Used to the set the maxLength to the length of the data array if their isn't any filter, and to the number of ifltered results
         var numFilteredValue = this.get('numFilteredValues');
         if (numFilteredValue === 0) {
-            this.set('maxLength', a.length);
+            this.set('maxLength', data.length);
         } else {
             this.set('maxLength', numFilteredValue);
         }
     }
 
     matchCellType(cell, cellType) {
+        //Checks the data of each array element in the data array to see what type of data it is.
         if (typeof cell === "object" && cell !== null) {
             if (Lib.JS.isDefined(cell.button)) {
                 if (cellType === 'button') {
@@ -118,6 +126,10 @@ class MRPTable extends Polymer.Element {
         return false;
     }
     getProps(cell) {
+        //This is used when complex text is entered as an element in the data array.  The props of the object are turned into extra rows
+        //of hidden text and can be displayed when the user clicks on the icon in the cell.  This way one cell can hold lots of data without 
+        //distorting the look of the table.
+        //Example object: {title'Mark', prop{Company'MRP inc', phone'519-768-4521'}}
         if (Lib.JS.isUndefined(cell.prop)) {
             return [cell];
         }
@@ -128,21 +140,20 @@ class MRPTable extends Polymer.Element {
         return array;
     }
     keyup(event) {
+        //When the key-up event is trigger on the search box this will updated the search string that filters the table.
+        //This way the table starts filtering itself as the user is typing instead of waiting until they are complete and trigger a changed event.
         var searchString = $(event.target).val();
         this.set('searchString', searchString);
     }
     searchFilter(searchString, data) {
-
+        //The filtering  function used to filter the table
         this.set('currentData.length', 0);
-
-
+        
         var headers = data[0];
         var lastRow = data[data.length - 1];
         this.set('numFilteredValues', 0);
         var thisObj = this;
         this.push('currentData', headers);
-
-
 
         if (searchString !== "") {
             return function (record) {
@@ -151,21 +162,29 @@ class MRPTable extends Polymer.Element {
                     return true;
                 }
                 for (var cellCounter = 0; cellCounter < record.length; cellCounter++) {
+                    
+                    //Determine what the text should be used for each cell
                     var searchTerm = record[cellCounter];
                     if (!Lib.JS.isDefined(searchTerm)) {
+                        //If nothing  is there then the search string should be empty
                         searchTerm = '';
                     } else if (typeof searchTerm === 'object') {
+                        //The the cell has an object instead  on simple text
                         if (Lib.JS.isDefined(searchTerm.link)) {
+                            //if a link then use the text in the link not the href
                             searchTerm = searchTerm.link.text;
                         } else if (Lib.JS.isDefined(searchTerm.title)) {
+                            //if a complex data object then use the title only
                             searchTerm = searchTerm.title;
                         } else {
                             searchTerm = '';
                         }
                     } else {
+                        //If anything else make sure the searchTerm is at least a string
                         searchTerm = searchTerm.toString();
                     }
-
+                    
+                    //Take the search term and look through all the cells of the row, it it matches anything in that row then it passes.
                     if (searchTerm.toLowerCase().indexOf(searchString.toLowerCase()) !== -1) {
                         var numFilteredValue = thisObj.get('numFilteredValues');
                         thisObj.set('numFilteredValues', numFilteredValue + 1);
@@ -189,23 +208,19 @@ class MRPTable extends Polymer.Element {
         return null;
     }
     showRow(index, desiredIndex, pagingNum, currentPage) {
-        if (!this.get('pages') && !this.isIndex(index, desiredIndex)) {
+        //Used to hide the first row of data from the table because it's the header
+        //Also this hides all rows that are not on the current pages when using paging
+        if (!this.get('pages') && index !== desiredIndex) {
             return true;
         }
 
-        //don't show the first row (its the header)
-        if (!this.isIndex(index, desiredIndex) && index <= pagingNum * currentPage && index > pagingNum * (currentPage - 1)) {
+        if (index !== desiredIndex && index <= pagingNum * currentPage && index > pagingNum * (currentPage - 1)) {
             return true;
-        }
-    }
-    isIndex(index, desiredIndex) {
-        if (index === desiredIndex) {
-            return true;
-        } else {
-            return false;
         }
     }
     getPages(maxLength, pageSize) {
+        //This create an array of numbers, each element corresponds to 1 page, when using the paging
+        //This array is used to create the page number button
         console.log('getPages maxLength:' + maxLength);
         var pages = [];
         if (maxLength <= 0) {
@@ -224,6 +239,9 @@ class MRPTable extends Polymer.Element {
         return pages;
     }
     handleClick(event) {
+        //There are several possible reason what the table could be clicked and each needs to be handled differently
+        
+        //Checking for possible double click
         if(this.get('isDblClick') ===1){
             this.set('isDblClick', 2);
             this.handleDblClick(event);
@@ -233,67 +251,82 @@ class MRPTable extends Polymer.Element {
         this.set('isDblClick', 1);
 
         if ($(event.target).is('th') && this.get('sortable')) {
+            //If the header was clicked and sorting is on then sort the column
             this.handleSort(event, this);
         } else if ($(event.target).is('mrp-button') || $(event.target).parent().is('mrp-button')) {
+            //If a button was clicked then check it it's a page button and then change  the page
             this.handleButtons(event);
         } else if ($(event.target).is('td')) {
+            //If a cell was clicked then check if it's a complex data cell and then hide/reveal the extra data
             this.handleCellClick($(event.target));
         } else if ($(event.target).parent().is('td')) {
+            //If an object  in a cell was clicked then check if it's a complex data cell and then hide/reveal the extra data
             this.handleCellClick($(event.target).parent());
         }
 
-        //if row has an object then expand the row
+        //Get all relevant data to be passed form the event trigger
         var row = $(event.target).parent();
-        var rowNum = $(event.target).parent().parent().children('tr').index(row);
-        var tableData = this.get('data');
+        var rowNum = $(row).parent().children('tr').index($(row));
+        var currentData = this.get('currentData');
+        var rowData = currentData[rowNum+1];
+        
         var cell = $(event.target).text().trim();
-        var domRow = $(event.target).parent().find('td');
         var headers = [];
         //get the headers
         $(event.target).parent().parent().parent().find('th').each(function () {
             headers.push($(this).text().trim());
         });
+       
 
+        //Build a row object
         var row = {};
-        for (var rowCounter = 0; rowCounter < domRow.length; rowCounter++) {
-            row[headers[rowCounter]] = $(domRow[rowCounter]).text().trim();
+        for (var rowCounter = 0; rowCounter < rowData.length; rowCounter++) {
+            row[headers[rowCounter]] = rowData[rowCounter];
         }
 
         var thisObj = this;
 
+        //Set a timeout to see if a double click has happened, if by the time the timer function runs, if the user hasn't clicked the table again then it's a single click 
+        //and the clicked event is triggered
         setTimeout(function () {
             if (thisObj.get('isDblClick') ===1) {
                 var triggerObj = {cell: cell, row: row, table: thisObj, event: event};
-                Lib.Polymer.triggerEventsWithTable(this, triggerObj, 'mrp-table_clicked');
+                Lib.Polymer.triggerEventsWithTable(thisObj, triggerObj, 'mrp-table_clicked');
                 thisObj.set('isDblClick',0);
             }
         }, 250);
     }
 
     handleDblClick(event) {
+        //If a double click is detected then collect the required data and trigger the double clicked event
         this.set('isDblClick', 0);
         var cell = $(event.target).text().trim();
-        var domRow = $(event.target).parent().find('td');
+        var row = $(event.target).parent();
+        var rowNum = $(row).parent().children('tr').index($(row));
+        var currentData = this.get('currentData');
+        var rowData = currentData[rowNum+1];
         var headers = [];
+        
         //get the headers
         $(event.target).parent().parent().parent().find('th').each(function () {
             headers.push($(this).text().trim());
         });
 
         var row = {};
-        for (var rowCounter = 0; rowCounter < domRow.length; rowCounter++) {
-            row[headers[rowCounter]] = $(domRow[rowCounter]).text().trim();
+        for (var rowCounter = 0; rowCounter < rowData.length; rowCounter++) {
+            row[headers[rowCounter]] = $(rowData[rowCounter]).text().trim();
         }
         EventBroker.trigger(this.id + "_mrp-table_dblclicked", {cell: cell, row: row, table: this, event: event});
     }
 
     getSortFunction(sortIndex, isAsync) {
+        //The sort function  used to sort the columns
         var multipliyer = -1;
         if (isAsync) {
             multipliyer = 1;
         }
 
-        return function (a, b, c) {
+        return function (a, b) {
             if (a[sortIndex] < b[sortIndex]) {
                 return -1 * multipliyer;
             } else if (a[sortIndex] > b[sortIndex]) {
@@ -304,11 +337,13 @@ class MRPTable extends Polymer.Element {
         };
     }
     handleSort(event, polObject) {
+        //If a header was clicked and the sort property is true then sort the table by the column header clicked
         var data = polObject.get('data');
         var lastSortColum = polObject.get('sortcolumn');
         var sortIndex = event.target.cellIndex;
         var headers = data.shift();
 
+        //If the table has already been sorted by this column then flip the sorting (assessing to descending)
         if (lastSortColum === sortIndex) {
             var isAsc = polObject.get('sortisasc');
             isAsc = !isAsc;
@@ -337,6 +372,7 @@ class MRPTable extends Polymer.Element {
         }
     }
     handleButtons(event) {
+        //If a button was pressed, check to see if it's a paging button otherwise do nothing
         if (!$(event.target).parents('div').first().hasClass('pages')) {
             return false;
         }
@@ -344,7 +380,8 @@ class MRPTable extends Polymer.Element {
         if (!this.get('pages')) {
             return false;
         }
-
+        
+        //If the button click was a paging button and the pages property is true then change the page displayed to the user is necessary
         var maxLength = this.getMaxLength();
         var pageSize = this.get('pageListValue');
         if (maxLength === -1) {
@@ -352,10 +389,12 @@ class MRPTable extends Polymer.Element {
             this.set('maxLength', maxLength);
         }
 
+        
         var currentPage = this.get('currentPage');
         $('#pageButton_' + currentPage).find('button').css('background-color', '#f2f2f2');
         $('#pageButton_' + currentPage).find('button').css('border-color', 'rgb(231, 234, 236)');
 
+        //Check to see if the button was a numbered one of a next/previous one and change the page accordingly
         var buttonText = $(event.target).text().trim();
         if (buttonText === "Next") {
             currentPage = currentPage + 1;
@@ -376,6 +415,7 @@ class MRPTable extends Polymer.Element {
         console.log('currentPage:' + currentPage);
     }
     handleCellClick(cell) {
+        //If a cell was clicked and the cell has a complex object it, then either hide/show the extra data
         if (cell.children('div').is(':visible')) {
             //cell.children('div').hide();
             cell.find('.properties').hide();
@@ -388,6 +428,7 @@ class MRPTable extends Polymer.Element {
         }
     }
     getMaxLength() {
+        //A safer way to get the max length, if the maxlength is not set it will set it
         var maxLength = this.get('maxLength');
         if (maxLength === -1) {
             maxLength = this.get('data').length;
@@ -395,22 +436,8 @@ class MRPTable extends Polymer.Element {
         }
         return maxLength;
     }
-    setupFirstPageHighliting(counter) {
-        if (counter > 10) {
-            return false;
-        }
-        var thisObj = this;
-        setTimeout(function () {
-
-            if ($('#pageButton_1').length > 0) {
-                $('#pageButton_1').find('button').css('background-color', '#e6e6e6');
-                $('#pageButton_1').find('button').css('border-color', '#1ab394');
-            } else {
-                thisObj.setupFirstPageHighliting(counter + 1)
-            }
-        }, 1000);
-    }
     isCurrentPage(index) {
+        //This check the current index when creating the page button, if the index matches the current page property then it's class is changed to highlight it.
         MRPTable.log.trace('isCurrentPage currentPage:' + this.get('currentPage'));
         MRPTable.log.trace('isCurrentPage index+1:' + (index + 1).toString());
         if (index + 1 === this.get('currentPage')) {

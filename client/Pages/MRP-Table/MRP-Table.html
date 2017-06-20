@@ -31,7 +31,7 @@
             {{> MRP_Table_code3}}
         </td>
         </tr>
-        {{> midRowHeader title='mrp-table With search'}}
+        {{> midRowHeader title='mrp-table With Search'}}
         <tr>
             <td class='example'>
                 <mrp-table data='{{tableData}}' id='Table4' search></mrp-table>
@@ -52,7 +52,7 @@
         {{> midRowHeader title='mrp-table With Pages'}}
         <tr>
             <td class='example'>
-                <mrp-table data='{{tableData2}}' id='Table6' pages></mrp-table>
+                <mrp-table data='{{tableData2}}' id='Table6' pages pageListValue='15'></mrp-table>
             </td>
         <td>
             {{> MRP_Table_code6}}
@@ -107,6 +107,8 @@
     </table>
     {{>MRP_mrpTable_events}}
     <hr>
+    {{>MRP_Table_PropTable}}
+    <hr>
     {{>MRP_Table_TODO}}
     <br>
     <br>
@@ -160,8 +162,8 @@
     <pre>
     &#x3C;mrp-table data=&#x27;{2DArray}&#x27; id=&#x27;Table1&#x27; Basic &#x3E;&#x3C;/mrp-table&#x3E;
     Simply add a button object, or array of buttons to the 2D array.
-    Button Array Example:
-    {buttons:[{color:MRPButton.colors.info, text:'edit'},{color:MRPButton.colors.danger, text:'delete'}]};
+    Button Array Example
+    {buttons[{colorMRPButton.colors.info, text'edit'},{colorMRPButton.colors.danger, text'delete'}]};
     Each button will become a <a href='MRP_Button'>&lt;mrp-button&gt;</a>.
     You can use MRPButton.propertiesObj() to get an example button object.
     Each button object can have and id, class, text, size and color. </pre>
@@ -172,8 +174,8 @@
     <pre>
     &#x3C;mrp-table data=&#x27;{2DArray}&#x27; id=&#x27;Table1&#x27; Basic &#x3E;&#x3C;/mrp-table&#x3E;
     Simply add an object to the 2D array.
-    Object Example:
-    {title:'Mark', prop:{Company:'MRP inc', phone:'519-768-4521'}}
+    Object Example
+    {title'Mark', prop{Company'MRP inc', phone'519-768-4521'}}
     The title will be displayed by default.  When the user clicks on the cell the propr object will appear.</pre>
 </template>
 
@@ -182,8 +184,8 @@
     <pre>
     &#x3C;mrp-table data=&#x27;{2DArray}&#x27; id=&#x27;Table1&#x27; Basic &#x3E;&#x3C;/mrp-table&#x3E;
     Simply add a link object to the 2D array.
-    Link Object Example:
-    {link:{href:'http//www.google.ca',text:'google'}}
+    Link Object Example
+    {link{href'http//www.google.ca',text'google'}}
     Each link object requires an href and text properties</pre>
 </template>
 
@@ -232,4 +234,33 @@
 </template>
 
 <template name="MRP_Table_TODO">
+    <h3>TODO</h3>
+    <ul>
+        <li>Check table click event if clicking on a button of expanding thing</li>
+        <li>Add pageList back in</li>
+        <li>Setup data call listener for contently selected data via the check boxes</li>
+        <li>Setup column settings</li>
+        <li>Add in some speed up option for the search, current;method using key-up is nice but can be slow with large data sets</li>
+        <li>The search could work better for complex data object, it currently only uses the title</li>
+        <li>The search also ignore the buttons and text boxes, consider adding then in</li>
+    </ul>
+</template>
+
+<template name="MRP_Table_PropTable">
+    <h3>Properties</h3>
+    <table class="dataTable">
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        {{> property name='id' type='String' description='The ID of the element'}}
+        {{> property name='class' type='String' description='The class of the element'}}
+        {{> property name='data' type='Array' description='A 2D array that will hold all the data passed into the element to create the table.  The first row of the element will become the headers'}}
+        {{> property name='footer' type='Boolean' description='If true this will create a second header row at the bottom of the page'}}
+        {{> property name='select' type='Boolean' description="If true this will add a column the left of the table, with check boxes.  If ticked the row's background color will change"}}
+        {{> property name='sortable' type='Boolean' description='If true this will allow the user to double click on the table headers to sort the table by that column'}}
+        {{> property name='search' type='Boolean' description='If true a search bar will be added to above the table.  The test entered will search through ever cell in the table.  Any row with a matching value will stay visible while the other rows will disappear'}}
+        {{> property name='buttons' type='Boolean' description='If true a set of buttons will appear above the table.  Each button reacts with the filtered data if also using the search bar.'}}
+        {{> property name='pages' type='Boolean' description='If true this will setup paging for the table.  '}}
+        {{> property name='page-list-value' type='Number' description='If pages is true this number will how how many row each page contains'}}
+    </table>
 </template>

@@ -1,20 +1,20 @@
-var defaultButton = new ReactiveObject({val:0});
-var toggleID = new ReactiveObject({val:0});
+var defaultButton = new ReactiveObject({val:false});
+var toggleID = new ReactiveObject({val:false});
 
 Template.MRPAlert.onRendered(function () {
     EventBroker.listen("toggleBasic_mrp-button_clicked", function (listenerArgs, triggerArgs) {
-        if(defaultButton.val ===0){
-            defaultButton.val =1;
+        if(defaultButton.val ===false){
+            defaultButton.val =true;
         }else{
-            defaultButton.val = 0;
+            defaultButton.val = false;
         }
     });
     
      EventBroker.listen("toggleID_mrp-button_clicked", function (listenerArgs, triggerArgs) {
-        if(toggleID.val ===0){
-            toggleID.val =1;
+        if(toggleID.val ===false){
+            toggleID.val =true;
         }else{
-            toggleID.val = 0;
+            toggleID.val = false;
         }
     });
     

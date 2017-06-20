@@ -42,6 +42,8 @@
     <hr>
     {{>MRPButtonSet_events}}
     <hr>
+    {{>MRPButtonSet_PropTable}}
+    <hr>
     {{>MRPButtonSet_TODO}}
     <br>
     <br>
@@ -108,6 +110,8 @@
 <template name="MRPButtonSet_TODO">
     <h3>TODO</h3>
     <ul>
+        <li>Move copy button to far left and frist in code</li>
+        <li>change the copy button to listen to the alert_closed Message</li>
         <li>Add in better error handling (if selecto/call don't actaully point to anything)</li>
         <li>Updated Print, PDF to work better with larger tables</li>
         <li>Updated Copy, Print, PDF to work with other basic HTML tags and divs</li>
@@ -129,4 +133,43 @@
     DataBroker.listen("GetSampleData",tableData, function(listenerArgs, triggerArgs){
         return listenerArgs;
     })</pre>
+</template>
+
+<template name="MRPButtonSet_PropTable">
+    <h3>Properties For All</h3>
+    <table class="dataTable">
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        {{> property name='id' type='String' description='The ID of the element'}}
+        {{> property name='data-call' type='String' description='The dataCall this button can use to get the table element, used with <mrp-table> can be used when created custom elements'}}
+        {{> property name='data-selector' type='String' description='The Jquery selector to get the table object'}}
+    </table>
+    <h3>Properties For &#x3C;mrp-copy&#x3E;</h3>
+    <table class="dataTable">
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        {{> property name='alert-title' type='String' description='The title of the alert the will pop up after the data has been copied to the clipboard'}}
+        {{> property name='alert-message' type='String' description='The message of the alert the will pop up after the data has been copied to the clipboard'}}
+    </table>
+    <h3>Properties For &#x3C;mrp-csv&#x3E;, &#x3C;mrp-excel&#x3E;</h3>
+    <table class="dataTable">
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        {{> property name='file-name' type='String' description='The name of the file that will be created and downloaded'}}
+    </table>
+    <h3>Properties For &#x3C;mrp-pdf&#x3E;</h3>
+    <table class="dataTable">
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        {{> property name='file-name' type='String' description='The name of the file that will be created and downloaded'}}
+        {{> property name='page-orientation' type='String' description='Determines if the page will be portrait or landscape'}}
+        {{> property name='page-size' type='String' description='A string value that represents the size of the page.  The default is A5'}}
+        {{> property name='styles' type='object' description='A complicated object the helps to style the object see http://pdfmake.org for more details'}}
+    </table>
+    &#x3C;mrp-pdf&#x3E; uses pdfmake to build the pdf files.  see <a href="http://pdfmake.org/index.html#/gettingstarted">pdfmake</a> for more information.  Note: not all functions of pdfmake
+    have been implemented.
 </template>
