@@ -63,7 +63,7 @@ if (typeof PolymerLib === 'undefined') {
             }
             Lib.Polymer.triggerEvents(element, triggerObj, eventName);
         };
-         /**
+        /**
          * This will create a string representation of an element.  It is designed to work with <mrp-table> and is elements.
          * If the element doesn't have any children then it will use the Jquery trim().  If not it will try to run
          * a element.val() function on all the children.

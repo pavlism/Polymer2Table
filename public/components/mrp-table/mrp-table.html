@@ -30,11 +30,11 @@ No css styling is required because it's all done inside of the element itself.
         
         <template is="dom-if" if="[[buttons]]">
             <!-- If the button property is true then add in the CSV, Excel, PDF, copy and print buttons-->
-            <mrp-csv-button data-call="[[id]]_CurrentTableElement"></mrp-csv-button>
-            <mrp-excel-button data-call="[[id]]_CurrentTableElement"></mrp-excel-button>
-            <mrp-copy-button data-call="[[id]]_CurrentTableElement"></mrp-copy-button>
-            <mrp-print-button data-call="[[id]]_CurrentTableElement"></mrp-print-button>
-            <mrp-pdf-button data-call="[[id]]_CurrentTableElement"></mrp-pdf-button>
+            <mrp-csv-button data-call="[[id]]_CurrentData"></mrp-csv-button>
+            <mrp-excel-button data-call="[[id]]_CurrentData"></mrp-excel-button>
+            <mrp-copy-button data-call="[[id]]_CurrentData"></mrp-copy-button>
+            <mrp-print-button data-call="[[id]]_CurrentData"></mrp-print-button>
+            <mrp-pdf-button data-call="[[id]]_CurrentData"></mrp-pdf-button>
         </template>
         
         <table id="[[id]]_table" class$="[[class]]" on-click='handleClick' on-double-click="handleDblClick">

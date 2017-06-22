@@ -17,11 +17,11 @@ class MRPTextBox extends Polymer.Element {
         return {
             id: {type: String, value: ''},                                      //The ID of the element
             class: {type: String, value: ''},                                   //The class of the element
-            maxlength: {type: Number, value: -1},                               //The maxlength of the <input> element
+            maxlength: {type: Number, value: -1},                               //The maxlength of the <input>
             value: {type: String, value: '', observer: 'changed', reflectToAttribute:true},
                                                                                 //If not blank this will be the default value of the text box
             regex: {type: String, value: ''},                                   //The regex expression that text of the text box will ba validation against
-            placeholder: {type: String, value: ''},                             //The placeholder of the <input> element
+            placeholder: {type: String, value: ''},                             //The placeholder of the <input>
             validation: {type: Number, value: -1, reflectToAttribute: true, observer: 'validationReset'},
                                                                                 //This value will represent the validation status of the element. 0=invalid, 1=valid, -1=default.
             errorMsg: {type: String, value: ''},                                //The message displayed when the validation fails.

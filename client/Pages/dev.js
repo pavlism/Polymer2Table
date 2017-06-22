@@ -43,7 +43,7 @@ Template.dev.onRendered(function () {
     var buttons = {buttons:[{size:MRPButton.sizes.mini,color:MRPButton.colors.info, text:'Add'},{size:MRPButton.sizes.small,color:MRPButton.colors.primary, text:'Add'}]};
     
     
-    tableData.push(['#','OrderDate','Region','Rep','Total']);
+    tableData.push(['#','Order Date','Region','Rep','Total']);
     tableData.push(['1',obj,button,Link,buttons]);
     tableData.push(['2','1/23/2016','Central','Kivell','999.50']);
     tableData.push(['3','2/9/2016','Central','Jardine','179.64']);
